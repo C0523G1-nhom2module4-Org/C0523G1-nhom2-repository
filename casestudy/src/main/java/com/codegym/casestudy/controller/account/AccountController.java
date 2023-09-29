@@ -29,6 +29,10 @@ public class AccountController {
         model.addAttribute("keyword",keyword);
         return "account/list";
     }
+    @GetMapping("/index")
+    public String showIndex(){
+        return "index";
+    }
 
 
 }
