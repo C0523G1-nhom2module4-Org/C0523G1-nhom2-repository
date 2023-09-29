@@ -76,17 +76,17 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-            <a href="/feature" class="nav-item nav-link">Khóa học</a>
-            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+            <a th:href="@{/}" class="nav-item nav-link">Trang chủ</a>
+            <a th:href="@{/feature}" class="nav-item nav-link">Khóa học</a>
+            <a href="#" class="nav-item nav-link active">Về chúng tôi</a>
+            <a th:href="@{/contact}" class="nav-item nav-link">Liên hệ</a>
         </div>
         <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
                 class="fa fa-arrow-right ms-3"></i></a>
@@ -98,12 +98,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
     <div class="container text-center">
-        <h1 class="display-4 text-white animated slideInDown mb-4">Liên lạc với chúng tôi</h1>
+        <h1 class="display-4 text-white animated slideInDown mb-4">Chúng tôi là Nhóm 2 - C0523G1</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a class="text-white" th:href="@{/}">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">Khóa học</a></li>
-                <li class="breadcrumb-item text-primary active" aria-current="page">Liên lạc</li>
+                <li class="breadcrumb-item"><a class="text-white" th:href="@{/contact}">Liên lạc</a></li>
+                <li class="breadcrumb-item text-primary active" aria-current="page">Về chúng tôi</li>
             </ol>
         </nav>
     </div>
@@ -117,34 +117,33 @@
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="img/about-1.jpg" alt="" style="object-fit: cover;">
-                    <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3" src="img/about-2.jpg" alt=""
+                    <img class="position-absolute w-100 h-100" src="img/about-us-1.jpg" alt="" style="object-fit: cover;">
+                    <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3" src="img/code-gym-logo.jpg" alt=""
                          style="width: 200px; height: 200px;">
                 </div>
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="h-100">
                     <h6 class="text-primary text-uppercase mb-2">Về chúng tôi</h6>
-                    <h1 class="display-6 mb-4">Hỗ trợ học viên về mọi mặt, gia tăng tỉ lệ vượt qua các bài kiểm tra và
-                        bài thi sau 1 lần học</h1>
-                    <p>Hiện nay đăng ký học lái xe ô tô cực kỳ đơn giản và không còn quá khó và phức tạp như trước đây.
-                        Để tham gia một khóa học lái xe ô tô tại trung tâm CodeDrivin, điều duy nhất bạn cần làm là nhấc
-                        điện thoại lên và gọi</p>
-                    <p class="mb-4">Ngoài ra còn thủ tục khám sức khỏe, khi đăng ký học tại trung tâm CodeDrivin bạn sẽ
-                        được tư vấn khám sức khỏe đúng nơi quy định. Giấy khám sức khỏe cũng phải đúng quy cách theo quy
-                        định của Tổng cục đường bộ</p>
+                    <h1 class="display-6 mb-4">Trang web này là một sản phẩm của các học viên trung tâm CodeGym Đà
+                    Nẵng</h1>
+                    <p>Với tiêu chí hoàn thành tốt Case Study Module 4, luyện tập thực chiến thông qua mô hình Bootcamp và
+                    chuẩn bị những hàng trang đầy đủ nhất cho việc trở thành một lập trình viên Fullstack</p>
+                    <p class="mb-4">Ngoài mục đích luyện tập mô hình làm việc nhóm, các cá nhân trong nhóm cũng tự mình trau
+                    dồi thêm nhiều kỹ năng và kinh nghiệm cần thiết để trở thành một phiên bản tốt hơn của chính bản thân
+                    mình. Đây là một sản phẩm của <span style="color:#f3bd00;">Nhóm 2 - CodeGym Đà Nẵng - C0523G1</span></p>
                     <div class="row g-2 mb-4 pb-2">
                         <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Đầy đủ giấy phép giảng dạy
+                            <i class="fa fa-check text-primary me-2"></i>Hoàn thiện Frontend
                         </div>
                         <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Hỗ trợ trực tuyến
+                            <i class="fa fa-check text-primary me-2"></i>Xử lý nghiệp vụ tối ưu
                         </div>
                         <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Chi phí thấp
+                            <i class="fa fa-check text-primary me-2"></i>Xây dựng sơ bộ hệ thống
                         </div>
                         <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Giảng viên có chuyên môn cao
+                            <i class="fa fa-check text-primary me-2"></i>Thiết kế CSDL phù hợp
                         </div>
                     </div>
                     <div class="row g-4">
