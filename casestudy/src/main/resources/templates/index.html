@@ -40,7 +40,7 @@
 
 
 <!-- Topbar Start -->
-<div class="container-fluid bg-dark text-light p-0">
+<div th:fragment="topbar" class="container-fluid bg-dark text-light p-0">
     <div class="row gx-0 d-none d-lg-flex">
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
@@ -73,19 +73,19 @@
 
 
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-            <a href="/feature" class="nav-item nav-link">Khóa học</a>
-            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+            <a href="#" class="nav-item nav-link active">Trang chủ</a>
+            <a th:href="@{/feature}" class="nav-item nav-link">Khóa học</a>
+            <a th:href="@{/about}" class="nav-item nav-link">Về chúng tôi</a>
+            <a th:href="@{/contact}" class="nav-item nav-link">Liên hệ</a>
         </div>
         <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
                 class="fa fa-arrow-right ms-3"></i></a>
@@ -107,7 +107,7 @@
                                 <h1 class="display-2 text-light mb-5 animated slideInDown">Học lái xe với sự đảm
                                     bảo</h1>
                                 <a href="" class="btn btn-primary py-sm-3 px-sm-5">Tìm hiểu thêm</a>
-                                <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">Khóa học</a>
+                                <a th:href="@{/feature}" class="btn btn-light py-sm-3 px-sm-5 ms-3">Khóa học</a>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                                 <h1 class="display-2 text-light mb-5 animated slideInDown">Lái xe an toàn là ưu tiên
                                     hàng đầu của chúng tôi</h1>
                                 <a href="" class="btn btn-primary py-sm-3 px-sm-5">Tìm hiểu thêm</a>
-                                <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">Khóa học</a>
+                                <a th:href="@{/feature}" class="btn btn-light py-sm-3 px-sm-5 ms-3">Khóa học</a>
                             </div>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
                     <div class="position-relative mt-auto">
                         <img class="img-fluid" src="img/courses-1.jpg" alt="">
                         <div class="courses-overlay">
-                            <a class="btn btn-outline-primary border-2" href="">Tìm hiểu thêm</a>
+                            <a class="btn btn-outline-primary border-2" href="">Đăng ký khóa học</a>
                         </div>
                     </div>
                 </div>
@@ -244,7 +244,7 @@
                     <div class="position-relative mt-auto">
                         <img class="img-fluid" src="img/courses-2.jpg" alt="">
                         <div class="courses-overlay">
-                            <a class="btn btn-outline-primary border-2" href="">Tìm hiểu thêm</a>
+                            <a class="btn btn-outline-primary border-2" href="">Đăng ký khóa học</a>
                         </div>
                     </div>
                 </div>
@@ -268,7 +268,7 @@
                     <div class="position-relative mt-auto">
                         <img class="img-fluid" src="img/courses-3.jpg" alt="">
                         <div class="courses-overlay">
-                            <a class="btn btn-outline-primary border-2" href="">Tìm hiểu thêm</a>
+                            <a class="btn btn-outline-primary border-2" href="">Đăng ký khóa học</a>
                         </div>
                     </div>
                 </div>
@@ -534,7 +534,7 @@
 
 
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
@@ -583,7 +583,7 @@
 
 
 <!-- Copyright Start -->
-<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+<div th:fragment="copyRight" class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
