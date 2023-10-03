@@ -32,7 +32,7 @@
 
 <body>
 <!-- Spinner Start -->
-<div id="spinner"
+<div th:fragment="spinner" id="spinner"
      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-grow text-primary" role="status"></div>
 </div>
@@ -87,7 +87,7 @@
             <a th:href="@{/about}" class="nav-item nav-link">Về chúng tôi</a>
             <a th:href="@{/contact}" class="nav-item nav-link">Liên hệ</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a th:href="@{/errors}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
