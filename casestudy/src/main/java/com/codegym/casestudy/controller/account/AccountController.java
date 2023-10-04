@@ -1,6 +1,7 @@
 package com.codegym.casestudy.controller.account;
 
 import com.codegym.casestudy.dto.account.IAccountDto;
+import com.codegym.casestudy.model.account.Account;
 import com.codegym.casestudy.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AccountController {
     @Autowired
     private IAccountService accountService;
-
     @GetMapping("")
     public String showAccount(@RequestParam(defaultValue = "0",required = false) int page,
                               @RequestParam(defaultValue = "") String keyword,
@@ -27,12 +27,15 @@ public class AccountController {
         Page<IAccountDto> accountDtoPage =  accountService.searchByEmail(pageable,keyword);
         model.addAttribute("accountDtoPage",accountDtoPage);
         model.addAttribute("keyword",keyword);
-        return "account/list";
+        return "/account/list";
     }
-    @GetMapping("/index")
-    public String showIndex(){
-        return "index";
+    @GetMapping("/login")
+    public String showLogin(Model model, @RequestParam(name = "account",required = false)Account account){
+    model.addAttribute("account",account);
+    return "account_login";
     }
+
+
 
 
 }
