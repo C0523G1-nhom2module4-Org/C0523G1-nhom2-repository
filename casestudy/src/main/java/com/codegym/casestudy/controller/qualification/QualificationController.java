@@ -55,6 +55,7 @@ public class QualificationController {
         if (isExisted) {
             redirectAttributes.addFlashAttribute("message", "Qualification is already exist in " +
                     "database, put it again");
+            return "qualification-add";
         }
 
         //if nothing wrong, add new qualification
