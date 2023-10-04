@@ -28,14 +28,14 @@ public class QualificationController {
             model.addAttribute("message", "There is no qualification yet");
         }
         model.addAttribute("qualifications", qualifications);
-        return "qualification-show-list";
+        return "/qualification-show-list";
     }
 
     //add
     @GetMapping("/qualification-add")
     public String qualificationShowAddForm(Model model) {
         model.addAttribute("qualificationDto", new QualificationDto());
-        return "qualification-add";
+        return "/qualification-add";
     }
 
     @PostMapping("/qualification-add")
@@ -46,7 +46,7 @@ public class QualificationController {
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("message", "There is something wrong while adding " +
                     "new qualification, check again");
-            return "qualification-add";
+            return "/qualification-add";
         }
 
         //check if qualification name is already exist
@@ -55,7 +55,7 @@ public class QualificationController {
         if (isExisted) {
             redirectAttributes.addFlashAttribute("message", "Qualification is already exist in " +
                     "database, put it again");
-            return "qualification-add";
+            return "/qualification-add";
         }
 
         //if nothing wrong, add new qualification

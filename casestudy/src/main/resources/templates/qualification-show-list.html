@@ -1,81 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="index::head">
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head>
+    <meta charset="utf-8">
+    <title>C0523G1 - Drivin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/table.css">
+
 </head>
-<style>
-    <style>
-    body{
-        padding: 0;
-        margin: 0;
-        font-family: "Work Sans", sans-serif;
-
-    }
-    table {
-        /*position: absolute;*/
-        /*left: 50%;*/
-        /*top: 50%;*/
-        /*transform: translate(-50%,-50%);*/
-        margin: auto auto;
-        border-collapse: collapse;
-        width: 800px;
-        height: 200px;
-        border: 1px solid #f5ca33;
-        box-shadow: 2px 2px 12px rgba(0,0,0, 0.2), -1px -1px 8px rgba(0,0,0,0.2);
-
-    }
-    tr{
-        transition: all .2s ease-in;
-        cursor: pointer;
-    }
-    th,td{
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    #header{
-        background-color:#f3bd01;
-        color: #fff;
-
-    }
-    h1{
-        font-weight: 600;
-        text-align: center;
-        background-color: #f3bd01;
-        color: #fff;
-        padding: 10px 0px;
-    }
-    h3{
-        margin-right: 30%;
-        margin-left: 30%;
-        margin-top: 5%;
-        font-weight: 600;
-        text-align: center;
-        background-color: #f3bd01;
-        color: #fff;
-        padding: 10px 0px;
-    }
-
-    tr:hover{
-        background-color: #f5f5f5;
-        transform: scale(1.02);
-        box-shadow: 2px 2px 12px rgba(0,0,0, 0.2), -1px -1px 8px rgba(0,0,0,0.2);
-
-    }
-    @media only screen and (max-width: 768px){
-        table{
-            width: 90%;
-        }
-    }
-</style>
 <body>
 <!--spinner start-->
 <div th:replace="index::spinner"></div>
 <!--spinner end-->
 
 <!--topbar start-->
-<div th:replace="topbar"></div>
+<div th:replace="index::topbar"></div>
 <!--topbar end-->
 
 <!--navbar start-->
@@ -85,33 +49,54 @@
 <!--content start-->
 <div class="container">
     <h3>Danh Sách Hạng Bằng Lái Xe</h3>
-    <div>
-
-    </div>
-    <table>
+    <h4 th:if="${qualifications.isEmpty()}" th:text="${message}"></h4>
+    <table th:if="${!qualifications.isEmpty()}">
         <tr id="header">
             <th>STT</th>
             <th>Tên hạng bằng</th>
             <th>Học phí</th>
-            <th>Mô tả</th>
+            <th>Chi tiết</th>
         </tr>
-        <tr th:each="qualification, status : ${qualifications}">
-            <td style="width: 10%" th:text="${status.count}"></td>
+        <tr th:each="qualification, loop : ${qualifications}">
+            <td style="width: 10%" th:text="${loop.count}"></td>
             <td style="width: 35%" th:text="${qualification.getName()}"></td>
             <td style="width: 35%" th:text="${qualification.getFee()}"></td>
             <td style="width: 20%">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-info"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        th:attr="onclick=|confirmDelete(${account.id},'${account.email}')|">
-                    <i class="fas fa-trash"></i>
-                </button>
+                <!--                <button type="button" class="btn btn-info"-->
+                <!--                        data-bs-toggle="modal"-->
+                <!--                        data-bs-target="#exampleModal"-->
+                <!--                        onclick=sendInfo('${qualification.getDescription}')>-->
+                <!--                    <i class="fa-solid fa-circle-info"></i>-->
+                <!--                </button>-->
             </td>
         </tr>
     </table>
 </div>
 <!--content end-->
+
+<!--modal information start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><b>Thông tin bằng lái</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Thông tin chi tiết bằng lái:
+                <p id="qualificationDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quay lại</button>
+                <button type="submit" class="btn btn-primary">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal information end-->
+
 
 <!--footer start-->
 <div th:replace="index::footer"></div>
@@ -120,5 +105,28 @@
 <!--copyright start-->
 <div th:replace="index::copyRight"></div>
 <!--copyright end-->
+
+
+<script>
+    function sendInfo(qualificationDescription) {
+        document.getElementById("qualificationDescription").innerText = qualificationDescription;
+    }
+</script>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 </body>
 </html>
