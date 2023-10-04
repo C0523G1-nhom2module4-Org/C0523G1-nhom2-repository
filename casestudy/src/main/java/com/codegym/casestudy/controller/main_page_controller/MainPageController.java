@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class MainPageController {
-    @GetMapping
+    @GetMapping()
     public String index() {
         return "/index";
     }
@@ -27,9 +27,13 @@ public class MainPageController {
         return "/contact";
     }
 
-    @GetMapping("/error")
+    @GetMapping("/errors")
     public String error() {
-        return "errors";
+        return "/errors";
     }
 
+    @GetMapping("/qualification")
+    public String qualification() {
+        return "/qualification-add";
+    }
 }

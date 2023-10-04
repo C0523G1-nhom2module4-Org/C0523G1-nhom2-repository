@@ -1,12 +1,14 @@
 package com.codegym.casestudy.model.classes;
 
 
+import com.codegym.casestudy.model.student.Student;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.Set;
+
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 @Entity
@@ -17,9 +19,10 @@ public class Classes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "classes_name")
     private String name;
-    private boolean status;
-//    @OneToMany(mappedBy = "classes")
-//    private Set<Student> studentSet;
+    private int status;
 
+    @OneToMany(mappedBy = "classes")
+    private Set<Student> studentSet;
 }
