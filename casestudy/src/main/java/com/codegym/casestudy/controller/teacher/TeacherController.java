@@ -57,7 +57,7 @@ public class TeacherController {
         }
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(teacherDto, teacher);
-        teacher.setStatus(1);
+        teacher.setDeleted(true);
         teacherService.saveNewTeacher(teacher);
         redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
         return "redirect:/teachers";
@@ -82,7 +82,7 @@ public class TeacherController {
         }
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(teacherDto, teacher);
-        teacher.setStatus(1);
+        teacher.setDeleted(true);
         teacherService.updateTeacher(teacher.getId(), teacher);
         redirectAttributes.addFlashAttribute("message", "Sửa thành công");
         return "redirect:/teachers";

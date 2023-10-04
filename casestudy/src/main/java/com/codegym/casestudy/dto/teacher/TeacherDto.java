@@ -15,7 +15,7 @@ public class TeacherDto implements Validator {
     private String identity;
     private int gender;
     private String birthday;
-    private String phoneNumber;
+    private String phone;
     private int salary;
     private String address;
     private int status;
@@ -41,9 +41,9 @@ public class TeacherDto implements Validator {
         } else if (!teacherDto.getIdentity().matches("^[0-9]{9,12}$")) {
             errors.rejectValue("identity", null, "Số CMND là các số từ (0-9) có chiều dài là 9 đến 12 số ");
         }
-        if (teacherDto.getPhoneNumber().equals("")) {
+        if (teacherDto.getPhone().equals("")) {
             errors.rejectValue("phone", null, "Không được để trống!");
-        } else if (!teacherDto.getPhoneNumber().matches("^0[0-9]{9,11}$")) {
+        } else if (!teacherDto.getPhone().matches("^0[0-9]{9,11}$")) {
             errors.rejectValue("phone", null, "Số điện thoại phải đúng định dạng (0)xxxxxxxxx hoặc (0)xxxxxxxxxxx với x là các số từ (0-9)");
         }
     }
