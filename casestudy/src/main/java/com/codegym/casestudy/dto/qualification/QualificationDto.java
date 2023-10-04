@@ -8,18 +8,19 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class QualificationDto implements Validator {
-    @NotBlank(message = "Please fill this field")
+    @NotBlank(message = "Trường này không được để trống")
     private String name;
 
-    @NotBlank
+    @NotNull(message = "Trường này không được để trống")
     private Long fee;
 
-    @NotBlank(message = "Please fill this field")
+    @NotBlank(message = "Trường này không được để trống")
     private String description;
 
     public QualificationDto(String name, Long fee, String description) {
@@ -36,9 +37,10 @@ public class QualificationDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         QualificationDto qualificationDto = (QualificationDto) target;
+        Long fee = qualificationDto.getFee();
 
-        if (qualificationDto.getFee() < 0) {
-            errors.rejectValue("fee",null,"Học phí không thể mang giá trị âm");
+        if (fee < 0) {
+            errors.rejectValue("fee", null, "Học phí không thể mang giá trị âm");
         }
     }
 }

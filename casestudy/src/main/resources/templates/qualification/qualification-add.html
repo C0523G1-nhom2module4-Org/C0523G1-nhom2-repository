@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
     <title>C0523G1 - Drivin</title>
@@ -19,6 +18,8 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -29,19 +30,19 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
-
 <body>
-<!-- Spinner Start -->
-<div id="spinner"
+<!--Spinner start-->
+<div th:fragment="spinner" id="spinner"
      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-grow text-primary" role="status"></div>
 </div>
-<!-- Spinner End -->
+<!--Spinner end-->
 
-
-<!-- Topbar Start -->
-<div class="container-fluid bg-dark text-light p-0">
+<!--Topbar start-->
+<div th:fragment="topbar" class="container-fluid bg-dark text-light p-0">
     <div class="row gx-0 d-none d-lg-flex">
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
@@ -70,11 +71,10 @@
         </div>
     </div>
 </div>
-<!-- Topbar End -->
+<!--Topbar end-->
 
-
-<!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+<!--Navbar start-->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
@@ -83,54 +83,60 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
+            <a href="/" class="nav-item nav-link active">Trang chủ</a>
             <a th:href="@{/feature}" class="nav-item nav-link">Khóa học</a>
             <a th:href="@{/about}" class="nav-item nav-link">Về chúng tôi</a>
             <a th:href="@{/contact}" class="nav-item nav-link">Liên hệ</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
-<!-- Navbar End -->
+<!--Navbar end-->
 
-
-<!-- Page Header Start -->
-<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container text-center">
-        <h1 class="display-4 text-white animated slideInDown mb-4">Lỗi</h1>
-        <nav aria-label="breadcrumb animated slideInDown">
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a class="text-white" th:href="@{/}">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a class="text-white" th:href="@{/feature}">Khóa học</a></li>
-                <li class="breadcrumb-item text-primary active" aria-current="page">Lỗi</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-<!-- Page Header End -->
-
-
-<!-- 404 Start -->
-<div class="container-xxl py-6 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <i class="bi bi-exclamation-triangle display-1 text-primary"></i>
-                <h1 class="display-1">Lỗi</h1>
-                <h1 class="mb-4">Không tìm thấy trang</h1>
-                <p class="mb-4">Xin lỗi vì sự bất tiện này, có vẻ máy chủ đang quá tải. Vui lòng
-                    để lại lời nhắn cho chúng tôi về nhu cầu/câu hỏi của bạn <a th:href="@{/contact}">tại đây</a></p>
-                <a class="btn btn-primary py-3 px-5" th:href="@{/}">Trở về trang chủ</a>
+<!--Add form start-->
+<div class="col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="bg-primary text-center p-5">
+        <h1 class="mb-4">Thêm mới hạng bằng lái</h1>
+        <form th:object="${qualificationDto}" method="POST" th:action="@{/admin/qualification-add}">
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{name}" type="text" class="form-control border-0" id="name"
+                               placeholder="Tên hạng bằng lái">
+                        <small style="color:red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                        <label for="name">Tên bằng lái</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{fee}" type="number" class="form-control border-0" id="fee"
+                               placeholder="Học phí">
+                        <small style="color:red;" th:if="${#fields.hasErrors('fee')}" th:errors="*{fee}"></small>
+                        <label for="fee">Học phí</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <textarea th:field="*{description}" class="form-control border-0"
+                                  placeholder="Mô tả chi tiết về hạng bằng lái này" id="description"
+                                  style="height: 200px"></textarea>
+                        <small style="color:red;" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                        <label for="description">Mô tả</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
+                </div>
             </div>
-        </div>
+        </form>
+        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>
     </div>
 </div>
-<!-- 404 End -->
+<!--Add form end-->
 
-
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+<!--Footer start-->
+<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
@@ -175,11 +181,10 @@
         </div>
     </div>
 </div>
-<!-- Footer End -->
+<!--Footer end-->
 
-
-<!-- Copyright Start -->
-<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+<!--Copyright start-->
+<div th:fragment="copyRight" class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -188,12 +193,11 @@
         </div>
     </div>
 </div>
-<!-- Copyright End -->
+<!--Copyright end-->
 
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -205,6 +209,8 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 </body>
-
 </html>
