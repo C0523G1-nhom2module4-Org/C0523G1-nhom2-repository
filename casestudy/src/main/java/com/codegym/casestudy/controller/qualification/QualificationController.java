@@ -28,41 +28,44 @@ public class QualificationController {
             model.addAttribute("message", "There is no qualification yet");
         }
         model.addAttribute("qualifications", qualifications);
-        return "/qualification-show-list";
+        return "/qualification/qualification-show-list";
     }
 
     //add
     @GetMapping("/qualification-add")
     public String qualificationShowAddForm(Model model) {
         model.addAttribute("qualificationDto", new QualificationDto());
-        return "/qualification-add";
+        return "/qualification/qualification-add";
     }
 
     @PostMapping("/qualification-add")
     public String qualificationAdd(@Valid @ModelAttribute(name = "qualificationDto") QualificationDto qualificationDto,
                                    BindingResult bindingResult,
                                    RedirectAttributes redirectAttributes) {
+        //
+        new QualificationDto().validate(qualificationDto, bindingResult);
+
         //check if bindingResult has error
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("message", "There is something wrong while adding " +
-                    "new qualification, check again");
-            return "/qualification-add";
+            return "/qualification/qualification-add";
         }
 
         //check if qualification name is already exist
         String newQualificationName = qualificationDto.getName();
         boolean isExisted = this.qualificationService.isExist(newQualificationName);
+        String message = null;
         if (isExisted) {
-            redirectAttributes.addFlashAttribute("message", "Qualification is already exist in " +
-                    "database, put it again");
-            return "/qualification-add";
+            message = "Tên hạng bằng lái đã tồn tại trong " +
+                    "hệ thống, vui lòng kiểm tra lại!";
+            redirectAttributes.addFlashAttribute("message", message);
+            return "/qualification/qualification-add";
         }
 
         //if nothing wrong, add new qualification
         Qualification qualification = new Qualification();
         BeanUtils.copyProperties(qualificationDto, qualification);
         this.qualificationService.add(qualification);
-        return "redirect:/qualification";
+        return "redirect:/admin/qualification";
     }
 
     //remove
@@ -71,10 +74,10 @@ public class QualificationController {
                          Model model) {
         Boolean removeSuccess = this.qualificationService.remove(qualificationId);
         if (removeSuccess) {
-            model.addAttribute("message","Removed qualification");
+            model.addAttribute("message", "Removed qualification");
         } else {
-            model.addAttribute("message","Something wrong. Can't not found this qualification");
+            model.addAttribute("message", "Something wrong. Can't not found this qualification");
         }
-        return "redirect:/qualification";
+        return "redirect:/admin/qualification";
     }
 }
