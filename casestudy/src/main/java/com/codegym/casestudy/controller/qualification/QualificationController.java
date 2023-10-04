@@ -25,7 +25,7 @@ public class QualificationController {
     public String qualificationList(Model model) {
         List<Qualification> qualifications = this.qualificationService.findAll();
         if (qualifications.isEmpty()) {
-            model.addAttribute("message", "There is no qualification yet");
+            model.addAttribute("messages", "There is no qualification yet");
         }
         model.addAttribute("qualifications", qualifications);
         return "qualification-show-list";
