@@ -11,11 +11,11 @@ public interface ITeacherDto {
 
     String getBirthday();
 
-    String getPhoneNumber();
+    String getPhone();
 
     int getSalary();
 
     String getAddress();
 
-    int getStatus();
+    int getIsDeleted();
 }

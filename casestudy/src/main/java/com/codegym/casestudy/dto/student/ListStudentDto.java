@@ -16,10 +16,10 @@ public class ListStudentDto implements Validator {
     private String identity;
     private int gender;
     private String birthday;
-    private String phoneNumber;
-    private int point;
+    private String phone;
+    private int graduatePoint;
     private String address;
-    private int status;
+    private boolean isDeleted;
     private Classes classes;
 
     @Override
@@ -43,9 +43,9 @@ public class ListStudentDto implements Validator {
         } else if (!studentDto.getIdentity().matches("^[0-9]{9,12}$")) {
             errors.rejectValue("identity", null, "Số CMND là các số từ (0-9) có chiều dài là 9 đến 12 số ");
         }
-        if (studentDto.getPhoneNumber().equals("")) {
+        if (studentDto.getPhone().equals("")) {
             errors.rejectValue("phone", null, "Không được để trống!");
-        } else if (!studentDto.getPhoneNumber().matches("^0[0-9]{9,11}$")) {
+        } else if (!studentDto.getPhone().matches("^0[0-9]{9,11}$")) {
             errors.rejectValue("phone", null, "Số điện thoại phải đúng định dạng (0)xxxxxxxxx hoặc (0)xxxxxxxxxxx với x là các số từ (0-9)");
         }
     }

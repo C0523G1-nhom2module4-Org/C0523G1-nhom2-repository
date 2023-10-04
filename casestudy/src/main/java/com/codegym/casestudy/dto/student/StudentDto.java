@@ -4,7 +4,7 @@ public interface StudentDto {
     int getId();
     int getClassId();
 
-    String getName();
+    String getStudentName();
 
     String getIdentity();
 
@@ -12,11 +12,11 @@ public interface StudentDto {
 
     String getBirthday();
 
-    String getPhoneNumber();
+    String getPhone();
 
-    int getPoint();
+    int getGraduatePoint();
 
     String getAddress();
 
-    int getStatus();
+    int getIsDeleted();
 }
