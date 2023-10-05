@@ -19,16 +19,16 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/teachers")
+@RequestMapping("/teacher")
 public class TeacherController {
     @Autowired
     private ITeacherService teacherService;
-
-    @ModelAttribute("teacherList")
-    public List<Teacher> getListTeacher() {
-        List<Teacher> teacherList = teacherService.findAll();
-        return teacherList;
-    }
+//
+//    @ModelAttribute("teacherList")
+//    public List<Teacher> getListTeacher() {
+//        List<Teacher> teacherList = teacherService.findAll();
+//        return teacherList;
+//    }
 
     @GetMapping("")
     public String showList(Model model,
@@ -41,26 +41,26 @@ public class TeacherController {
         return "/teacher/list";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/add")
     public String showCreate(Model model) {
         model.addAttribute("teacherDto", new TeacherDto());
-        return "/teacher/create";
+        return "/teacher/add";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/add")
     public String saveTeacher(@Valid @ModelAttribute TeacherDto teacherDto,
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes) {
         new TeacherDto().validate(teacherDto, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "/teacher/create";
+            return "/teacher/add";
         }
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(teacherDto, teacher);
         teacher.setDeleted(true);
         teacherService.saveNewTeacher(teacher);
         redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
-        return "redirect:/teachers";
+        return "redirect:/teacher";
     }
 
     @GetMapping("/edit/{id}")
@@ -72,20 +72,20 @@ public class TeacherController {
         return "/teacher/edit";
     }
 
-    @PostMapping("/update")
+    @PostMapping("/edit")
     public String update(@Valid @ModelAttribute TeacherDto teacherDto,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
         new TeacherDto().validate(teacherDto, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "/teacher/create";
+            return "/teacher/edit";
         }
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(teacherDto, teacher);
         teacher.setDeleted(true);
         teacherService.updateTeacher(teacher.getId(), teacher);
         redirectAttributes.addFlashAttribute("message", "Sửa thành công");
-        return "redirect:/teachers";
+        return "redirect:/teacher";
     }
 
     @GetMapping("/delete")
@@ -93,6 +93,6 @@ public class TeacherController {
         Teacher teacher = teacherService.findById(idDelete);
         teacherService.delete(teacher);
         redirectAttributes.addFlashAttribute("message", "Xóa thành công");
-        return "redirect:/teachers";
+        return "redirect:/teacher";
     }
 }

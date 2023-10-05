@@ -32,7 +32,7 @@ public class StudentController {
     @GetMapping("")
     public String showList(@RequestParam(defaultValue = "", required = false) String name, Model model,
                            @RequestParam(defaultValue = "0", required = false) int page) {
-        Pageable pageable = PageRequest.of(page, 5, Sort.by("student_name").descending());
+        Pageable pageable = PageRequest.of(page, 4, Sort.by("student_name").descending());
         Page<StudentDto> studentDtos = studentService.findAllStudent(pageable, name);
         model.addAttribute("studentDtos", studentDtos);
         model.addAttribute("name", name);
@@ -53,6 +53,7 @@ public class StudentController {
                       RedirectAttributes redirectAttributes) {
         new ListStudentDto().validate(listStudentDto, bindingResult);
         if (bindingResult.hasErrors()) {
+            System.out.println("Loi");
             return "/student/add";
         }
         Student student = new Student();
@@ -60,13 +61,15 @@ public class StudentController {
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.add(student);
         redirectAttributes.addFlashAttribute("mess", "thêm mới thành công");
+        System.out.println("OK");
         return "redirect:/student";
     }
 
-    @PostMapping("/delete")
+    @GetMapping("/delete")
     public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {
         Student student = studentService.findById(id);
         studentService.delete(student);
+        System.out.println("------delete get-----");
         redirectAttributes.addFlashAttribute("mess", "Xoá Thành Công");
         return "redirect:/student";
     }
@@ -75,23 +78,26 @@ public class StudentController {
     public String showEdit(@RequestParam int id, Model model) {
         List<Classes> classesList = classesService.findAll();
         Student student = studentService.findById(id);
+        ListStudentDto listStudentDto = new ListStudentDto();
+        BeanUtils.copyProperties(student, listStudentDto);
         model.addAttribute("classesList", classesList);
-        model.addAttribute("student", student);
+        model.addAttribute("học", listStudentDto);
         return "/student/edit";
     }
 
     @PostMapping("/edit")
-    public String edit(int id, @Valid @ModelAttribute ListStudentDto listStudentDto,
+    public String edit(@Valid @ModelAttribute ListStudentDto listStudentDto,
                        BindingResult bindingResult,
                        RedirectAttributes redirectAttributes) {
         new ListStudentDto().validate(listStudentDto, bindingResult);
         if (bindingResult.hasErrors()) {
+            System.out.println("loi");
             return "/student/edit";
         }
         Student student = new Student();
         student.setDeleted(true);
         BeanUtils.copyProperties(listStudentDto, student);
-        studentService.edit(id, student);
+        studentService.edit(student);
         redirectAttributes.addFlashAttribute("mess", "Sửa Thành Công");
         return "redirect:/student";
     }

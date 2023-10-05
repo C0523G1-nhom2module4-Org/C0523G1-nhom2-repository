@@ -1,6 +1,7 @@
 package com.codegym.casestudy.dto.student;
 
 import com.codegym.casestudy.model.classes.Classes;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import org.springframework.validation.Validator;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ListStudentDto implements Validator {
     private int id;
     private String name;

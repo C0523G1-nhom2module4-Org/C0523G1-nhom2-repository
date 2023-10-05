@@ -16,8 +16,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Icon Font Stylesheet -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
@@ -91,90 +89,69 @@
             class="fa fa-arrow-right ms-3"></i></a>
   </div>
 </nav>
-<!-- Navbar End --><!--<div th:replace="landing_page::header"></div>-->
+<!-- Navbar End --><!-------------------------End Toast-------------------------------------------------------------->
+<!--content start-->
 <div class="container" style="min-height: 550px;margin-top: 30px">
-  <h1 style=" margin-top: 30px" align="center">Danh Sách Gỉang Viên</h1>
+  <h1 style=" margin-top: 30px" align="center">Danh Sách Lớp Học</h1>
   <nav class="navbar navbar-inverse">
     <div class=" navbar-form navbar-left mb-3">
-      <a href="/teacher/add">
-        <button title="Thêm mới học sinh"
-                class="btn btn-primary">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </a>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClassModal">
+        <i class="fa-solid fa-plus"></i>
+      </button>
     </div>
-    <form action="/teacher" method="get">
+    <form action="/classes" method="get">
       <div class="d-flex justify-content-end">
-        <div class="input-group mb-6">
+
+        <div class="input-group mb-3">
           <input id="search-input1" th:value="${name}" name="name" type="search"
-                 class="form-control" placeholder="Tên gỉang viên"/>
+                 class="form-control" placeholder="Tên lớp"/>
         </div>
         <div class="mb-6 ml-2">
           <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
         </div>
-
       </div>
     </form>
   </nav>
   <table class="table table-hover">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>Tên</th>
-        <th>Giới tính</th>
-        <th>Ngày sinh</th>
-        <th>Lương</th>
-        <th>SĐT</th>
-        <th>Địa chỉ</th>
-        <th>Chức năng</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="teacher,loop : ${teacherDtoPage}">
-        <td th:text="${loop.count}"></td>
-        <td th:text="${teacher.getName()}"></td>
-        <td style="width: 5%">
-          <span th:if="${teacher.getGender() == 0}">Nam</span>
-          <span th:if="${teacher.getGender() == 1} ">Nữ</span>
-          <span th:if="${teacher.getGender() == 2} ">LGBT</span>
-        </td>
-        <td th:text="${teacher.getBirthday()}"></td>
-        <td th:text="${teacher.getSalary()}"></td>
-        <td th:text="${teacher.getPhone()}"></td>
-        <td th:text="${teacher.getAddress()}"></td>
-        <td>
-          <a th:href="@{/teachers/edit/{id}(id=${teacher.getId()})}">
-            <button class="btn btn-primary">
-              <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-          </a>
-          <button type="button" class="btn btn-danger"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  th:attr="onclick=|confirmDelete(${teacher.id},'${teacher.getName()}')|">
-            <i class="fa-regular fa-trash-can"></i>
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    <tr>
+      <th>STT</th>
+      <th>Tên Lớp</th>
+      <th>Chức Năng</th>
+    </tr>
+    <tr th:each="cla,sta :${classList}">
+      <td style="width: 20%" th:text="${sta.count}"></td>
+      <td hidden="hidden" th:text="${cla.id}"></td>
+      <td style="width: 50%" th:text="${cla.className}"></td>
 
-  <!---------------------------phan trang----------------------------->
-  <div th:if="${teacherDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
+      <td style="width: 30%">
+        <a th:href="@{/classes/listStudent/(id=${cla.id})}">
+          <button class="btn btn-primary">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+        </a>
+        <button type="button" class="btn btn-danger" th:attr="onclick=|showModal('${cla.id}')|">
+          <i class="fa-regular fa-trash-can"></i>
+        </button>
+      </td>
+
+  </table>
+
+
+  <!--phân trang-->
+  <div th:if="${classList.totalPages>1}" class="col-md-12 mb-4 mt-3">
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center mb-0">
-        <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+        <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
           <a class="page-link"
-             th:href="@{/teacher(page=0,searchName=${searchName})}">
+             th:href="@{/classes(page=0,name=${name})}">
             <small>
               <i class="fa-solid fa-backward-fast"></i>
             </small>
           </a>
         </li>
-        <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+        <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
           <a class="page-link"
-             th:href="@{/teacher(page=${(teacherDtoPage.number)-1},searchName=${searchName})}">
+             th:href="@{classes(page=${(classList.number)-1},name=${name})}">
             <small>
               <i class="fa-solid fa-backward-step"></i>
             </small>
@@ -182,21 +159,21 @@
         </li>
         <li class="page-item active">
           <a href="#" class="page-link">
-            <span th:text="${teacherDtoPage.number +1}"></span>/<span
-                  th:text="${teacherDtoPage.totalPages}"></span>
+            <span th:text="${classList.number +1}"></span>/<span
+                  th:text="${classList.totalPages}"></span>
           </a>
         </li>
-        <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+        <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
           <a class="page-link"
-             th:href="@{/teacher(page=${(teacherDtoPage.number)+1},searchName=${searchName})}">
+             th:href="@{classes(page=${classList.number+1},name=${name})}">
             <small>
               <i class="fa-solid fa-forward-step"></i>
             </small>
           </a>
         </li>
-        <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+        <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
           <a class="page-link"
-             th:href="@{/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${searchName})}">
+             th:href="@{classes(page=${(classList.totalPages)-1},name=${name})}">
             <small>
               <i class="fa-solid fa-forward-fast"></i>
             </small>
@@ -205,29 +182,66 @@
       </ul>
     </nav>
   </div>
-  <!-- Modal xóa-->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+
+  <!-- Modal thêm mới lớp -->
+  <div class="modal fade" id="addClassModal" tabindex="-1" role="dialog" aria-labelledby="addClassModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form th:action="@{/teachers/delete}" method="get">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"><b>Thông báo</b></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Bạn muốn xóa giảng viên
-              <span id="teacherName"></span> không ???</p>
-            <input type="text" hidden="hidden" name="idDelete" id="idDelete">
-            <p style="color: red"><b>Lưu ý:</b> Hoạt động này không thể hoàn tác! </p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-            <button type="submit" class="btn btn-primary">Xác nhận</button>
-          </div>
-        </form>
+        <div class="modal-header">
+          <h5 class="modal-title" id="addClassModalLabel">Thêm mới lớp</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Form nhập thông tin lớp -->
+          <form action="/classes/add" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Nhập tên lớp bắt đầu K0" name="name" />
+              <small style="color: red; font-size: 10px" th:if="${#fields.hasErrors('name')}"
+                     th:errors="*{name}"></small>
+            </div >
+            <div style="text-align: center">
+              <button  type="submit" class="btn btn-primary">Thêm</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--  modal xoá -->
+<form action="/classes/delete" method="post">
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Xoá Lớp</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <input type="hidden" id="id" name="id">
+        <div class="modal-body">
+          Bạn có muốn xóa lớp học có code là <span id="idDelete"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+          <button type="submit" class="btn btn-danger">Xác Nhận</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+<!--<div th:replace="layout::footer">-->
+
+</div>
+<!--<div th:replace="layout::footer">-->
 <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
   <div class="container">
     <div class="row g-5">
@@ -274,45 +288,32 @@
   </div>
 </div>
 <!-- Footer End -->
-
-
-<!-- Copyright Start -->
-<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-        &copy; <a href="#">Group 2 - C0523G1</a>, All Right Reserved.
-      </div>
-    </div>
-  </div>
-</div>
-  <script th:if="${message!=null}">
-    // toast
-    window.onload = function () {
-      let myAlert = document.getElementById('liveToast');//select id of toast
-      let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-      bsAlert.show();//show it
-    }
-  </script>
-    <div style="align-content: center">
-      <a th:if="${teacherDtoPage.hasPrevious()}" th:href="@{/teacher(page=${teacherDtoPage.number - 1})}">Trước</a>
-      <span th:text="${teacherDtoPage.number + 1}"></span> / <span th:text="${teacherDtoPage.totalPages}"></span>
-      <a th:if="${teacherDtoPage.hasNext()}" th:href="@{/teacher(page=${teacherDtoPage.number + 1})}">Sau</a>
-    </div>
-</div>
-<!--<div th:replace="layout::footer"></div>-->
+</body>
+<script th:if="${mess!=null}">
+  // toast
+  window.onload = function () {
+    let myAlert = document.getElementById('liveToast');//select id of toast
+    let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+    bsAlert.show();//show it
+  }
+</script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/easing/easing.min.js"></script>
+
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+
 <script src="../lib/isotope/isotope.pkgd.min.js"></script>
+
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
+
+
 <!-- Contact Javascript File -->
 <script src="../mail/jqBootstrapValidation.min.js"></script>
 <script src="../mail/contact.js"></script>
+
 <!-- Template Javascript -->
 <script src="../js/main.js"></script>
-<script th:src="@{/js/main.js}"></script>
 <!--offline-->
 <script src="../../static/mail/contact.js"></script>
 <script src="../../static/mail/jqBootstrapValidation.min.js"></script>
@@ -321,16 +322,17 @@
 <script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../../static/lib/easing/easing.min.js"></script>
 <script src="../../static/js/main.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-</body>
+<script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
+        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+<script th:src="@{/js/main.js}"></script>
 <script>
-  //delete modal
-  function confirmDelete(id,name) {
-    document.getElementById("teacherName").innerText = name;
-    document.getElementById("idDelete").value = id;
+
+  function showModal(id) {
+    document.getElementById("idDelete").innerText = id;
+    document.getElementById("id").value = id;
+    $("#deleteModal").modal("show");
   }
 </script>
 </html>

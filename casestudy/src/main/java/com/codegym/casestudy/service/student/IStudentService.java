@@ -19,6 +19,6 @@ public interface IStudentService {
 
     Student findById(int id);
 
-    void edit(int id, Student student);
+    void edit( Student student);
 
 }

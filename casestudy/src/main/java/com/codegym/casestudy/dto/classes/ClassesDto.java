@@ -14,8 +14,8 @@ import java.util.List;
 public class ClassesDto implements Validator {
 
     private int id;
-    private String name;
-    private int status;
+    private String className;
+    private boolean isDeleted;
     private List<String> existingClassNames;
 
 
@@ -27,11 +27,11 @@ public class ClassesDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         ClassesDto classesDto = (ClassesDto) target;
-        String name = classesDto.getName();
+        String name = classesDto.getClassName();
         List<String> existingClassNames = classesDto.getExistingClassNames();
-        if (!name.startsWith("C0")) {
-            errors.rejectValue("name", "invalid", "Tên lớp phải bắt đầu bằng C0");
-        }else if (existingClassNames != null && existingClassNames.contains(name)) {
+        if (!name.startsWith("K0")) {
+            errors.rejectValue("name", "invalid", "Tên lớp phải bắt đầu bằng K0");
+        } else if (existingClassNames != null && existingClassNames.contains(name)) {
             errors.rejectValue("name", "duplicate", "Tên lớp đã tồn tại");
         }
     }
