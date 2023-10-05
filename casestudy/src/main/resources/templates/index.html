@@ -77,7 +77,7 @@
 <!-- Navbar Start -->
 <nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -89,7 +89,8 @@
             <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
             <a href="/contact" class="nav-item nav-link">Liên hệ</a>
         </div>
-        <a th:href="@{/errors}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a th:if="${#request.userPrincipal == null}" th:href="@{/account/login}"
+           class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
@@ -468,11 +469,13 @@
                     <div class="position-relative">
                         <img class="img-fluid" src="img/team-4.jpg" alt="">
                         <div class="team-social text-center">
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href="https://www.facebook.com/5qua.chuoi9/" target="_blank"><i
+                            <a class="btn btn-square btn-outline-primary border-2 m-1"
+                               href="https://www.facebook.com/5qua.chuoi9/" target="_blank"><i
                                     class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
                                     class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href="https://www.instagram.com/donefor.thien/" target="_blank"><i
+                            <a class="btn btn-square btn-outline-primary border-2 m-1"
+                               href="https://www.instagram.com/donefor.thien/" target="_blank"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>
@@ -536,7 +539,8 @@
 
 
 <!-- Footer Start -->
-<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn"
+     data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
