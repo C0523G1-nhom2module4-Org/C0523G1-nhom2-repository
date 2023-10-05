@@ -1,6 +1,7 @@
 package com.codegym.casestudy.dto.qualification;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,8 +15,8 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class QualificationDto implements Validator {
-    @NotNull(message = "Lỗi hệ thống, vui lòng liên hệ QTV để được hướng dẫn")
     private Long id;
 
     @NotBlank(message = "Trường này không được để trống")
@@ -27,13 +28,6 @@ public class QualificationDto implements Validator {
     private String description;
 
     public QualificationDto(String name, Long fee, String description) {
-        this.name = name;
-        this.fee = fee;
-        this.description = description;
-    }
-
-    public QualificationDto(Long id, String name, Long fee, String description) {
-        this.id = id;
         this.name = name;
         this.fee = fee;
         this.description = description;
@@ -53,7 +47,7 @@ public class QualificationDto implements Validator {
             errors.rejectValue("fee", null, "Học phí không thể mang giá trị âm");
         }
         if (fee.toString().length() == 0) {
-            errors.rejectValue("fee", null,"Trường này không được để trống");
+            errors.rejectValue("fee", null, "Trường này không được để trống");
         }
     }
 }

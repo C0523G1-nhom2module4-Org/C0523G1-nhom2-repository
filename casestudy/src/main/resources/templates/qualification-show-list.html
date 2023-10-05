@@ -152,6 +152,7 @@
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Hạng Bằng Lái Xe</h3>
     <h4 th:if="${qualifications.isEmpty()}" th:text="${message}"></h4>
+
     <table class="table" th:if="${!qualifications.isEmpty()}">
         <thead>
         <tr id="header">

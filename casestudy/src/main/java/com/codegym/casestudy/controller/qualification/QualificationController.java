@@ -50,20 +50,20 @@ public class QualificationController {
     @GetMapping("/qualification-add")
     public String qualificationShowAddForm(Model model) {
         model.addAttribute("qualificationDto", new QualificationDto());
-        return "qualification-add";
+        System.out.println("--------------get method----------");
+        return "/qualification-add";
     }
 
     @PostMapping("/qualification-add")
-    public String qualificationAdd(@Valid @ModelAttribute(name = "qualificationDto") QualificationDto qualificationDto,
+    public String qualificationAdd(@Valid @ModelAttribute QualificationDto qualificationDto,
                                    BindingResult bindingResult,
-                                   RedirectAttributes redirectAttributes,
                                    Model model) {
         //
         new QualificationDto().validate(qualificationDto, bindingResult);
 
         //check if bindingResult has error
         if (bindingResult.hasErrors()) {
-            return "/qualification-add";
+            return "qualification-add";
         }
 
         //check if qualification name is already exist
@@ -80,6 +80,7 @@ public class QualificationController {
         //if nothing wrong, add new qualification
         Qualification qualification = new Qualification();
         BeanUtils.copyProperties(qualificationDto, qualification);
+
         this.qualificationService.add(qualification);
         return "redirect:/admin/qualification";
     }
@@ -87,12 +88,15 @@ public class QualificationController {
     //remove
     @GetMapping("/qualification/remove")
     public String remove(@RequestParam(name = "deleteId") Long deleteId,
-                         Model model) {
-        Boolean removeSuccess = this.qualificationService.remove(deleteId);
+                         RedirectAttributes redirectAttributes) {
+        Qualification qualification = this.qualificationService.findById(deleteId);
+        boolean removeSuccess = this.qualificationService.remove(qualification.getId());
+        System.out.println("--------------remove get method----------");
         if (removeSuccess) {
-            model.addAttribute("message", "Removed qualification");
+            redirectAttributes.addFlashAttribute("message", "Removed qualification");
         } else {
-            model.addAttribute("message", "Something wrong. Can't not found this qualification");
+            redirectAttributes.addFlashAttribute("message", "Something wrong. Can't not found " +
+                    "this qualification");
         }
         return "redirect:/admin/qualification";
     }
@@ -112,6 +116,7 @@ public class QualificationController {
         if (existedQualification != null) {
             BeanUtils.copyProperties(existedQualification, qualificationDto);
             model.addAttribute("qualificationDto", qualificationDto);
+            model.addAttribute("id", qualificationId);
             return "/qualification-edit";
         } else {
             redirectAttributes.addFlashAttribute("message", "Lỗi: Đối tượng không còn tồn tại");
@@ -123,8 +128,8 @@ public class QualificationController {
     @PostMapping("/qualification/edit")
     public String editQualification(@Valid @ModelAttribute(name = "qualificationDto") QualificationDto qualificationDto,
                                     BindingResult bindingResult,
-                                    RedirectAttributes redirectAttributes,
-                                    Model model) {
+                                    RedirectAttributes redirectAttributes
+                                    ) {
 
         new QualificationDto().validate(qualificationDto, bindingResult);
 
