@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -16,8 +16,8 @@ public class QualificationService implements IQualificationService {
     @Autowired
     private IQualificationRepository qualificationRepository;
 
+
     @Transactional
-    @org.springframework.transaction.annotation.Transactional
     @Override
     public void add(Qualification qualification) {
         try {
@@ -29,7 +29,7 @@ public class QualificationService implements IQualificationService {
 
     @Override
     public boolean isExist(String qualificationName) {
-        Qualification qualification = this.qualificationRepository.findByName(qualificationName);
+        Qualification qualification = this.qualificationRepository.findQualificationByNameEquals(qualificationName);
         return qualification != null;
     }
 
@@ -39,7 +39,7 @@ public class QualificationService implements IQualificationService {
         try {
             Qualification existedQualification = this.qualificationRepository.findById(qualificationId).get();
             if (existedQualification != null) {
-                this.qualificationRepository.delete(existedQualification);
+                this.qualificationRepository.deleteById(qualificationId);
                 return true;
             } else {
                 return false;
