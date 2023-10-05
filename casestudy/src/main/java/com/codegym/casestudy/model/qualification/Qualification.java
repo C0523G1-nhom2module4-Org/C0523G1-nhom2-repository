@@ -21,14 +21,16 @@ public class Qualification {
 
     @Column(columnDefinition = "BIGINT", nullable = false, name = "qualification_fee")
     private Long fee;
+    @Column(columnDefinition = "int", nullable = false, name = "course_duration")
+    private Integer courseDuration;
 
     @Column(columnDefinition = "LONGTEXT", nullable = false, name = "qualification_description")
     private String description;
 
-
-    public Qualification(String name, Long fee, String description) {
+    public Qualification(String name, Long fee, Integer courseDuration, String description) {
         this.name = name;
         this.fee = fee;
+        this.courseDuration = courseDuration;
         this.description = description;
     }
 }
