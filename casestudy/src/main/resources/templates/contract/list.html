@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="utf-8">
-    <title>C0523G1 - Drivin</title>
+    <title>C0523G1 - Contract</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -22,14 +22,14 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -71,7 +71,6 @@
 </div>
 <!-- Topbar End -->
 
-
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
@@ -93,86 +92,62 @@
 </nav>
 <!-- Navbar End -->
 
-
 <div class="container" style="min-height: 550px;margin-top: 30px">
-    <h1 style=" margin-top: 30px" align="center">Danh Sách Học Sinh</h1>
+    <h1 style=" margin-top: 30px" align="center">Danh Sách Hợp Đồng</h1>
     <nav class="navbar navbar-inverse">
         <div class=" navbar-form navbar-left mb-3">
-            <a href="/student/add">
-                <button title="Thêm mới học sinh"
+            <a href="/contracts/create">
+                <button title="Thêm mới hợp đồng"
                         class="btn btn-primary">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </a>
         </div>
-        <form action="/student" method="get">
+        <form action="/contracts" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
-                    <input id="search-input1" th:value="${name}" name="name" type="search"
-                           class="form-control" placeholder="Tên học sinh"/>
+                    <input id="search-input1" th:value="${nameSearch}" name="nameSearch" type="nameSearch"
+                           class="form-control" placeholder="Tên hợp đồng"/>
                 </div>
                 <div class="mb-6 ml-2">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                 </div>
-
             </div>
         </form>
     </nav>
     <table class="table table-hover">
         <tr>
             <th>STT</th>
-            <th>Tên</th>
-            <th>Giới Tính</th>
-            <th>CMND</th>
-            <th>Điện Thoại</th>
-            <th>Ngày Sinh</th>
-            <th>Điểm</th>
-            <th>Lớp</th>
+            <th>Tên học viên</th>
+            <th>Bằng cấp</th>
+            <th>Ngày làm hợp đồng</th>
+            <th>Học phí</th>
             <th>Chức Năng</th>
         </tr>
-        <tr th:each="student, status :${studentDtos}">
-            <td hidden="hidden" style="width: 10%" th:text="${student.getId()}"></td>
+        <tr th:each="contract, status :${contractDtoPage}">
+            <td hidden="hidden" style="width: 10%" th:text="${contract.getId()}"></td>
             <td style="width: 5%" th:text="${status.count}"></td>
-            <td style="width: 15%" th:text="${student.getStudentName()()}"></td>
-            <td style="width: 5%">
-                <span th:if="${student.getGender()}">Nam</span>
-                <span th:if="${!student.getGender()}">Nữ</span>
-            </td>
-            <td style="width: 15%" th:text="${student.getIdentity()}"></td>
-            <td style="width: 15%" th:text="${student.getPhone()}"></td>
-            <td style="width: 15%" th:text="${#temporals.format(student.getBirthday(),'dd-MM-yyyy')}"></td>
-            <td style="width: 15%" th:text="${student.getGraduatePoint()}"></td>
-            <td style="width: 15%" th:text="${student.getGraduatePoint()}"></td>
-            <td style="width: 15%" th:text="${student.getAddress()()}"></td>
-            <td hidden="hidden" style="width: 15%" th:text="${student.getIsDeleted()}"></td>
-            <td style="width: 15%">
-                <a th:href="@{/student/edit/(id=${student.getId()})}">
-                    <button class="btn btn-primary">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                </a>
-                <button type="button" class="btn btn-danger" th:attr="onclick=|showModal('${student.getId()}')|">
-                    <i class="fa-regular fa-trash-can"></i>
-                </button>
-            </td>
+            <td style="width: 15%" th:text="${contract.getStudent().name}"></td>
+            <td style="width: 15%" th:text="${contract.getQualification().name}"></td>
+            <td style="width: 15%" th:text="${contract.getFee()}"></td>
+            <td hidden="hidden" style="width: 15%" th:text="${contract.getStatus()}"></td>
         </tr>
     </table>
 
-
-    <div th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
+    <div th:if="${contractDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/student(page=0,studentName=${name})}">
+                       th:href="@{/contract(page=0,studentName=${nameSearch})}">
                         <small>
                             <i class="fa-solid fa-backward-fast"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{student(page=${(studentDtos.number)-1},studentName=${name})}">
+                       th:href="@{contract(page=${(contractDtoPage.number)-1},studentName=${nameSearch})}">
                         <small>
                             <i class="fa-solid fa-backward-step"></i>
                         </small>
@@ -180,21 +155,21 @@
                 </li>
                 <li class="page-item active">
                     <a href="#" class="page-link">
-                        <span th:text="${studentDtos.number +1}"></span>/<span
-                            th:text="${studentDtos.totalPages}"></span>
+                        <span th:text="${contractDtoPage.number +1}"></span>/<span
+                            th:text="${contractDtoPage.totalPages}"></span>
                     </a>
                 </li>
-                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{student(page=${studentDtos.number+1},studentName=${name})}">
+                       th:href="@{contract(page=${contractDtoPage.number+1},studentName=${nameSearch})}">
                         <small>
                             <i class="fa-solid fa-forward-step"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{student(page=${(studentDtos.totalPages)-1},studentName=${name})}">
+                       th:href="@{contract(page=${(contractDtoPage.totalPages)-1},studentName=${nameSearch})}">
                         <small>
                             <i class="fa-solid fa-forward-fast"></i>
                         </small>
@@ -203,28 +178,8 @@
             </ul>
         </nav>
     </div>
-
-    <form action="/student/delete" method="post">
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">DELETE STUDENT</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <input type="hidden" id="id" name="id">
-                    <div class="modal-body">
-                        Bạn có muốn xóa học sinh có code là <span id="idDelete"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                        <button type="submit" class="btn btn-danger">Xác Nhận</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
 </div>
+
 <!-- Footer Start -->
 <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
@@ -273,7 +228,6 @@
 </div>
 <!-- Footer End -->
 
-
 <!-- Copyright Start -->
 <div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
@@ -286,10 +240,6 @@
 </div>
 <!-- Copyright End -->
 
-<!--<div th:replace="layout::footer">-->
-
-<!--</div>-->
-</body>
 <script th:if="${mess!=null}">
     // toast
     window.onload = function () {
@@ -300,42 +250,36 @@
 
 
 </script>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="../lib/easing/easing.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
 
-<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
 
-<script src="../lib/isotope/isotope.pkgd.min.js"></script>
+<script src="/lib/isotope/isotope.pkgd.min.js"></script>
 
-<script src="../lib/lightbox/js/lightbox.min.js"></script>
+<script src="/lib/lightbox/js/lightbox.min.js"></script>
 
 
 <!-- Contact Javascript File -->
-<script src="../mail/jqBootstrapValidation.min.js"></script>
-<script src="../mail/contact.js"></script>
+<script src="/../mail/jqBootstrapValidation.min.js"></script>
+<script src="/../mail/contact.js"></script>
 
 <!-- Template Javascript-->
 <script src="../js/main.js"></script>
 <!--offline-->
-<script src="../../static/mail/contact.js"></script>
-<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
-<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
-<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
-<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../../static/lib/easing/easing.min.js"></script>
-<script src="../../static/js/main.js"></script>
+<script src="/mail/contact.js"></script>
+<script src="/mail/jqBootstrapValidation.min.js"></script>
+<script src="/lib/lightbox/js/lightbox.min.js"></script>
+<script src="/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/js/main.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
         src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 <script th:src="@{/js/main.js}"></script>
-<script>
-
-    function showModal(id) {
-        document.getElementById("idDelete").innerText = id;
-        document.getElementById("id").value = id;
-        $("#deleteModal").modal("show");
-    }
-</script>
+</body>
 </html>
