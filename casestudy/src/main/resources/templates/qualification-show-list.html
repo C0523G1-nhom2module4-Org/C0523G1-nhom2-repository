@@ -32,6 +32,13 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/table.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- Icon Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <style>
         body {
             padding: 0;
@@ -152,7 +159,25 @@
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Hạng Bằng Lái Xe</h3>
     <h4 th:if="${qualifications.isEmpty()}" th:text="${message}"></h4>
-
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-form navbar-left mb-3">
+            <a th:href="@{/admin/qualification-add}"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
+        </div>
+        <form action="#" method="get">
+            <div class="d-flex justify-content-end">
+                <div class="input-group mb-6">
+                    <input type="search" th:value="${searchName}" name="searchName"
+                           class="form-control" placeholder="Tên bằng nái"
+                           style="width: 33%;">
+                </div>
+                <div class="mb-6 ml-2">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </nav>
     <table class="table" th:if="${!qualifications.isEmpty()}">
         <thead>
         <tr id="header">
@@ -189,24 +214,71 @@
         </tbody>
     </table>
     <!--    phan trang start-->
-    <div class="page-control">
-        <div class="page-control-child">
-            <a class="page-selection" th:if="${qualifications.hasPrevious()}"
-               th:href="@{qualification-test(page=${qualifications.number - 1} ,searchNmae = ${searchName})}"> < </a>
-            <span th:if="${qualifications.totalPages > 5}" class="page-selection">
-            <span th:text="${qualifications.number + 1}"></span>
-                <span> / </span>
-                <span th:text="${qualifications.totalPages}"></span>
-            </span>
-            <span th:if="${qualifications.totalPages < 5}" class="page-selection">
-                    <span>Tổng số trang: 1 / 1</span>
-                </span>
-            </span>
-            <a class="page-selection" th:if="${qualifications.hasNext()}"
-               th:href="@{qualification-test(page=${qualifications.number + 1} ,searchNmae = ${searchName})}"> > </a>
-        </div>
+    <div th:if="${qualifications.totalPages>1}" class="col-md-12 mb-4 mt-3">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mb-0">
+                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${qualifications.number - 1} ,searchName = ${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-backward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${(qualifications.number) - 1} ,searchName = ${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-backward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li class="page-item active">
+                    <a href="#" class="page-link">
+                        <span th:text="${qualifications.number +1}"></span>/<span
+                            th:text="${qualifications.totalPages}"></span>
+                    </a>
+                </li>
+                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${qualifications.number+1},searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-forward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${(qualifications.totalPages)-1},searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-forward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
-    <!--    phan trang end-->
+
+    <!--    <div class="page-control">-->
+    <!--        <div class="page-control-child">-->
+    <!--            <span class="page-selection">-->
+    <!--            <a class="page-selection" th:if="${qualifications.hasPrevious()}"-->
+    <!--               th:href="@{/admin/qualification(page=${qualifications.number - 1} ,searchName = ${searchName})}"> < </a>-->
+    <!--            <span th:text="${qualifications.number + 1}"></span>-->
+    <!--                <span> / </span>-->
+    <!--                <span th:text="${qualifications.totalPages}"></span>-->
+    <!--                <a class="page-selection" th:if="${qualifications.hasNext()}"-->
+    <!--                   th:href="@{/admin/qualification(page=${qualifications.number + 1} ,searchName = ${searchName})}"> > </a>-->
+    <!--            </span>-->
+
+
+    <!--            <span th:if="${qualifications.totalPages < 5}" class="page-selection">-->
+    <!--                    <span>Tổng số trang: 1 / 1</span>-->
+    <!--            </span>-->
+
+</div>
+</div>
+<!--    phan trang end-->
 </div>
 <!--content end-->
 
