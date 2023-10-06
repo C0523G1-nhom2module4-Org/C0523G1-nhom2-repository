@@ -122,7 +122,7 @@ public class ClassesController {
 
     // thien
     @GetMapping("/classDetail/{className}")
-    public String classDetail(@RequestParam(name = "className") String className,
+    public String classDetail(@PathVariable(name = "className") String className,
             Model model) {
         ClassDetailDto classDetail = this.classesService.getClassDetail(className);
         model.addAttribute("classDetail",classDetail);
