@@ -89,25 +89,24 @@
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
-<!-- Navbar End -->
-
-
+<!-- Navbar End --><!-------------------------End Toast-------------------------------------------------------------->
+<!--content start-->
 <div class="container" style="min-height: 550px;margin-top: 30px">
-    <h1 style=" margin-top: 30px" align="center">Danh Sách Học Sinh</h1>
+    <h1 style=" margin-top: 30px" align="center">Danh Sách Lớp Học</h1>
     <nav class="navbar navbar-inverse">
         <div class=" navbar-form navbar-left mb-3">
-            <a href="/student/add">
+            <a href="/classes/add">
                 <button title="Thêm mới học sinh"
                         class="btn btn-primary">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </a>
         </div>
-        <form action="/student" method="get">
+        <form action="/classes" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
                     <input id="search-input1" th:value="${name}" name="name" type="search"
-                           class="form-control" placeholder="Tên học sinh"/>
+                           class="form-control" placeholder="Tên lop hoc"/>
                 </div>
                 <div class="mb-6 ml-2">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
@@ -117,62 +116,51 @@
         </form>
     </nav>
     <table class="table table-hover">
-        <tr style="background-color: #f3bd01; color: #ffffff">
+        <tr>
             <th>STT</th>
-            <th>Tên</th>
-            <th>Giới Tính</th>
-            <th>CMND</th>
-            <th>Điện Thoại</th>
-            <th>Ngày Sinh</th>
-            <th>Điểm</th>
-            <th>Lớp</th>
-            <th>Địa chỉ</th>
-            <th colspan="2" style="text-align: center">Quản lý</th>
+            <th>Tên Lớp</th>
+            <th>Mô Tả</th>
+            <th>Ngày Bắt Đầu</th>
+            <th>Ngày Kết Thúc</th>
+            <th>Chức Năng</th>
         </tr>
-        <tr th:each="student, status :${studentDtos}">
-            <td hidden="hidden" style="width: 10%" th:text="${student.getId()}"></td>
-            <td style="width: 5%" th:text="${status.count}"></td>
-            <td style="width: 15%" th:text="${student.getStudentName()}"></td>
-            <td style="width: 7%">
-                <span th:if="${student.getGender() == 0}">Nam</span>
-                <span th:if="${student.getGender() == 1} ">Nữ</span>
-                <span th:if="${student.getGender() == 2} ">LGBT</span>
-            </td>
-            <td style="width: 9%" th:text="${student.getIdentity()}"></td>
-            <td style="width: 9%" th:text="${student.getPhone()}"></td>
-            <td style="width: 9%" th:text="${student.getBirthday()}"></td>
-            <td style="width: 5%" th:text="${student.getGraduatePoint()}"></td>
-            <td style="width: 10%" th:text="${student.getClassName()}"></td>
-            <td style="width: 15%" th:text="${student.getAddress()}"></td>
-            <td style="width: 6%">
-                <a th:href="@{/student/edit/(id=${student.getId()})}">
-                    <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
-                </a>
-            </td>
-            <td style="width: 6%;">
-                <i data-bs-toggle="modal"
-                   data-bs-target="#exampleModal"
-                   th:attr="onclick=|confirmDelete(${student.id},'${student.studentName}')|" type="button"
-                   class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>
-            </td>
-        </tr>
-    </table>
-</div>
+        <tr th:each="cla,sta :${classList}">
+            <td style="width: 20%" th:text="${sta.count}"></td>
+            <td hidden="hidden" th:text="${cla.id}"></td>
+            <td style="width: 50%" th:text="${cla.className}"></td>
+            <td style="width: 50%" th:text="${cla.description}"></td>
+            <td style="width: 50%" th:text="${cla.startDate}"></td>
+            <td style="width: 50%" th:text="${cla.endDate}"></td>
 
-    <div th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
+            <td style="width: 30%">
+                <a th:href="@{/classes/edit/{id}(id=${cla.getId()})}">
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                </a>
+<!--                <button type="button" class="btn btn-danger" th:attr="onclick=|showModal('${cla.id}')|">-->
+<!--                    <i class="fa-regular fa-trash-can"></i>-->
+<!--                </button>-->
+            </td>
+
+    </table>
+
+
+    <!--phân trang-->
+    <div th:if="${classList.totalPages>1}" class="col-md-12 mb-4 mt-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/student(page=0,studentName=${name})}">
+                       th:href="@{/classes(page=0,name=${name})}">
                         <small>
                             <i class="fa-solid fa-backward-fast"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{student(page=${(studentDtos.number)-1},studentName=${name})}">
+                       th:href="@{classes(page=${(classList.number)-1},name=${name})}">
                         <small>
                             <i class="fa-solid fa-backward-step"></i>
                         </small>
@@ -180,21 +168,21 @@
                 </li>
                 <li class="page-item active">
                     <a href="#" class="page-link">
-                        <span th:text="${studentDtos.number +1}"></span>/<span
-                            th:text="${studentDtos.totalPages}"></span>
+                        <span th:text="${classList.number +1}"></span>/<span
+                            th:text="${classList.totalPages}"></span>
                     </a>
                 </li>
-                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{student(page=${studentDtos.number+1},studentName=${name})}">
+                       th:href="@{classes(page=${classList.number+1},name=${name})}">
                         <small>
                             <i class="fa-solid fa-forward-step"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{student(page=${(studentDtos.totalPages)-1},studentName=${name})}">
+                       th:href="@{classes(page=${(classList.totalPages)-1},name=${name})}">
                         <small>
                             <i class="fa-solid fa-forward-fast"></i>
                         </small>
@@ -203,96 +191,84 @@
             </ul>
         </nav>
     </div>
+</div>
+</div>
+</div>
+</div>
 
 
-    <!-- Modal xóa-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--  modal xoá -->
+<form action="/classes/delete" method="post">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="/student/delete" method="get">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><b>Vô hiệu hóa tài khoản</b></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Bạn muốn vô hiệu hóa tài khoản :
-                            <span id="usernameDelete"></span></p>
-                        <input type="number" hidden="hidden" name="id" id="id">
-                        <p style="color: red"><b>Lưu ý:</b> Hoạt động này không thể hoàn tác! </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
-                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xoá Lớp</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <input type="hidden" id="id" name="id">
+                <div class="modal-body">
+                    Bạn có muốn xóa lớp học có code là <span id="idDelete"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                    <button type="submit" class="btn btn-danger">Xác Nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<!--<div th:replace="layout::footer">-->
+
+</div>
+<!--<div th:replace="layout::footer">-->
+<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-4">Thông tin liên lạc</h4>
+                <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng
+                </p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Liên kết</h4>
+                <a class="btn btn-link" href="">Về chúng tôi</a>
+                <a class="btn btn-link" href="">Liên hệ</a>
+                <a class="btn btn-link" href="">Dịch vụ</a>
+                <a class="btn btn-link" href="">Điều khoản và quy định</a>
+                <a class="btn btn-link" href="">Hỗ trợ</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Thông tin thành viên</h4>
+                <a class="btn btn-link" href="">Phan Quốc Sang</a>
+                <a class="btn btn-link" href="">Nguyễn Đức Trung</a>
+                <a class="btn btn-link" href="">Nguyễn Thị Mỹ Hạnh</a>
+                <a class="btn btn-link" href="">Bùi Bảo Thiện</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control p-3 border-0" placeholder="Nhập địa chỉ email của bạn">
+                        <button class="btn btn-primary">Xác nhận</button>
                     </div>
                 </form>
-            </div>
-        </div>
-    </div>
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-white mb-4">Thông tin liên lạc</h4>
-                    <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà
-                        Nẵng
-                    </p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Liên kết</h4>
-                    <a class="btn btn-link" href="">Về chúng tôi</a>
-                    <a class="btn btn-link" href="">Liên hệ</a>
-                    <a class="btn btn-link" href="">Dịch vụ</a>
-                    <a class="btn btn-link" href="">Điều khoản và quy định</a>
-                    <a class="btn btn-link" href="">Hỗ trợ</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Thông tin thành viên</h4>
-                    <a class="btn btn-link" href="">Phan Quốc Sang</a>
-                    <a class="btn btn-link" href="">Nguyễn Đức Trung</a>
-                    <a class="btn btn-link" href="">Nguyễn Thị Mỹ Hạnh</a>
-                    <a class="btn btn-link" href="">Bùi Bảo Thiện</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
-                    <form action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control p-3 border-0"
-                                   placeholder="Nhập địa chỉ email của bạn">
-                            <button class="btn btn-primary">Xác nhận</button>
-                        </div>
-                    </form>
-                    <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>
-                    <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
-
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a href="#">Group 2 - C0523G1</a>, All Right Reserved.
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Copyright End -->
-
-    <!--<div th:replace="layout::footer">-->
-
+</div>
+<!-- Footer End -->
 </body>
 <script th:if="${mess!=null}">
     // toast
@@ -301,8 +277,6 @@
         let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
         bsAlert.show();//show it
     }
-
-
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -319,7 +293,7 @@
 <script src="../mail/jqBootstrapValidation.min.js"></script>
 <script src="../mail/contact.js"></script>
 
-<!-- Template Javascript-->
+<!-- Template Javascript -->
 <script src="../js/main.js"></script>
 <!--offline-->
 <script src="../../static/mail/contact.js"></script>
@@ -331,16 +305,15 @@
 <script src="../../static/js/main.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-
+<script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
+        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 <script th:src="@{/js/main.js}"></script>
 <script>
-    function confirmDelete(id, name) {
-        document.getElementById("usernameDelete").innerText = name;
+
+    function showModal(id) {
+        document.getElementById("idDelete").innerText = id;
         document.getElementById("id").value = id;
+        $("#deleteModal").modal("show");
     }
 </script>
-
 </html>

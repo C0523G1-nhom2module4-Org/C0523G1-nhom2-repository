@@ -97,106 +97,65 @@
 </nav>
 <!--<div th:replace="landing_page::header">-->
 
-
 <div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
     <div class="bg-primary text-center p-5">
         <h1 class="mb-4">Thêm mới học viên</h1>
-        <form th:object="${listStudentDto}" method="POST" action="/student/add">
+
+        <form th:object="${classDto}" method="POST" action="/classes/add">
             <div class="row g-3">
                 <!--                name-->
                 <div class="col-12">
                     <div class="form-floating">
-                        <input th:field="*{name}" type="text" class="form-control border-0" id="name"
-                               placeholder="Tên giảng viên">
-                        <small style="color:red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
-                        <label for="name">Tên học viên</label>
+                        <input th:field="*{className}" type="text" class="form-control border-0" id="name"
+                               placeholder="Tên lớp học">
+                        <small style="color:red;" th:if="${#fields.hasErrors('className')}"
+                               th:errors="*{className}"></small>
+                        <label for="name">Tên lớp học</label>
                     </div>
                 </div>
                 <!--                CMND-->
                 <div class="col-12">
                     <div class="form-floating">
-                        <input th:field="*{identity}" type="number" class="form-control border-0" id="identity"
-                               placeholder="Số chứng minh nhân dân" required>
-                        <small style="color:red;" th:if="${#fields.hasErrors('identity')}"
-                               th:errors="*{identity}"></small>
-                        <label for="identity">Số chứng minh nhân dân</label>
+                        <input th:field="*{description}" type="text" class="form-control border-0" id="identity"
+                               placeholder="Mô tả" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></small>
+                        <label for="identity">Mô tả</label>
                     </div>
                 </div>
                 <!--                gender + birthday-->
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <select th:field="*{gender}" class="form-control border-0" id="gender"
-                               placeholder="Ngày sinh" style="background-color: #ffffff">
-                            <option th:value="0" selected>Nam</option>
-                            <option th:value="1">Nữ</option>
-                            <option th:value="3">Khác</option>
-                        </select>
-                        <small style="color:red;" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></small>
-                        <label for="gender">Giới tính</label>
+                        <input th:field="*{startDate}" type="date" class="form-control border-0" id="startDate"
+                               placeholder="Ngày bắt đầu" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('startDate')}"
+                               th:errors="*{startDate}"></small>
+                        <label for="startDate">Ngày bắt đầu</label>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-floating">
-                        <input th:field="*{birthday}" type="date" class="form-control border-0" id="birthday"
-                               placeholder="Ngày sinh" required>
-                        <small style="color:red;" th:if="${#fields.hasErrors('birthday')}"
-                               th:errors="*{birthday}"></small>
-                        <label for="birthday">Ngày sinh</label>
+                    <div class="col-sm-6">
+                        <div class="form-floating">
+                            <input th:field="*{endDate}" type="date" class="form-control border-0" id="endDate"
+                                   placeholder="Ngày kết thúc" required>
+                            <small style="color:red;" th:if="${#fields.hasErrors('endDate')}"
+                                   th:errors="*{endDate}"></small>
+                            <label for="endDate">Ngày kết thúc</label>
+                        </div>
                     </div>
-                </div>
-                <!--                phone-->
-                <div class="col-12">
-                    <div class="form-floating">
-                        <input th:field="*{phone}" type="text" class="form-control border-0" id="phone"
-                               placeholder="Số chứng minh nhân dân" required>
-                        <small style="color:red;" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
-                        <label for="phone">Số điện thoại</label>
+                    <!--                phone-->
+                    <div class="col-6">
+                        <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                     </div>
-                </div>
-                <!--                address-->
-                <div class="col-12">
-                    <div class="form-floating">
-                        <input th:field="*{address}" type="text" class="form-control border-0" id="address"
-                               placeholder="Địa chỉ" required>
-                        <small style="color:red;" th:if="${#fields.hasErrors('address')}"
-                               th:errors="*{address}"></small>
-                        <label for="address">Địa chỉ</label>
+                    <div class="col-6">
+                        <button class="btn btn-light w-100 py-3" type="button"><a href="/student">Hủy
+                            bỏ</a></button>
                     </div>
-                </div>
-                <!--                salary-->
-                <div class="col-12">
-                    <div class="form-floating">
-                        <input th:field="*{graduatePoint}" type="number" class="form-control border-0"
-                               id="graduatePoint"
-                               placeholder="Điểm" required>
-                        <small style="color:red;" th:if="${#fields.hasErrors('graduatePoint')}"
-                               th:errors="*{graduatePoint}"></small>
-                        <label for="graduatePoint">Điểm</label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-floating">
-                        <input th:field="*{classes}" th:value="${1}" type="text" class="form-control border-0" id="classes"
-                               placeholder="Lớp" required>
-<!--                        <small style="color:red;" th:if="${#fields.hasErrors('classes')}"-->
-<!--                               th:errors="*{classes}"></small>-->
-                        <label for="classes">Lớp</label>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
-                </div>
-                <div class="col-6">
-                    <button class="btn btn-light w-100 py-3" type="button"><a href="/student">Hủy
-                        bỏ</a></button>
                 </div>
             </div>
         </form>
         <small style="color: red" th:if="${message != null}" th:text="${message}"></small>
     </div>
 </div>
-
-
+<!--<div th:replace="layout::footer">-->
 <!--<div th:replace="layout::footer">-->
 <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
@@ -245,33 +204,20 @@
 </div>
 <!-- Footer End -->
 
-
+</div>
 </body>
-<script th:if="${mess!=null}">
-    // toast
-    window.onload = function () {
-        let myAlert = document.getElementById('liveToast');//select id of toast
-        let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-        bsAlert.show();//show it
-    }
-</script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/easing/easing.min.js"></script>
-
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-
 <script src="../lib/isotope/isotope.pkgd.min.js"></script>
-
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
-
-
 <!-- Contact Javascript File -->
 <script src="../mail/jqBootstrapValidation.min.js"></script>
 <script src="../mail/contact.js"></script>
-
 <!-- Template Javascript -->
 <script src="../js/main.js"></script>
+<script th:src="@{/js/main.js}"></script>
 <!--offline-->
 <script src="../../static/mail/contact.js"></script>
 <script src="../../static/mail/jqBootstrapValidation.min.js"></script>
@@ -280,17 +226,9 @@
 <script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../../static/lib/easing/easing.min.js"></script>
 <script src="../../static/js/main.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
         src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
-<script th:src="@{/js/main.js}"></script>
-<script>
 
-    function showModal(id) {
-        document.getElementById("idDelete").innerText = id;
-        document.getElementById("id").value = id;
-        $("#deleteModal").modal("show");
-    }
-</script>
+
 </html>

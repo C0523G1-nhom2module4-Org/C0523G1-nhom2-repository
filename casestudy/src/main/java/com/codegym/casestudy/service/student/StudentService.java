@@ -42,7 +42,7 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public void edit(int id, Student student) {
+    public void edit( Student student) {
         studentRepository.save(student);
     }
 }

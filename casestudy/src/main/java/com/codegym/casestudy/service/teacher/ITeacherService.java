@@ -18,5 +18,5 @@ public interface ITeacherService {
 
     List<Teacher> findAll();
 
-    void updateTeacher(int id, Teacher teacher);
+    void updateTeacher( Teacher teacher);
 }
