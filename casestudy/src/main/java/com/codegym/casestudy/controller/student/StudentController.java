@@ -66,9 +66,10 @@ public class StudentController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {
-        Student student = studentService.findById(id);
-        studentService.delete(student);
+    public String delete(@RequestParam(name = "id") int id, RedirectAttributes redirectAttributes) {
+//        Student student = studentService.findById(id);
+//        studentService.delete(student);
+        this.studentService.deleteWithId(id);
         redirectAttributes.addFlashAttribute("mess", "Xoá Thành Công");
         return "redirect:/student";
     }

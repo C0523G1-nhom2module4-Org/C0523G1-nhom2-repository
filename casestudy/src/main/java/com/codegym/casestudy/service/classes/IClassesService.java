@@ -1,5 +1,6 @@
 package com.codegym.casestudy.service.classes;
 
+import com.codegym.casestudy.dto.classes.ClassDetailDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
 import com.codegym.casestudy.model.classes.Classes;
@@ -27,4 +28,5 @@ public interface IClassesService {
 
     Page<ListStudentDto> findStudent(Pageable pageable, int idClass);
 
+    ClassDetailDto getClassDetail(String className);
 }
