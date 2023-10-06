@@ -37,7 +37,7 @@ public class Student {
     private boolean isDeleted;
 
     @ManyToOne
-    @JoinColumn(name = "classes_id", referencedColumnName = "id")
+    @JoinColumn(name = "class_id", referencedColumnName = "id")
     private Classes classes;
 
     @OneToOne
