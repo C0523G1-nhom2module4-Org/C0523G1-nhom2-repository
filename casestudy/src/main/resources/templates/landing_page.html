@@ -89,8 +89,26 @@
             <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
             <a href="/contact" class="nav-item nav-link">Liên hệ</a>
         </div>
-        <a th:href="@{/account/login}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
-                class="fa fa-arrow-right ms-3"></i></a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <div class="navbar-nav ms-auto text-light">
+                <div class="dropdown mx-2">
+                    <label for="user-container" class="text-dark"
+
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"></label>
+                    <button class="btn btn-outline-light" style="border: none;"
+                            id="user-container"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <i class="fa-solid fa-user" style="color: #000000;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 <!-- Navbar End -->
