@@ -1,5 +1,6 @@
 package com.codegym.casestudy.controller.classes;
 
+import com.codegym.casestudy.dto.classes.ClassDetailDto;
 import com.codegym.casestudy.dto.classes.ClassesDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
@@ -116,5 +117,15 @@ public class ClassesController {
         classesService.delete(classes);
         redirectAttributes.addFlashAttribute("mess", "xoá thành công");
         return "redirect:/classes";
+    }
+
+
+    // thien
+    @GetMapping("/classDetail/{className}")
+    public String classDetail(@RequestParam(name = "className") String className,
+            Model model) {
+        ClassDetailDto classDetail = this.classesService.getClassDetail(className);
+        model.addAttribute("classDetail",classDetail);
+        return "/class-detail";
     }
 }

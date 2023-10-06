@@ -1,5 +1,6 @@
 package com.codegym.casestudy.service.classes;
 
+import com.codegym.casestudy.dto.classes.ClassDetailDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
 import com.codegym.casestudy.model.classes.Classes;
@@ -54,5 +55,10 @@ public class ClassesService implements IClassesService {
     @Override
     public Page<ListStudentDto> findStudent(Pageable pageable, int idClass) {
         return classesRepository.listStudent(pageable, idClass);
+    }
+
+    @Override
+    public ClassDetailDto getClassDetail(String className) {
+        return this.classesRepository.getClassesByClassNameEquals(className);
     }
 }

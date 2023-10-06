@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,18 +32,28 @@ public class StudentService implements IStudentService {
         return studentRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void delete(Student student) {
-        studentRepository.deleteId(student);
+        studentRepository.deleteId(student.getId());
     }
 
     @Override
     public Student findById(int id) {
-        return studentRepository.findById(id).orElse(null);
+        return studentRepository.findById(id).get();
     }
 
     @Override
     public void edit( Student student) {
         studentRepository.save(student);
+    }
+
+    @Override
+    public void deleteWithId(int id) {
+        try {
+            this.studentRepository.updateById(id);
+        } catch (Exception e) {
+            System.out.println("------" + e.getMessage());
+        }
     }
 }
