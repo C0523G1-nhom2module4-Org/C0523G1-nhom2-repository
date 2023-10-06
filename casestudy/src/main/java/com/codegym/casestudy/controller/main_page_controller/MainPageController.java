@@ -36,4 +36,8 @@ public class MainPageController {
     public String qualification() {
         return "/qualification-add";
     }
+    @GetMapping("/success")
+    public String showLandingPage() {
+        return "/landing_page";
+    }
 }

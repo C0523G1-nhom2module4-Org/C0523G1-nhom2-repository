@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>C0523G1 - Drivin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/table.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- Icon Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: "Work Sans", sans-serif;
+
+        }
+
+        table {
+            position: relative;
+            margin-top: 10%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-collapse: collapse;
+            width: 85%;
+            height: 200px;
+            border: 1px solid #f5ca33;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        tr {
+            transition: all .2s ease-in;
+            cursor: pointer;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #header {
+            background-color: #f3bd01;
+            color: #fff;
+
+        }
+
+        h1 {
+            font-weight: 600;
+            text-align: center;
+            background-color: #f3bd01;
+            color: #fff;
+            padding: 10px 0px;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+            transform: scale(1.02);
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+
+        }
+
+        @media only screen and (max-width: 991px) {
+            table {
+                width: 90%;
+                box-sizing: border-box;
+                margin-top: 200px;
+            }
+
+
+            .table-title {
+                position: relative;
+                margin-top: 5%;
+                padding-top: 5%;
+            }
+
+        }
+
+        .page-selection {
+            background-color: #F3BD00;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .page-control {
+            display: grid;
+        }
+
+        .page-control-child {
+            place-self: center;
+        }
+    </style>
+</head>
+<body>
+<!--spinner start-->
+<div th:replace="index::spinner"></div>
+<!--spinner end-->
+
+<!--topbar start-->
+<div th:replace="index::topbar"></div>
+<!--topbar end-->
+
+<!--navbar start-->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="#" class="nav-item nav-link active">Quản lý</a>
+            <a href="#" class="nav-item nav-link">Học viên</a>
+            <a href="#" class="nav-item nav-link">Giáo viên</a>
+            <a href="#" class="nav-item nav-link">Lớp học</a>
+        </div>
+        <a th:href="@{/errors}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
+                class="fa fa-arrow-right ms-3"></i></a>
+    </div>
+</nav>
+<!--navbar end-->
+
+<!--content start-->
+<div class="container">
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Hạng Bằng Lái Xe</h3>
+    <h4 th:if="${qualifications.isEmpty()}" th:text="${message}"></h4>
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-form navbar-left mb-3">
+            <a th:href="@{/admin/qualification-add}"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
+        </div>
+        <form action="#" method="get">
+            <div class="d-flex justify-content-end">
+                <div class="input-group mb-6">
+                    <input type="search" th:value="${searchName}" name="searchName"
+                           class="form-control" placeholder="Tên bằng nái"
+                           style="width: 33%;">
+                </div>
+                <div class="mb-6 ml-2">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </nav>
+    <table class="table" th:if="${!qualifications.isEmpty()}">
+        <thead>
+        <tr id="header">
+            <th>STT</th>
+            <th>Tên hạng bằng</th>
+            <th>Thời gian đào tạo (tháng)</th>
+            <th>Học phí (đơn vị: VND)</th>
+            <th colspan="3" style="text-align: center">Quản lý</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="qualification, loop : ${qualifications}">
+            <th style="width: 10%" th:text="${loop.count}"></th>
+            <td style="width: 10%" th:text="${qualification.getName()}"></td>
+            <td style="width: 15%" th:text="${qualification.getCourseDuration()}"></td>
+            <td style="width: 30%"
+                th:text="${#numbers.formatDecimal(qualification.getFee(), 0, 'COMMA', 0, 'POINT')}"></td>
+            <td style="width: 12%">
+                <i class="fas fa-info-circle fa-lg" style="color:#0C2B4B"
+                   th:attr="onclick=|sendInfo('${qualification.getDescription()}')|"
+                   type="button" data-bs-toggle="modal"
+                   data-bs-target="#exampleModal"></i>
+            </td>
+            <td style="width: 12%">
+                <a th:href="@{/admin/qualification/edit/__${qualification.getId()}__}">
+                    <i class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
+                </a>
+            </td>
+            <td style="width: 12%">
+                <i class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"
+                   th:attr="onclick=|sendInformationForDelete('${qualification.getId()}','${qualification.getName()}')|"
+                   type="button" data-bs-toggle="modal"
+                   data-bs-target="#deleteModal"></i>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!--    phan trang start-->
+    <div th:if="${qualifications.totalPages>1}" class="col-md-12 mb-4 mt-3">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mb-0">
+                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${qualifications.number - 1} ,searchName = ${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-backward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${(qualifications.number) - 1} ,searchName = ${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-backward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li class="page-item active">
+                    <a href="#" class="page-link">
+                        <span th:text="${qualifications.number +1}"></span>/<span
+                            th:text="${qualifications.totalPages}"></span>
+                    </a>
+                </li>
+                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${qualifications.number+1},searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-forward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/admin/qualification(page=${(qualifications.totalPages)-1},searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-forward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!--    phan trang end-->
+<!--content end-->
+
+<!--modal information start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><b>Thông tin bằng lái</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Thông tin chi tiết bằng lái:
+                <p style="color:#000;" id="qualificationDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Quay lại</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--modal information end-->
+
+<!--modal delete start-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form th:action="@{/admin/qualification/remove}" method="get">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel"><b>Xóa dữ liệu bằng lái xe</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn có chắc chắn muốn xóa bằng lái xe:
+                        <strong> <span id="qualificationDeleteName"></span></strong></p>
+                    <input type="text" hidden="hidden" name="deleteId" id="qualificationDeleteId">
+                    <p style="color: red"><b>Lưu ý:</b> Hoạt động này không thể hoàn tác! </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--modal delete end-->
+<!--footer start-->
+<div th:replace="index::footer"></div>
+<!--footer end-->
+
+<!--copyright start-->
+<div th:replace="index::copyRight"></div>
+<!--copyright end-->
+
+
+<script>
+    function sendInfo(qualificationDescription) {
+        document.getElementById("qualificationDescription").innerText = qualificationDescription;
+    }
+
+    function sendInformationForDelete(qualificationId, qualificationName) {
+        document.getElementById("qualificationDeleteId").value = qualificationId;
+        document.getElementById("qualificationDeleteName").innerText = qualificationName;
+    }
+</script>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/wow/wow.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+</body>
+</html>

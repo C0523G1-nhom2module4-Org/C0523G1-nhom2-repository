@@ -22,27 +22,33 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+    <style>
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
-
 <body>
-<!-- Spinner Start -->
-<div id="spinner"
+<!--Spinner start-->
+<div th:fragment="spinner" id="spinner"
      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-grow text-primary" role="status"></div>
 </div>
-<!-- Spinner End -->
+<!--Spinner end-->
 
-
-<!-- Topbar Start -->
-<div class="container-fluid bg-dark text-light p-0">
+<!--Topbar start-->
+<div th:fragment="topbar" class="container-fluid bg-dark text-light p-0">
     <div class="row gx-0 d-none d-lg-flex">
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center me-4">
@@ -71,11 +77,10 @@
         </div>
     </div>
 </div>
-<!-- Topbar End -->
+<!--Topbar end-->
 
-
-<!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+<!--Navbar start-->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
@@ -84,98 +89,77 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link">Trang chủ</a>
+            <a href="/" class="nav-item nav-link active">Trang chủ</a>
             <a th:href="@{/feature}" class="nav-item nav-link">Khóa học</a>
-            <a href="#" class="nav-item nav-link active">Về chúng tôi</a>
+            <a th:href="@{/about}" class="nav-item nav-link">Về chúng tôi</a>
             <a th:href="@{/contact}" class="nav-item nav-link">Liên hệ</a>
         </div>
-        <a th:if="${#request.userPrincipal == null}" th:href="@{/account/login}"
-                class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
-<!-- Navbar End -->
+<!--Navbar end-->
 
-
-<!-- Page Header Start -->
-<div class="container-fluid page-header py-6 my-6 mt-0 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container text-center">
-        <h1 class="display-4 text-white animated slideInDown mb-4">Chúng tôi là Nhóm 2 - C0523G1</h1>
-        <nav aria-label="breadcrumb animated slideInDown">
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item"><a class="text-white" th:href="@{/}">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a class="text-white" th:href="@{/contact}">Liên lạc</a></li>
-                <li class="breadcrumb-item text-primary active" aria-current="page">Về chúng tôi</li>
-            </ol>
-        </nav>
-    </div>
-</div>
-<!-- Page Header End -->
-
-
-<!-- About Start -->
-<div class="container-xxl py-6">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="img/about-us-1.jpg" alt="" style="object-fit: cover;">
-                    <img class="position-absolute top-0 start-0 bg-white pe-3 pb-3" src="img/code-gym-logo.jpg" alt=""
-                         style="width: 200px; height: 200px;">
-                </div>
-            </div>
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="h-100">
-                    <h6 class="text-primary text-uppercase mb-2">Về chúng tôi</h6>
-                    <h1 class="display-6 mb-4">Trang web này là một sản phẩm của các học viên trung tâm CodeGym Đà
-                    Nẵng</h1>
-                    <p>Với tiêu chí hoàn thành tốt Case Study Module 4, luyện tập thực chiến thông qua mô hình Bootcamp và
-                    chuẩn bị những hàng trang đầy đủ nhất cho việc trở thành một lập trình viên Fullstack</p>
-                    <p class="mb-4">Ngoài mục đích luyện tập mô hình làm việc nhóm, các cá nhân trong nhóm cũng tự mình trau
-                    dồi thêm nhiều kỹ năng và kinh nghiệm cần thiết để trở thành một phiên bản tốt hơn của chính bản thân
-                    mình. Đây là một sản phẩm của <span style="color:#f3bd00;">Nhóm 2 - CodeGym Đà Nẵng - C0523G1</span></p>
-                    <div class="row g-2 mb-4 pb-2">
-                        <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Hoàn thiện Frontend
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Xử lý nghiệp vụ tối ưu
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Xây dựng sơ bộ hệ thống
-                        </div>
-                        <div class="col-sm-6">
-                            <i class="fa fa-check text-primary me-2"></i>Thiết kế CSDL phù hợp
-                        </div>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-sm-6">
-                            <a class="d-inline-flex align-items-center btn btn-outline-primary border-2 p-2"
-                               href="tel:+0123456789">
-                                    <span class="flex-shrink-0 btn-square bg-primary">
-                                        <i class="fa fa-phone-alt text-white"></i>
-                                    </span>
-                                <span class="px-3">+84 12 345 6789</span>
-                            </a>
-                        </div>
+<!--Add form start-->
+<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="bg-primary text-center p-5">
+        <h1 class="mb-4">Sửa đổi thông tin bằng lái</h1>
+        <form th:object="${qualificationDto}" method="POST" th:action="@{/admin/qualification/edit}">
+            <input type="hidden" th:field="*{id}">
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{name}" type="text" class="form-control border-0" id="name"
+                               placeholder="Tên hạng bằng lái" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                        <label for="name">Tên bằng lái</label>
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{fee}" type="number" class="form-control border-0" id="fee"
+                               placeholder="Học phí (đơn vị: VND)" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('fee')}" th:errors="*{fee}"></small>
+                        <label for="fee">Học phí (đơn vị: VND)</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{courseDuration}" class="form-control border-0"
+                               placeholder="Thời gian đào tạo" id="courseDuration"
+                               required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('courseDuration')}"
+                               th:errors="*{courseDuration}"></small>
+                        <label for="courseDuration">Thời gian đào tạo (tháng)</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <textarea th:field="*{description}" class="form-control border-0"
+                                  placeholder="Mô tả chi tiết về hạng bằng lái này" id="description"
+                                  style="height: 200px" required></textarea>
+                        <small style="color:red;" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></small>
+                        <label for="description">Mô tả</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/qualification/back}">Hủy
+                        bỏ</a></button>
+                </div>
             </div>
-        </div>
+        </form>
+        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>
     </div>
 </div>
+<!--Add form end-->
 
-<!-- About End -->
-
-
-<!-- Team Start -->
-<div th:replace="index::team"></div>
-
-<!-- Team End -->
-
-
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+<!--Footer start-->
+<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn"
+     data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
@@ -220,12 +204,10 @@
         </div>
     </div>
 </div>
+<!--Footer end-->
 
-<!-- Footer End -->
-
-
-<!-- Copyright Start -->
-<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+<!--Copyright start-->
+<div th:fragment="copyRight" class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -234,23 +216,24 @@
         </div>
     </div>
 </div>
-<!-- Copyright End -->
+<!--Copyright end-->
 
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/wow/wow.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/wow/wow.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
 
 <!-- Template Javascript -->
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 </body>
-
 </html>

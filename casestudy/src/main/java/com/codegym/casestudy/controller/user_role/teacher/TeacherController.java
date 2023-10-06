@@ -1,4 +1,4 @@
-package com.codegym.casestudy.controller.teacher;
+package com.codegym.casestudy.controller.user_role.teacher;
 
 import com.codegym.casestudy.dto.teacher.ITeacherDto;
 import com.codegym.casestudy.dto.teacher.TeacherDto;
