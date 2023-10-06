@@ -70,7 +70,7 @@ public class StudentController {
 //        Student student = studentService.findById(id);
 //        studentService.delete(student);
         this.studentService.deleteWithId(id);
-        redirectAttributes.addFlashAttribute("mess", "Xoá Thành Công");
+        redirectAttributes.addFlashAttribute("mess", "Xoá Thành Côngg");
         return "redirect:/student";
     }
 
