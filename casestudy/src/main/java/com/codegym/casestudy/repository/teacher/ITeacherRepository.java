@@ -14,11 +14,12 @@ public interface ITeacherRepository extends JpaRepository<Teacher,Integer> {
     @Query(value = "select id, " +
             "teacher_name as name, " +
             "gender as gender, " +
+            "identity as identity, " +
             "birthday as birthday, " +
             "salary as salary, " +
             "phone as phone, " +
             "address as address " +
-            "from teachers where is_deleted = true and teacher_name like :name", nativeQuery = true)
+            "from teachers where is_deleted = 0 and teacher_name like :name", nativeQuery = true)
     Page<ITeacherDto> loadTeachers(Pageable pageable, @Param("name") String searchName);
 
 //    @Modifying
@@ -38,6 +39,6 @@ public interface ITeacherRepository extends JpaRepository<Teacher,Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "update teacher set teacher_status = 0 where id = :id", nativeQuery = true)
+    @Query(value = " update teachers set is_deleted = true where id = :id", nativeQuery = true)
     void deleteTeacher(@Param("id") Teacher teacher);
 }

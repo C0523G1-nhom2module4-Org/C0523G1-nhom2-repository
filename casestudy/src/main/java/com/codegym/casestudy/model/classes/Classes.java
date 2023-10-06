@@ -22,13 +22,18 @@ public class Classes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "classes_name")
+    @Column(name = "class_name")
     private String className;
+    @Column(name = "class_description")
+    private String description;
+    @Column(name = "class_start_date")
+    private String startDate;
+    @Column(name = "class_end_date")
+    private String endDate;
     @Column(name = "is_deleted")
     private boolean isDeleted;
 
 
     @OneToMany(mappedBy = "classes")
     private Set<Student> studentSet;
-
 }

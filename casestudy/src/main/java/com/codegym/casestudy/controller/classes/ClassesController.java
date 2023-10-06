@@ -3,7 +3,9 @@ package com.codegym.casestudy.controller.classes;
 import com.codegym.casestudy.dto.classes.ClassesDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
+import com.codegym.casestudy.dto.teacher.TeacherDto;
 import com.codegym.casestudy.model.classes.Classes;
+import com.codegym.casestudy.model.teacher.Teacher;
 import com.codegym.casestudy.service.classes.IClassesService;
 import com.codegym.casestudy.service.student.IStudentService;
 import org.springframework.beans.BeanUtils;
@@ -79,6 +81,34 @@ public class ClassesController {
         redirectAttributes.addFlashAttribute("mess", "thêm thành công");
         return "redirect:/classes";
     }
+
+    @GetMapping("/edit/{id}")
+    public String showEdit(@PathVariable int id, Model model) {
+        Classes classes = classesService.findById(id);
+        ClassesDto classesDto = new ClassesDto();
+        BeanUtils.copyProperties(classes, classesDto);
+        model.addAttribute("classesDto", classesDto);
+        return "/classes/edit";
+    }
+
+    @PostMapping("/edit")
+    public String update(@Valid @ModelAttribute ClassesDto classesDto,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
+        ClassesDto classesDto1= new ClassesDto();
+        classesDto.setClassList(classesService.findAll());
+        classesDto1.validate(classesDto,bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "/classes/edit";
+        }
+        Classes classes = new Classes();
+        BeanUtils.copyProperties(classesDto, classes);
+        classes.setDeleted(false);
+        classesService.edit(classes);
+        redirectAttributes.addFlashAttribute("message", "Sửa thành công");
+        return "redirect:/classes";
+    }
+
 
     @PostMapping("/delete")
     public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {

@@ -69,7 +69,6 @@ public class StudentController {
     public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {
         Student student = studentService.findById(id);
         studentService.delete(student);
-        System.out.println("------delete get-----");
         redirectAttributes.addFlashAttribute("mess", "Xoá Thành Công");
         return "redirect:/student";
     }
@@ -81,7 +80,7 @@ public class StudentController {
         ListStudentDto listStudentDto = new ListStudentDto();
         BeanUtils.copyProperties(student, listStudentDto);
         model.addAttribute("classesList", classesList);
-        model.addAttribute("học", listStudentDto);
+        model.addAttribute("listStudentDto", listStudentDto);
         return "/student/edit";
     }
 

@@ -50,7 +50,7 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public void updateTeacher(int id, Teacher teacher) {
+    public void updateTeacher( Teacher teacher) {
         teacherRepository.save(teacher);
     }
 }

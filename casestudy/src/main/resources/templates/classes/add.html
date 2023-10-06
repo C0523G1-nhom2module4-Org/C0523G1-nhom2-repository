@@ -8,7 +8,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,18 +16,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -35,6 +37,12 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <!-- Icon Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
 <!-- Topbar Start -->
@@ -68,8 +76,6 @@
     </div>
 </div>
 <!-- Topbar End -->
-
-
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
@@ -89,139 +95,67 @@
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
-<!-- Navbar End --><!-------------------------End Toast-------------------------------------------------------------->
-<!--content start-->
-<div class="container" style="min-height: 550px;margin-top: 30px">
-    <h1 style=" margin-top: 30px" align="center">Danh Sách Lớp Học</h1>
-    <nav class="navbar navbar-inverse">
-        <div class=" navbar-form navbar-left mb-3">
-            <a href="/classes/add">
-                <button title="Thêm mới học sinh"
-                        class="btn btn-primary">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </a>
-        </div>
-        <form action="/classes" method="get">
-            <div class="d-flex justify-content-end">
-                <div class="input-group mb-6">
-                    <input id="search-input1" th:value="${name}" name="name" type="search"
-                           class="form-control" placeholder="Tên lop hoc"/>
-                </div>
-                <div class="mb-6 ml-2">
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                </div>
+<!--<div th:replace="landing_page::header">-->
 
+<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="bg-primary text-center p-5">
+        <h1 class="mb-4">Thêm mới học viên</h1>
+
+        <form th:object="${classDto}" method="POST" action="/classes/add">
+            <div class="row g-3">
+                <!--                name-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{className}" type="text" class="form-control border-0" id="name"
+                               placeholder="Tên lớp học">
+                        <small style="color:red;" th:if="${#fields.hasErrors('className')}"
+                               th:errors="*{className}"></small>
+                        <label for="name">Tên lớp học</label>
+                    </div>
+                </div>
+                <!--                CMND-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{description}" type="text" class="form-control border-0" id="identity"
+                               placeholder="Mô tả" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></small>
+                        <label for="identity">Mô tả</label>
+                    </div>
+                </div>
+                <!--                gender + birthday-->
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{startDate}" type="date" class="form-control border-0" id="startDate"
+                               placeholder="Ngày bắt đầu" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('startDate')}"
+                               th:errors="*{startDate}"></small>
+                        <label for="startDate">Ngày bắt đầu</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-floating">
+                            <input th:field="*{endDate}" type="date" class="form-control border-0" id="endDate"
+                                   placeholder="Ngày kết thúc" required>
+                            <small style="color:red;" th:if="${#fields.hasErrors('endDate')}"
+                                   th:errors="*{endDate}"></small>
+                            <label for="endDate">Ngày kết thúc</label>
+                        </div>
+                    </div>
+                    <!--                phone-->
+                    <div class="col-6">
+                        <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-light w-100 py-3" type="button"><a href="/student">Hủy
+                            bỏ</a></button>
+                    </div>
+                </div>
             </div>
         </form>
-    </nav>
-    <table class="table table-hover">
-        <tr>
-            <th>STT</th>
-            <th>Tên Lớp</th>
-            <th>Mô Tả</th>
-            <th>Ngày Bắt Đầu</th>
-            <th>Ngày Kết Thúc</th>
-            <th>Chức Năng</th>
-        </tr>
-        <tr th:each="cla,sta :${classList}">
-            <td style="width: 20%" th:text="${sta.count}"></td>
-            <td hidden="hidden" th:text="${cla.id}"></td>
-            <td style="width: 50%" th:text="${cla.className}"></td>
-            <td style="width: 50%" th:text="${cla.description}"></td>
-            <td style="width: 50%" th:text="${cla.startDate}"></td>
-            <td style="width: 50%" th:text="${cla.endDate}"></td>
-
-            <td style="width: 30%">
-                <a th:href="@{/classes/edit/{id}(id=${cla.getId()})}">
-                    <button class="btn btn-primary">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                </a>
-<!--                <button type="button" class="btn btn-danger" th:attr="onclick=|showModal('${cla.id}')|">-->
-<!--                    <i class="fa-regular fa-trash-can"></i>-->
-<!--                </button>-->
-            </td>
-
-    </table>
-
-
-    <!--phân trang-->
-    <div th:if="${classList.totalPages>1}" class="col-md-12 mb-4 mt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/classes(page=0,name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-backward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{classes(page=${(classList.number)-1},name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-backward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">
-                        <span th:text="${classList.number +1}"></span>/<span
-                            th:text="${classList.totalPages}"></span>
-                    </a>
-                </li>
-                <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{classes(page=${classList.number+1},name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-forward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{classes(page=${(classList.totalPages)-1},name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-forward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>
     </div>
-</div>
-</div>
-</div>
-</div>
-
-
-<!--  modal xoá -->
-<form action="/classes/delete" method="post">
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Xoá Lớp</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <input type="hidden" id="id" name="id">
-                <div class="modal-body">
-                    Bạn có muốn xóa lớp học có code là <span id="idDelete"></span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                    <button type="submit" class="btn btn-danger">Xác Nhận</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 </div>
 <!--<div th:replace="layout::footer">-->
-
-</div>
 <!--<div th:replace="layout::footer">-->
 <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
     <div class="container">
@@ -269,32 +203,21 @@
     </div>
 </div>
 <!-- Footer End -->
+
+</div>
 </body>
-<script th:if="${mess!=null}">
-    // toast
-    window.onload = function () {
-        let myAlert = document.getElementById('liveToast');//select id of toast
-        let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-        bsAlert.show();//show it
-    }
-</script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/easing/easing.min.js"></script>
-
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-
 <script src="../lib/isotope/isotope.pkgd.min.js"></script>
-
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
-
-
 <!-- Contact Javascript File -->
 <script src="../mail/jqBootstrapValidation.min.js"></script>
 <script src="../mail/contact.js"></script>
-
 <!-- Template Javascript -->
 <script src="../js/main.js"></script>
+<script th:src="@{/js/main.js}"></script>
 <!--offline-->
 <script src="../../static/mail/contact.js"></script>
 <script src="../../static/mail/jqBootstrapValidation.min.js"></script>
@@ -303,17 +226,9 @@
 <script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../../static/lib/easing/easing.min.js"></script>
 <script src="../../static/js/main.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
         src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
-<script th:src="@{/js/main.js}"></script>
-<script>
 
-    function showModal(id) {
-        document.getElementById("idDelete").innerText = id;
-        document.getElementById("id").value = id;
-        $("#deleteModal").modal("show");
-    }
-</script>
+
 </html>

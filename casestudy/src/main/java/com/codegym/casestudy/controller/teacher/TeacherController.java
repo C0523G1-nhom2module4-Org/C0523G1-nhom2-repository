@@ -23,12 +23,12 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     private ITeacherService teacherService;
-//
-//    @ModelAttribute("teacherList")
-//    public List<Teacher> getListTeacher() {
-//        List<Teacher> teacherList = teacherService.findAll();
-//        return teacherList;
-//    }
+
+    @ModelAttribute("teacherList")
+    public List<Teacher> getListTeacher() {
+        List<Teacher> teacherList = teacherService.findAll();
+        return teacherList;
+    }
 
     @GetMapping("")
     public String showList(Model model,
@@ -82,8 +82,8 @@ public class TeacherController {
         }
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(teacherDto, teacher);
-        teacher.setDeleted(true);
-        teacherService.updateTeacher(teacher.getId(), teacher);
+        teacher.setDeleted(false);
+        teacherService.updateTeacher(teacher);
         redirectAttributes.addFlashAttribute("message", "Sửa thành công");
         return "redirect:/teacher";
     }
