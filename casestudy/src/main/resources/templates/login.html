@@ -113,14 +113,14 @@
 </style>
 <body>
     <div class="wrapper">
-        <form action="">
+        <form th:action="@{/j_spring_security_check}" method="post" name='f'>
             <h1>Đăng Nhập</h1>
             <div class="input-box">
-                <input type="text" placeholder="Tên Đăng Nhập" required>
+                <input type="text" name="username" placeholder="Tên Đăng Nhập" required>
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Mật Khẩu" required>
+                <input type="password" name="password" placeholder="Mật Khẩu" required>
                 <i class='bx bxs-lock'></i>
             </div>
             <div class="remember-forgot">
@@ -129,7 +129,7 @@
             </div>
             <button class="btn" type="submit">Đăng Nhập</button>
             <div class="register-link">
-                <p>Bạn Chưa Có Tài Khoản - Đăng Kí Ngay ? <a href="#">Đăng Kí</a> </p>
+                <p>Bạn Chưa Có Tài Khoản - Đăng Kí Ngay ? <a th:href="@{/account/signup}">Đăng Kí</a> </p>
             </div>
         </form>
     </div>
