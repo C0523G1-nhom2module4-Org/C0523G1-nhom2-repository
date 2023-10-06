@@ -176,9 +176,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="classed, loop : ${}">
+        <tr th:each="student, loop : ${classDetail.getStudentName()}">
             <td th:text="${loop.count}"></td>
-
+            <td th:text="${student}"></td>
         </tr>
         </tbody>
     </table>
