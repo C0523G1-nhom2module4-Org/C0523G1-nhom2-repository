@@ -4,7 +4,7 @@ import com.codegym.casestudy.model.account.Account;
 import com.codegym.casestudy.model.role.Role;
 
 import javax.persistence.*;
-
+@Table(name = "user_roles")
 @Entity
 public class UserRole {
     @Id

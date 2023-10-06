@@ -11,17 +11,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface IAccountRepository extends JpaRepository<Account,Integer> {
-    @Query(value = "select account_id as id, account_email as email, role_name as roleName " +
-            "from account " +
-            "join user_role on account.id = user_role.account_id " +
-            "join role on user_role.role_id = role.id " +
-            "where account.account_status = true " +
+    @Query(value = "select account_id as id, account_email as email,create_date as date, role_name as roleName " +
+            "from accounts " +
+            "join user_roles on accounts.id = user_roles.account_id " +
+            "join roles on user_roles.role_id = roles.id " +
+            "where accounts.is_delete = false " +
             "and account_email like :keyword", nativeQuery = true)
     Page<IAccountDto> findAccountByEmailContaining(Pageable pageable, @Param("keyword") String keyword);
 
     @Transactional
     @Modifying
-    @Query(value = "update account set account.account_status = false where account.id = :id",nativeQuery = true)
+    @Query(value = "update accounts set accounts.is_delete = true where accounts.id = :id",nativeQuery = true)
     void deleteAccount(@Param("id") Account account);
 
 //    @Query(value = "select account_email from account where account_email = :email",nativeQuery = true)

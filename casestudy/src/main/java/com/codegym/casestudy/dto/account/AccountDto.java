@@ -3,9 +3,13 @@ package com.codegym.casestudy.dto.account;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
+
 public class AccountDto implements Validator {
     private String email;
     private String password;
+    private String createDate;
+
 
     public AccountDto() {
     }
@@ -13,6 +17,12 @@ public class AccountDto implements Validator {
     public AccountDto(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public AccountDto(String email, String password, String createDate) {
+        this.email = email;
+        this.password = password;
+        this.createDate = createDate;
     }
 
     public String getEmail() {
@@ -29,6 +39,14 @@ public class AccountDto implements Validator {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
     @Override
