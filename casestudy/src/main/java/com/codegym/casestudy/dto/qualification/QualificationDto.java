@@ -27,10 +27,13 @@ public class QualificationDto implements Validator {
     @NotBlank(message = "Trường này không được để trống")
     private String description;
 
-    public QualificationDto(String name, Long fee, String description) {
+    private Integer courseDuration;
+
+    public QualificationDto(String name, Long fee, String description, Integer courseDuration) {
         this.name = name;
         this.fee = fee;
         this.description = description;
+        this.courseDuration = courseDuration;
     }
 
     @Override
@@ -48,6 +51,9 @@ public class QualificationDto implements Validator {
         }
         if (fee.toString().length() == 0) {
             errors.rejectValue("fee", null, "Trường này không được để trống");
+        }
+        if (qualificationDto.courseDuration <= 0) {
+            errors.rejectValue("courseDuration", null, "Giá trị không hợp lệ");
         }
     }
 }

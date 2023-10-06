@@ -93,10 +93,10 @@ public class QualificationController {
         boolean removeSuccess = this.qualificationService.remove(qualification.getId());
         System.out.println("--------------remove get method----------");
         if (removeSuccess) {
-            redirectAttributes.addFlashAttribute("message", "Removed qualification");
+            redirectAttributes.addFlashAttribute("message", "Đã xóa bằng lái");
         } else {
-            redirectAttributes.addFlashAttribute("message", "Something wrong. Can't not found " +
-                    "this qualification");
+            redirectAttributes.addFlashAttribute("message", "Không thể tìm thấy thông tin về bằng " +
+                    "lái này.");
         }
         return "redirect:/admin/qualification";
     }
