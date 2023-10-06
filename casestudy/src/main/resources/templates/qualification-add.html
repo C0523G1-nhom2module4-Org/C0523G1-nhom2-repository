@@ -111,7 +111,8 @@
                         <input th:field="*{name}" type="text" class="form-control border-0" id="name"
                                placeholder="Tên hạng bằng lái" required>
                         <small style="color:red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
-                        <small style="color:red;" th:if="${isExistedMessage != null}" th:text="${isExistedMessage}"></small>
+                        <small style="color:red;" th:if="${isExistedMessage != null}"
+                               th:text="${isExistedMessage}"></small>
                         <label for="name">Tên bằng lái</label>
                     </div>
                 </div>
@@ -125,10 +126,21 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
+                        <input th:field="*{courseDuration}" class="form-control border-0"
+                               placeholder="Thời gian đào tạo" id="courseDuration"
+                               required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('courseDuration')}"
+                               th:errors="*{courseDuration}"></small>
+                        <label for="courseDuration">Thời gian đào tạo (tháng)</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
                         <textarea th:field="*{description}" class="form-control border-0"
                                   placeholder="Mô tả chi tiết về hạng bằng lái này" id="description"
                                   style="height: 200px" required></textarea>
-                        <small style="color:red;" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                        <small style="color:red;" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></small>
                         <label for="description">Mô tả</label>
                     </div>
                 </div>
@@ -136,17 +148,19 @@
                     <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                 </div>
                 <div class="col-6">
-                    <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/qualification/back}">Hủy bỏ</a></button>
+                    <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/qualification/back}">Hủy
+                        bỏ</a></button>
                 </div>
             </div>
         </form>
-<!--        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>-->
+        <!--        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>-->
     </div>
 </div>
 <!--Add form end-->
 
 <!--Footer start-->
-<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn"
+     data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
