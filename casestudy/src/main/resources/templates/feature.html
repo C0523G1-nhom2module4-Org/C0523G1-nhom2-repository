@@ -142,12 +142,13 @@
                         <div class="courses-overlay">
                             <a class="btn btn-outline-primary border-2"
                                th:if="${#request.userPrincipal == null}"
-                               >Đăng ký khóa học</a>
+                               th:href="@{/contracts/create/__${student.getId()}__//__${qualification.getId()}__}"
+                            >Đăng ký khóa học</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--         th:href="@{/contracts/create/__${student.getId()}__//__${qualification.getId()}__}"   -->
+            <!--     th:href="@{/contracts/create/__${student.getId()}__//__${qualification.getId()}__}"       -->
         </div>
     </div>
 </div>
