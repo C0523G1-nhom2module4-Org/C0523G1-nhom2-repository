@@ -89,7 +89,8 @@
             <a href="#" class="nav-item nav-link active">Về chúng tôi</a>
             <a th:href="@{/contact}" class="nav-item nav-link">Liên hệ</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a th:if="${#request.userPrincipal == null}" th:href="@{/account/login}"
+                class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
