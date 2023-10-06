@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public interface IQualificationRepository extends JpaRepository<Qualification, Long> {
     Qualification findQualificationByNameEquals(String qualificationName);
@@ -26,4 +28,9 @@ public interface IQualificationRepository extends JpaRepository<Qualification, L
             " where id = :qualificationId ",
             nativeQuery = true)
     void deleteById(@Param("qualificationId") Long qualificationId);
+
+    @Query(value = "select * from qualifications " +
+            "where is_deleted = 0 ",
+            nativeQuery = true)
+    List<Qualification> findAll();
 }
