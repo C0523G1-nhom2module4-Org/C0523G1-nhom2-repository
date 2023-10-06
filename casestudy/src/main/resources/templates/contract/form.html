@@ -1,10 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>C0523G1 - Contract</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- Icon Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 </head>
 <body>
+<!-- Topbar Start -->
+<div class="container-fluid bg-dark text-light p-0">
+    <div class="row gx-0 d-none d-lg-flex">
+        <div class="col-lg-7 px-5 text-start">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                <small>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center">
+                <small class="far fa-clock text-primary me-2"></small>
+                <small>Thứ 2 - Thứ 6: 08.15 AM - 05.30 PM</small>
+            </div>
+        </div>
+        <div class="col-lg-5 px-5 text-end">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="fa fa-phone-alt text-primary me-2"></small>
+                <small>+84 12 345 6789</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center mx-n2">
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-twitter"></i></a>
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
 
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
+            <a href="/feature" class="nav-item nav-link">Khóa học</a>
+            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
+            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+        </div>
+        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+                class="fa fa-arrow-right ms-3"></i></a>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+<div style="margin-left: 50px; margin-right: 50px; font-size: 120%">
+    <div style="text-align: center">
+        <br>
+        <h1>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h1>
+        <h2>Độc Lập – Tự Do – Hạnh Phúc</h2>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <h3>HỢP ĐỒNG HỌC BẰNG LÁI XE Ô TÔ</h3>
+        <p><strong>Số:</strong> <th:block th:text="${contract.id}"></th:block> /HĐTX</p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+        <p>- Căn cứ Bộ Bộ Luật Dân sự năm 2015 số 91/2015/QH13 đã được Quốc Hội nước Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam
+            khóa XI, kỳ họp thứ 7 thông qua ngày 14/06/2005;</p>
+        <p>- Căn cứ Luật thương mại số 36/2005/QH11 đã được Quốc Hội nước Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam khóa XI, kỳ
+            họp thứ 7 thông qua ngày 14/06/2005;</p>
+        <p>- Căn cứ vào nhu cầu và khả năng cung ứng của các bên dưới đây.</p>
+        <p>Hôm nay, ngày <th:block th:text="${contract.date.substring(8, 10)}"></th:block> tháng <th:block th:text="${contract.date.substring(5, 7)}"></th:block>  năm <th:block th:text="${contract.date.substring(0, 4)}"></th:block> , chúng tôi gồm:</p>
+        <h4>BÊN A: <th:block th:if="${contract.student.gender == 1}">Bà</th:block> <th:block th:if="${contract.student.gender == 0}">Ông</th:block> <th:block th:text="${contract.student.name}"></th:block> (Bên thuê)</h4>
+        <p>- Địa chỉ: <th:block th:text="${contract.student.address}"></th:block> </p>
+        <p>- Điện thoại: <th:block th:text="${contract.student.phone}"></th:block> </p>
+
+        <h4>BÊN B: CÔNG TY #Đà nằng Drift</h4>
+        <p>- Địa chỉ: 280 Trần Hưng Đạo, P. An Hải Tây, Q. Sơn Trà, TP. Đà Nẵng</p>
+        <p>- Điện thoại: 0901969897</p>
+        <p>- Đại diện: Phan Quốc Sang - Chức vụ: Hiệu trưởng</p>
+        <p>- Mã số thuế: 201738707</p>
+
+        <p>Sau khi bàn bạc, thỏa thuận, hai bên thống nhất ký kết Hợp đồng thuê xe với các điều khoản như sau:</p>
+
+        <h5>ĐIỀU 1: NỘI DUNG HỢP ĐỒNG</h5>
+        <p>Bên A đồng ý đăng kí khóa học của bên B </p>
+        <p>+ Khóa học <th:block th:text="${contract.qualification.name}"></th:block></p>
+
+        <h5>ĐIỀU 2: GIÁ TRỊ HỢP ĐỒNG, PHƯƠNG THỨC THANH TOÁN:</h5>
+        <p>- Giá thuê xe là: <th:block th:text="${contract.qualification.fee}"></th:block> $</p>
+
+        <h5>ĐIỀU 3: NGHĨA VỤ VÀ QUYỀN HẠN VÀ QUYỀN LỢI CỦA NGƯỜI HỌC</h5>
+        <h5>3.1. Nghĩa vụ :</h5>
+        <p>- Người học phải làm đầy đủ thủ tục nhập học và đóng học phí theo quy định của nhà trường mới được vào học.</p>
+        <p>- Trong học tập tuyệt đối chấp hành nội quy, quy chế của nhà trường và quy định của Pháp luật.Nếu vi phạm sẽ
+            phải bồi thường toàn bộ học phí khóa học và những tổn thất gây ra, đồng thời phải chịu trách nhiệm trước pháp luật.</p>
+
+        <h5>3.2. Quyền hạn :</h5>
+        <p>- Học viên có quyền đề xuất, đóng góp ý kiến xây dựng để đảm bảo quyền lợi.</p>
+        <p>- Người nhập học đang học vì một lý do nào đó mà không tiếp tục tham gia học được thì nhà trường sẽ xem xét bảo
+            lưu điểm và được học lại.(Thời gian bảo lưu không quá 1 năm).</p>
+        <p>- Chịu toàn bộ chi phí xăng khi sử dụng xe.</p>
+
+        <h5>3.2. Quyền lợi :</h5>
+        <p>- Người học được học lý thuyết và thực hành đam bảo đủ thời gian, nôi dung theo quy định của của Bộ giao thông
+            vận tải.</p>
+        <p>- Người học được kiểm tra trình độ lý thuyết, thực hành để được cấp chứng chỉ sơ cấp nghề hoặc giấy chứng nhận
+            theo quy định.</p>
+        <p>- Chịu toàn bộ chi phí xăng khi sử dụng xe.</p>
+
+        <h5>ĐIỀU 4: NGHĨA VỤ VÀ QUYỀN HẠN CỦA CƠ SỞ ĐÀO TẠO</h5>
+        <h5>4.1. Nghĩa vụ :</h5>
+        <p>- Thực hiện đầy đủ những điều kiện cần thiết đã cam kết trong hợp đồng đào tạo để người học tập đạt hiệu quả,
+            bảo đảm theo hợp đồng đã được kí.</p>
+        <h5>4.2. Quyền hạn :</h5>
+        <p>- Nhà trường có quyền tạm hoãn, kỉ luật và chấm dứt hợp đồng với các trường hợp người học vi phạm hợp đồng theo
+            đúng qui định của Pháp luật.</p>
+        <p>+ Đi nghĩa vụ quân sự.</p>
+        <p>+ Lý do sức khỏe.</p>
+        <p>+ Vi phạm Pháp luật của Nhà nước và Quy chế của Nhà trường.</p>
+        <p>+ Các trường hợp khác khi được sự đồng ý của Nhà trường.</p>
+
+        <h5>ĐIỀU 5: HIỆU LỰC HỢP ĐỒNG</h5>
+<!--        <p>- Hợp đồng có giá trị kể từ ngày <th:block th:text="${contract.date}"></th:block> đến hết ngày <th:block th:text="${contract.student.classes.startDate}"></th:block></p>-->
+        <p>- Nếu một trong hai Bên, bên nào muốn chấm dứt Hợp đồng trước thời hạn thì phải thông báo cho Bên kia trước
+            ít nhất 010 ngày.</p>
+
+        <h5>ĐIỀU 5: ĐIỀU KHOẢN CHUNG</h5>
+        <p>- Trong quá trình thực hiện hợp đồng, nếu có đề nghị điều chỉnh thì phải thông báo cho nhau bằng văn bản để
+            cùng bàn bạc giải quyết.</p>
+        <p>- Hai bên cam kết thi hành đúng các điều khoản của hợp đồng, không bên nào tự ý đơn phương sửa đổi, đình chỉ
+            hoặc hủy bỏ hợp đồng. Mọi sự vi phạm phải được xử lý theo pháp luật. Trường hợp có tranh chấp mà hai bên
+            không tự giải quyết được, sẽ do Tòa Án Nhân Dân TP. Đà Nẵng phán xử.</p>
+        <p>- Hợp đồng này có hiệu lực từ ngày ký và coi như được thanh lý sau khi hai bên thực hiện xong nghĩa vụ của
+            mình và không còn bất kỳ khiếu nại nào.</p>
+        <p>Hợp đồng được lập thành 04 (bốn) bản có giá trị pháp lý như nhau, Bên A giữ 02 (hai) bản. Bên B giữ 02 (hai)
+            bản.</p>
+        <div class="row">
+            <div class="col-6" style="padding-left: 15%">
+                <p>ĐẠI DIỆN BÊN A</p>
+
+            </div>
+            <div class="col-6" style="padding-right: 25%">
+                <p>ĐẠI DIỆN BÊN B</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <img src="chu-ky-sang.png"style="width: 20%; margin-left: 66%" alt=""/><br>
+        <p style="padding-left: 67%">C0523G1 #Đà Nẵng Drift Company</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="printButton" style="text-align: center">
+            <button  onclick="window.print()">In Trang</button>
+            <button onclick="window.location.href='admin/contract'">Trở về</button>
+        </div>
+        <hr>
+        <p style="text-align: center">C0423G1 #Đà Nẵng Drift Company Company</p>
+
+
+    </div>
+</div>
 </body>
 </html>

@@ -12,4 +12,5 @@ public interface IContractService{
     Contract findById(Integer id);
     void save(Contract contract);
     Page<Contract> findAllBySearch(Pageable pageable, String search, String sort, String condition);
+    boolean check(Contract contract);
 }

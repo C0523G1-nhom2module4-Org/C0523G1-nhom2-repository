@@ -38,7 +38,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public Student findById(int id) {
-        return studentRepository.findById(id).get();
+        return studentRepository.findById(id).orElse(null);
     }
 
     @Override

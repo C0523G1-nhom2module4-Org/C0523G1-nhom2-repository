@@ -41,7 +41,7 @@ public class ContractDto implements Validator {
         }
 
         if (contractDto.fee < 0){
-            errors.rejectValue("fee","invalid","Vui lòng nhập đúng giá trị ( > 0) ");
+            errors.rejectValue("fee","invalid","Vui lòng nhập đúng giá trị ( lớn hơn 0) ");
         }
     }
 }

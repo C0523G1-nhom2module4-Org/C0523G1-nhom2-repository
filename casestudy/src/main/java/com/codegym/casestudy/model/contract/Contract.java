@@ -24,7 +24,7 @@ public class Contract {
     @Column(name = "contract_date",columnDefinition = "date",nullable = false)
     private String date;
 
-    @Column(name = "is_delete",columnDefinition = "tinyint default 0")
+    @Column(name = "is_deleted",columnDefinition = "tinyint default 0")
     private int status;
 
     @OneToOne
