@@ -22,7 +22,6 @@ public class Classes {
     @Column(name = "classes_name")
     private String name;
     private int status;
-
     @OneToMany(mappedBy = "classes")
     private Set<Student> studentSet;
 }

@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface IContractRepository extends JpaRepository<Contract,Integer> {
     @Query(value = "select contracts.*,students.student_name,qualifications.qualification_name " +
             "from contracts join students on contracts.student_id = students.id " +
@@ -20,4 +22,7 @@ public interface IContractRepository extends JpaRepository<Contract,Integer> {
                                         @Param("sort") String sort,
                                         @Param("condition") String condition
                                         );
+
+    @Query(value = "select * from contracts where status = 0", nativeQuery = true)
+    List<Contract> findAllContract();
 }
