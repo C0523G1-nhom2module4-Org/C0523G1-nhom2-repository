@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Controller
@@ -55,13 +57,16 @@ public class AccountController {
     }
 
     @PostMapping("/create")
-    public String signup(@ModelAttribute Account account, @RequestParam String repeat, RedirectAttributes redirectAttributes, Model model) {
+    public String signup(@ModelAttribute Account account, @RequestParam String repeat,
+                         RedirectAttributes redirectAttributes,
+                         Model model) {
         Account newAccount = accountService.findByEmail(account.getEmail());
         if (newAccount != null) {
             model.addAttribute("msg", "Email Đã Được Đăng Kí");
             return "/account_signup";
         } else if (account.getPassword().equals(repeat)) {
-            account.setStatus(true);
+            account.setDelete(true);
+            account.setCreateDate(String.valueOf(LocalDate.now()));
             accountService.addAccount(account);
             redirectAttributes.addFlashAttribute("msg", "Đăng Kí Thành Công");
             return "redirect:/account/login";
@@ -100,5 +105,12 @@ public class AccountController {
         model.addAttribute("account", account);
         redirectAttributes.addFlashAttribute("msg", "Đổi thành công");
         return "redirect:/success";
+    }
+
+    // Thien
+    //back to mainpage
+    @GetMapping("/back")
+    public String backToMainPage() {
+        return "redirect:/";
     }
 }
