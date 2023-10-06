@@ -30,12 +30,12 @@ public class StudentController {
     private IClassesService classesService;
 
     @GetMapping("")
-    public String showList(@RequestParam(defaultValue = "", required = false) String studentName, Model model,
+    public String showList(@RequestParam(defaultValue = "", required = false) String name, Model model,
                            @RequestParam(defaultValue = "0", required = false) int page) {
-        Pageable pageable = PageRequest.of(page, 5, Sort.by("studentName").descending());
-        Page<StudentDto> studentDtos = studentService.findAllStudent(pageable, studentName);
+        Pageable pageable = PageRequest.of(page, 5, Sort.by("student_name").descending());
+        Page<StudentDto> studentDtos = studentService.findAllStudent(pageable, name);
         model.addAttribute("studentDtos", studentDtos);
-        model.addAttribute("studentName", studentName);
+        model.addAttribute("name", name);
         return "/student/list";
     }
 
@@ -56,7 +56,7 @@ public class StudentController {
             return "/student/add";
         }
         Student student = new Student();
-        student.setStatus(1);
+        student.setDeleted(true);
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.add(student);
         redirectAttributes.addFlashAttribute("mess", "thêm mới thành công");
@@ -89,7 +89,7 @@ public class StudentController {
             return "/student/edit";
         }
         Student student = new Student();
-        student.setStatus(1);
+        student.setDeleted(true);
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.edit(id, student);
         redirectAttributes.addFlashAttribute("mess", "Sửa Thành Công");
