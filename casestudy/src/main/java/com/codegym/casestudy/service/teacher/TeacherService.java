@@ -24,7 +24,7 @@ public class TeacherService implements ITeacherService {
     @Override
     public void saveNewTeacher(Teacher teacher) {
         teacherRepository.saveNewTeacher(teacher.getName(), teacher.getGender(), teacher.getBirthday(),
-                teacher.getIdentity(), teacher.getSalary(), teacher.getPhoneNumber(), teacher.getAddress());
+                teacher.getIdentity(), teacher.getSalary(), teacher.getPhone(), teacher.getAddress());
     }
 
     @Override

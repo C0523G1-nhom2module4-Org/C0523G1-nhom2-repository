@@ -16,19 +16,21 @@ public class Qualification {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 30, nullable = false, unique = true, name = "qualification_name")
+    @Column(length = 30, unique = true, nullable = false, name = "qualification_name")
     private String name;
 
-    @Column(nullable = false, name = "qualification_fee", columnDefinition = "BIGINT")
+    @Column(columnDefinition = "BIGINT", nullable = false, name = "qualification_fee")
     private Long fee;
+    @Column(columnDefinition = "int", nullable = false, name = "course_duration")
+    private Integer courseDuration;
 
     @Column(columnDefinition = "LONGTEXT", nullable = false, name = "qualification_description")
     private String description;
 
-
-    public Qualification(String name, Long fee, String description) {
+    public Qualification(String name, Long fee, Integer courseDuration, String description) {
         this.name = name;
         this.fee = fee;
+        this.courseDuration = courseDuration;
         this.description = description;
     }
 }

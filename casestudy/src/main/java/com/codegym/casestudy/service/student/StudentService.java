@@ -1,6 +1,5 @@
 package com.codegym.casestudy.service.student;
 
-import com.codegym.casestudy.dto.student.ListStudentDto;
 import com.codegym.casestudy.dto.student.StudentDto;
 import com.codegym.casestudy.model.student.Student;
 import com.codegym.casestudy.repository.student.IStudentRepository;
@@ -19,7 +18,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public Page<StudentDto> findAllStudent(Pageable pageable, String name) {
-        return studentRepository.findAllStudent(pageable, "%" + name + "%");
+        return studentRepository.loadStudents(pageable, "%" + name + "%");
     }
 
     @Override

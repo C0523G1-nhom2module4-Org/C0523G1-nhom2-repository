@@ -13,26 +13,33 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 
-@Repository
 public interface IStudentRepository extends JpaRepository<Student,Integer> {
-    @Query(value = "SELECT " +
-            "    classes_name as className, " +
-            "    id as studentId," +
-            "    student_birthday as studentBirth, " +
-            "    student_gender as  studentGender, " +
-            "    student_identity as studentIdentity, " +
-            "    student_name as studentName, " +
-            "    student_phone_number as studentPhoneNumber," +
-            "    status as studentStatus " +
-            "   FROM " +
-            "      student st " +
-            "   left JOIN classes cla ON st.classes_id = cla.id " +
-            "    where st.student_name like :studentName and st.status = 1 ", nativeQuery = true)
-    Page<StudentDto> findAllStudent(Pageable pageable, @Param("studentName") String studentName);
+//    @Query(value = "SELECT " +
+//            "    classes_name as name, " +
+//            "    id as id," +
+//            "    birthday as birthday, " +
+//            "    gender as  gender, " +
+//            "    identity as identity, " +
+//            "    student_name as name, " +
+//            "    phone as phone," +
+//            "    is_deleted as isDeleted " +
+//            "   FROM " +
+//            "      student st " +
+//            "   left JOIN classes cla ON st.classes_id = cla.id " +
+//            "    where st.student_name like :name and st.isDeleted = true ", nativeQuery = true)
+
+//    @Query(value = "select students.* from students\n " +
+//            "join classes on students.classes_id = classes.id\n " +
+//            "where students.is_deleted = true and students.student_name like :searchName ",nativeQuery = true)
+
+
+    @Query(value = "select s.id AS id, s.student_name as studentName, s.classes_id as classId, s.gender as gender, s.identity as identity, s.birthday as birthday, s.phone as phone, s.address as address, s.is_deleted as isDeleted, s.graduate_point as graduatePoint from students AS s" +
+            " where s.student_name like :searchName and s.is_deleted = 0", nativeQuery = true)
+    Page<StudentDto> loadStudents(Pageable pageable, @Param("searchName") String searchName);
 
     @Modifying
     @Transactional
-    @Query(value = " update student set status = 0 where id=:id", nativeQuery = true)
+    @Query(value = " update student set isDeleted = false where id=:id", nativeQuery = true)
     void deleteId(@Param(value = "id") Student student);
 
 }

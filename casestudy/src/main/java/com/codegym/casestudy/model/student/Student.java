@@ -19,20 +19,20 @@ public class Student {
     private int id;
     @Column(name = "student_name")
     private String name;
-    @Column(name = "student_identity")
+    @Column(name = "identity")
     private String identity;
-    @Column(name = "student_gender")
+    @Column(name = "gender")
     private int gender;
-    @Column(name = "student_birthday")
-    private String birthday ;
-    @Column(name = "student_phone_number")
-    private String phoneNumber;
-    @Column(name = "student_point")
-    private int point;
-    @Column(name = "student_address")
+    @Column(name = "birthday")
+    private String birthday;
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "graduate_point")
+    private int graduatePoint;
+    @Column(name = "address")
     private String address;
-    @Column(name = "student_status")
-    private int status;
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "classes_id", referencedColumnName = "id")

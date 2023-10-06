@@ -18,20 +18,20 @@ public class Teacher {
     private int id;
     @Column(name = "teacher_name")
     private String name;
-    @Column(name = "teacher_identity")
+    @Column(name = "identity")
     private String identity;
-    @Column(name = "teacher_gender")
+    @Column(name = "gender")
     private int gender;
-    @Column(name = "teacher_birthday")
+    @Column(name = "birthday")
     private String birthday;
-    @Column(name = "teacher_phone_number")
-    private String phoneNumber;
-    @Column(name = "teacher_address")
+    @Column(name = "phone")
+    private String phone;
+    @Column(name = "address")
     private String address;
-    @Column(name = "teacher_salary")
+    @Column(name = "salary")
     private int salary;
-    @Column(name = "teacher_status")
-    private int status;
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
 
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id")
