@@ -135,7 +135,7 @@
 <!--topbar end-->
 
 <!--navbar start-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+<nav lass="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
@@ -149,7 +149,7 @@
             <a href="#" class="nav-item nav-link">Giáo viên</a>
             <a href="#" class="nav-item nav-link">Lớp học</a>
         </div>
-        <a th:href="@{/errors}" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
+        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
@@ -309,6 +309,7 @@
     </div>
 </div>
 <!--modal delete end-->
+
 <!--footer start-->
 <div th:replace="index::footer"></div>
 <!--footer end-->

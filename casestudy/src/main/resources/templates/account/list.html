@@ -180,13 +180,15 @@
         <tr id="header">
             <th>STT</th>
             <th>Email</th>
+            <th>Ngày Tạo</th>
             <th>Vai Trò</th>
             <th>Chức Năng</th>
         </tr>
         <tr th:each="account,status:${accountDtoPage}">
             <td style="width: 10%" th:text="${status.count}"></td>
-            <td style="width: 35%" th:text="${account.email}"></td>
-            <td style="width: 35%">
+            <td style="width: 30%" th:text="${account.email}"></td>
+            <td style="width: 30%" th:text="${account.createDate}"></td>
+            <td style="width: 30%">
                 <span th:switch="${account.roleName}">
                     <span th:case="'ROLE_ADMIN'" th:text="'Giám Đốc'"></span>
                     <span th:case="'ROLE_TEACHER'" th:text="'Giáo Viên'"></span>
