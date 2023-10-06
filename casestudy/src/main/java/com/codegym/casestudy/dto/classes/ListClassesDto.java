@@ -1,9 +1,12 @@
 package com.codegym.casestudy.dto.classes;
 
 public interface ListClassesDto {
-    int getId();
-    String getName();
-    int getStatus();
+    int getClassId();
+    String getClassName();
+    String getStartDate();
+    String getEndDate();
+    int getIsDeleted();
     String getTeacherName();
+    String getDescription();
     int getStudentCount();
 }

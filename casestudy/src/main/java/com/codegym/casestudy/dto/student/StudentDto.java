@@ -1,8 +1,10 @@
 package com.codegym.casestudy.dto.student;
 
+
 public interface StudentDto {
     int getId();
     int getClassId();
+    String getClassName();
 
     String getStudentName();
 
@@ -18,5 +20,5 @@ public interface StudentDto {
 
     String getAddress();
 
-    int getIsDeleted();
+    boolean getIsDeleted();
 }

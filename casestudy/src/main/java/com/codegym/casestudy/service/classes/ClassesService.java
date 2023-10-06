@@ -47,6 +47,11 @@ public class ClassesService implements IClassesService {
     }
 
     @Override
+    public void edit(Classes classes) {
+        classesRepository.save(classes);
+    }
+
+    @Override
     public Page<ListStudentDto> findStudent(Pageable pageable, int idClass) {
         return classesRepository.listStudent(pageable, idClass);
     }

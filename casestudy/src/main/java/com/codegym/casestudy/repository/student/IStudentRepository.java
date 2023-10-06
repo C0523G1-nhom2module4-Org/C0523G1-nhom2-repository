@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
 
-public interface IStudentRepository extends JpaRepository<Student,Integer> {
+public interface IStudentRepository extends JpaRepository<Student, Integer> {
 //    @Query(value = "SELECT " +
 //            "    classes_name as name, " +
 //            "    id as id," +
@@ -33,13 +33,17 @@ public interface IStudentRepository extends JpaRepository<Student,Integer> {
 //            "where students.is_deleted = true and students.student_name like :searchName ",nativeQuery = true)
 
 
-    @Query(value = "select s.id AS id, s.student_name as studentName, s.classes_id as classId, s.gender as gender, s.identity as identity, s.birthday as birthday, s.phone as phone, s.address as address, s.is_deleted as isDeleted, s.graduate_point as graduatePoint from students AS s" +
-            " where s.student_name like :searchName and s.is_deleted = 0", nativeQuery = true)
+    @Query(value = "select s.id AS id, s.student_name as studentName, s.classes_id as classId, c.classes_name as className, s.gender as gender, " +
+            "s.identity as identity, s.birthday as birthday, s.phone as phone, s.address as address, " +
+            "s.is_deleted as isDeleted, s.graduate_point as graduatePoint from students AS s " +
+            " left join classes as c on s.classes_id = c.id " +
+            " where s.student_name like :searchName and s.is_deleted = 0 ", nativeQuery = true)
     Page<StudentDto> loadStudents(Pageable pageable, @Param("searchName") String searchName);
+
 
     @Modifying
     @Transactional
-    @Query(value = " update student set isDeleted = false where id=:id", nativeQuery = true)
+    @Query(value = " update students set is_deleted = true where id= :id", nativeQuery = true)
     void deleteId(@Param(value = "id") Student student);
 
 }

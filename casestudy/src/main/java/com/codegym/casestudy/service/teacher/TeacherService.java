@@ -17,14 +17,21 @@ public class TeacherService implements ITeacherService {
     private ITeacherRepository teacherRepository;
 
     @Override
-    public Page<ITeacherDto> searchByName(Pageable pageable, String searchName) {
-        return teacherRepository.findTeacherByNameContaining(pageable, "%" + searchName + "%");
+//    public Page<ITeacherDto> searchByName(Pageable pageable, String searchName) {
+//        return teacherRepository.findAll(pageable, "%" + searchName + "%");
+//    }
+        public Page<ITeacherDto> searchByName(Pageable pageable, String searchName) {
+        return teacherRepository.loadTeachers(pageable,"%" + searchName + "%");
     }
 
     @Override
-    public void saveNewTeacher(Teacher teacher) {
-        teacherRepository.saveNewTeacher(teacher.getName(), teacher.getGender(), teacher.getBirthday(),
-                teacher.getIdentity(), teacher.getSalary(), teacher.getPhone(), teacher.getAddress());
+//    public void saveNewTeacher(Teacher teacher) {
+//        teacherRepository.saveNewTeacher(teacher.getName(), teacher.getGender(), teacher.getBirthday(),
+//                teacher.getIdentity(), teacher.getSalary(), teacher.getPhone(), teacher.getAddress());
+//    }
+
+        public void saveNewTeacher(Teacher teacher) {
+        teacherRepository.save(teacher);
     }
 
     @Override
@@ -43,7 +50,7 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public void updateTeacher(int id, Teacher teacher) {
+    public void updateTeacher( Teacher teacher) {
         teacherRepository.save(teacher);
     }
 }
