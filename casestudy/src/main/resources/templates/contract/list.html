@@ -121,15 +121,15 @@
             <th>Tên học viên</th>
             <th>Bằng cấp</th>
             <th>Ngày làm hợp đồng</th>
-            <th>Học phí</th>
-            <th>Chức Năng</th>
+            <th>Phí hợp đồng</th>
+            <th>Trạng thái</th>
         </tr>
         <tr th:each="contract, status :${contractDtoPage}">
             <td hidden="hidden" style="width: 10%" th:text="${contract.getId()}"></td>
             <td style="width: 5%" th:text="${status.count}"></td>
-            <td style="width: 15%" th:text="${contract.getStudent().name}"></td>
-            <td style="width: 15%" th:text="${contract.getQualification().name}"></td>
-            <td style="width: 15%" th:text="${contract.getFee()}"></td>
+            <td style="width: 15%" th:text="${contract.student.getName()}"></td>
+            <td style="width: 15%" th:text="${contract.qualification.getName()}"></td>
+            <td style="width: 15%" th:text="${contract.qualification.fee * 1.02}"></td>
             <td hidden="hidden" style="width: 15%" th:text="${contract.getStatus()}"></td>
         </tr>
     </table>

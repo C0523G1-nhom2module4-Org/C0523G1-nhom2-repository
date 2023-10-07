@@ -35,9 +35,9 @@ public class ContractController {
 
     @GetMapping("")
     public String showListContract(@RequestParam(defaultValue = "0", required = false) int page,
-                                   @RequestParam(defaultValue = "") String nameSearch,
-                                   @RequestParam(defaultValue = "") String sort,
-                                   @RequestParam(defaultValue = "") String condition,
+                                   @RequestParam(defaultValue = "",required = false) String nameSearch,
+                                   @RequestParam(defaultValue = "",required = false) String sort,
+                                   @RequestParam(defaultValue = "",required = false) String condition,
                                    Model model) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<Contract> contractDtoPage = contractService.findAllBySearch(pageable, nameSearch, sort, condition);

@@ -23,6 +23,6 @@ public interface IContractRepository extends JpaRepository<Contract,Integer> {
                                         @Param("condition") String condition
                                         );
 
-    @Query(value = "select * from contracts where status = 0", nativeQuery = true)
+    @Query(value = "select * from contracts where is_deleted = 0 ", nativeQuery = true)
     List<Contract> findAllContract();
 }

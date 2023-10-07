@@ -24,9 +24,6 @@ public class Contract {
     @Column(name = "contract_date",columnDefinition = "date",nullable = false)
     private String date;
 
-    @Column(name = "is_deleted",columnDefinition = "tinyint default 0")
-    private int status;
-
     @OneToOne
     @JoinColumn(name = "student_id",referencedColumnName = "id")
     private Student student;
