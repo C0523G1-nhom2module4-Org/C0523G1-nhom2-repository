@@ -17,5 +17,4 @@ public interface ITeacherDto {
 
     String getAddress();
 
-    int getIsDeleted();
 }

@@ -1,6 +1,8 @@
 package com.codegym.casestudy.model.account;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Table(name = "accounts")
 @Entity
@@ -20,18 +22,18 @@ public class Account {
     public Account() {
     }
 
-    public Account(int id, String email, String password, boolean isDeleted) {
+    public Account(int id, String email, String password, boolean isDelete) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.isDeleted = isDeleted;
+        this.isDeleted = isDelete;
     }
 
-    public Account(int id, String email, String password, boolean isDeleted, String createDate) {
+    public Account(int id, String email, String password, boolean isDelete, String createDate) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.isDeleted = isDeleted;
+        this.isDeleted = isDelete;
         this.createDate = createDate;
     }
 
@@ -59,12 +61,12 @@ public class Account {
         this.password = password;
     }
 
-    public boolean isDeleted() {
+    public boolean isDelete() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
-        this.isDeleted = deleted;
+    public void setDelete(boolean delete) {
+        this.isDeleted = delete;
     }
 
     public String getCreateDate() {

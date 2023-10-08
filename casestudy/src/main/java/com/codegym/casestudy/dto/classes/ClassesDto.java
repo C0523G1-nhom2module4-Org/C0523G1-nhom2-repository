@@ -17,7 +17,6 @@ public class ClassesDto implements Validator {
     private String description;
     private String startDate;
     private String endDate;
-    private boolean isDeleted;
     private List<Classes> classList = new ArrayList<>();
 
     public int getId() {
@@ -60,13 +59,6 @@ public class ClassesDto implements Validator {
         this.endDate = endDate;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
 
     public List<Classes> getClassList() {
         return classList;
@@ -90,8 +82,11 @@ public class ClassesDto implements Validator {
         ClassesDto classesDto = (ClassesDto) target;
         String name = classesDto.getClassName();
         List<Classes> classList1 = classesDto.getClassList();
-        if ("K0-123".equals(name)) {
-            errors.rejectValue("className", null, "Tên lớp phải bắt đầu bằng K0");
+
+        if (classesDto.getClassName().equals("")) {
+            errors.rejectValue("className", null, "Không được để trống!");
+        } else if (!classesDto.getClassName().matches("^(B2|C|D)-\\d{4}$")) {
+            errors.rejectValue("className", null, "Tên lớp phải bắt đầu từ B2-xxxx hoặc C-xxxx hoặc D-xxxx");
         } else if (classList1 != null && classList1.contains(name)) {
             errors.rejectValue("className", null, "Tên lớp đã tồn tại");
         }
