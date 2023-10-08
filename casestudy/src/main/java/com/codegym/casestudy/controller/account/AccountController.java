@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -30,6 +29,7 @@ public class AccountController {
                               Model model) {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("email").ascending());
         Page<IAccountDto> accountDtoPage = accountService.searchByEmail(pageable, keyword);
+        System.out.println("-------------------"  + accountDtoPage);
         model.addAttribute("accountDtoPage", accountDtoPage);
         model.addAttribute("keyword", keyword);
         return "/account/list";
@@ -65,7 +65,7 @@ public class AccountController {
             model.addAttribute("msg", "Email Đã Được Đăng Kí");
             return "/account_signup";
         } else if (account.getPassword().equals(repeat)) {
-            account.setDelete(true);
+            account.setDeleted(true);
             account.setCreateDate(String.valueOf(LocalDate.now()));
             accountService.addAccount(account);
             redirectAttributes.addFlashAttribute("msg", "Đăng Kí Thành Công");

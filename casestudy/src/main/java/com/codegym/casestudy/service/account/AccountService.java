@@ -39,7 +39,7 @@ public class AccountService implements IAccountService {
     @Override
     public void addAccount(Account account) {
         String newPass = passwordEncoder.encode(account.getPassword());
-        accountRepository.addAccount(account.getEmail(), newPass, account.isDelete());
+        accountRepository.addAccount(account.getEmail(), newPass,account.getCreateDate());
     }
 
     @Override

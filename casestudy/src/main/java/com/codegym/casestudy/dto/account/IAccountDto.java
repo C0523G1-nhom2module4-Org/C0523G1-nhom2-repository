@@ -7,4 +7,5 @@ public interface IAccountDto {
     String getEmail();
     String getRoleName();
     String getCreateDate();
+
 }
