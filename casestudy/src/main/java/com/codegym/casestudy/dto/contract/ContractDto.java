@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class ContractDto implements Validator {
     private int id;
-    private long fee;
+//    private long fee;
     private String date;
     private Student student;
     private Qualification qualification;
@@ -40,7 +40,7 @@ public class ContractDto implements Validator {
             errors.rejectValue("date","invalid","Ngày kí hợp đồng không được để trống");
         }
 
-        if (contractDto.fee < 0){
+        if (contractDto.qualification.getFee() < 0){
             errors.rejectValue("fee","invalid","Vui lòng nhập đúng giá trị ( lớn hơn 0) ");
         }
     }
