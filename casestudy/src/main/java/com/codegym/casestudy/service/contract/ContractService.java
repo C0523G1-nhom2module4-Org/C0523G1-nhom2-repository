@@ -32,8 +32,8 @@ public class ContractService implements IContractService{
 
 
     @Override
-    public Page<Contract> findAllBySearch(Pageable pageable, String search, String sort, String condition) {
-        return contractRepository.findContractBySearch(pageable,"%" + search + "%",sort,condition);
+    public Page<Contract> findAllBySearch(Pageable pageable, String search) {
+        return contractRepository.findContractBySearch(pageable,"%" + search + "%");
     }
 
     @Override
@@ -46,4 +46,5 @@ public class ContractService implements IContractService{
         }
         return !LocalDate.parse(contract.getDate()).isBefore(LocalDate.now());
     }
+
 }

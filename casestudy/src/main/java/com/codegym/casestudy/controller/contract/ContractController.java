@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
+
 
 @Controller
-@RequestMapping("/contracts")
+@RequestMapping("/admin")
 public class ContractController {
     @Autowired
     private IContractService contractService;
@@ -33,20 +33,17 @@ public class ContractController {
     private IQualificationService qualificationService;
 
 
-    @GetMapping("")
+    @GetMapping("contracts")
     public String showListContract(@RequestParam(defaultValue = "0", required = false) int page,
                                    @RequestParam(defaultValue = "", required = false) String nameSearch,
-                                   @RequestParam(defaultValue = "", required = false) String sort,
-                                   @RequestParam(defaultValue = "", required = false) String condition,
                                    Model model) {
         Pageable pageable = PageRequest.of(page, 5);
-        Page<Contract> contractDtoPage = contractService.findAllBySearch(pageable, nameSearch, sort, condition);
+        Page<Contract> contractDtoPage = contractService.findAllBySearch(pageable, nameSearch);
         model.addAttribute("contractDtoPage", contractDtoPage);
         model.addAttribute("nameSearch", nameSearch);
-        model.addAttribute("sort", sort);
-        model.addAttribute("condition", condition);
         return "contract/list";
     }
+
 
     //    @GetMapping("/create/{studentId}/{qualificationId}")
 //    public String showFormCreate(Model model,

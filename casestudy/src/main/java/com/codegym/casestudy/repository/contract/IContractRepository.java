@@ -9,20 +9,19 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface IContractRepository extends JpaRepository<Contract,Integer> {
+public interface IContractRepository extends JpaRepository<Contract, Integer> {
     @Query(value = "select contracts.*,students.student_name,qualifications.qualification_name " +
             "from contracts join students on contracts.student_id = students.id " +
             "join qualifications on contracts.qualification_id = qualifications.id " +
             "where students.student_name like :search " +
             "or qualifications.qualification_name like :search " +
-            "or contracts.contract_date like :search " +
-            "order by :sort :condition",nativeQuery = true)
+            "or contracts.contract_date like :search ", nativeQuery = true)
     Page<Contract> findContractBySearch(Pageable pageable,
-                                        @Param("search") String search,
-                                        @Param("sort") String sort,
-                                        @Param("condition") String condition
-                                        );
+                                        @Param("search") String search
+    );
+
 
     @Query(value = "select * from contracts where is_deleted = 0 ", nativeQuery = true)
     List<Contract> findAllContract();
+
 }
