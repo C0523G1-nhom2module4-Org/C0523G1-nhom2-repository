@@ -119,7 +119,6 @@
         <tr>
             <th>STT</th>
             <th>Tên Lớp</th>
-            <!--            <th>Mô Tả</th>-->
             <th>Ngày Bắt Đầu</th>
             <th>Ngày Kết Thúc</th>
             <th>Chức Năng</th>
@@ -128,8 +127,8 @@
             <td style="width: 20%" th:text="${sta.count}"></td>
             <td hidden="hidden" th:text="${cla.id}"></td>
             <td style="width: 50%" th:text="${cla.className}"></td>
-            <td style="width: 50%" class="birthday-cell" th:text="${cla.startDate}"></td>
-            <td style="width: 50%" class="birthday-cell" th:text="${cla.endDate}"></td>
+            <td style="width: 20%" class="birthday-cell" th:text="${cla.startDate}"></td>
+            <td style="width: 20%" class="birthday-cell" th:text="${cla.endDate}"></td>
             <td style="width: 30%">
                 <a th:href="@{/classes/edit/{id}(id=${cla.getId()})}">
                     <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
@@ -184,10 +183,6 @@
         </nav>
     </div>
 </div>
-</div>
-</div>
-</div>
-
 
 <!--  modal xoá -->
 <form action="/classes/delete" method="post">
