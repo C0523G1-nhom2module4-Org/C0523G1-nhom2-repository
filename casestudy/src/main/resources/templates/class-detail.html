@@ -176,57 +176,57 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="classed, loop : ${}">
+        <tr th:each="student, loop : ${classDetail.getStudentName()}">
             <td th:text="${loop.count}"></td>
-            <td></td>
+            <td th:text="${student}"></td>
         </tr>
         </tbody>
     </table>
     <!--    phan trang start-->
-    <div th:if="${qualifications.totalPages>1}" class="col-md-12 mb-4 mt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/qualification(page=${qualifications.number - 1} ,searchName = ${searchName})}">
-                        <small>
-                            <i class="fa-solid fa-backward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/qualification(page=${(qualifications.number) - 1} ,searchName = ${searchName})}">
-                        <small>
-                            <i class="fa-solid fa-backward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">
-                        <span th:text="${qualifications.number +1}"></span>/<span
-                            th:text="${qualifications.totalPages}"></span>
-                    </a>
-                </li>
-                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/qualification(page=${qualifications.number+1},searchName=${searchName})}">
-                        <small>
-                            <i class="fa-solid fa-forward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/qualification(page=${(qualifications.totalPages)-1},searchName=${searchName})}">
-                        <small>
-                            <i class="fa-solid fa-forward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+<!--    <div th:if="${qualifications.totalPages>1}" class="col-md-12 mb-4 mt-3">-->
+<!--        <nav aria-label="Page navigation example">-->
+<!--            <ul class="pagination justify-content-center mb-0">-->
+<!--                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">-->
+<!--                    <a class="page-link"-->
+<!--                       th:href="@{/admin/qualification(page=${qualifications.number - 1} ,searchName = ${searchName})}">-->
+<!--                        <small>-->
+<!--                            <i class="fa-solid fa-backward-fast"></i>-->
+<!--                        </small>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">-->
+<!--                    <a class="page-link"-->
+<!--                       th:href="@{/admin/qualification(page=${(qualifications.number) - 1} ,searchName = ${searchName})}">-->
+<!--                        <small>-->
+<!--                            <i class="fa-solid fa-backward-step"></i>-->
+<!--                        </small>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="page-item active">-->
+<!--                    <a href="#" class="page-link">-->
+<!--                        <span th:text="${qualifications.number +1}"></span>/<span-->
+<!--                            th:text="${qualifications.totalPages}"></span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">-->
+<!--                    <a class="page-link"-->
+<!--                       th:href="@{/admin/qualification(page=${qualifications.number+1},searchName=${searchName})}">-->
+<!--                        <small>-->
+<!--                            <i class="fa-solid fa-forward-step"></i>-->
+<!--                        </small>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">-->
+<!--                    <a class="page-link"-->
+<!--                       th:href="@{/admin/qualification(page=${(qualifications.totalPages)-1},searchName=${searchName})}">-->
+<!--                        <small>-->
+<!--                            <i class="fa-solid fa-forward-fast"></i>-->
+<!--                        </small>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+<!--    </div>-->
 </div>
 
 

@@ -37,7 +37,8 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <!-- Icon Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
 <!-- Topbar Start -->
@@ -99,7 +100,7 @@
         <h1>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h1>
         <h2>Độc Lập – Tự Do – Hạnh Phúc</h2>
 
-        <h3 class="mt-5" >HỢP ĐỒNG HỌC BẰNG LÁI XE Ô TÔ</h3>
+        <h3 class="mt-5">HỢP ĐỒNG HỌC BẰNG LÁI XE Ô TÔ</h3>
         <p><strong>Số:</strong>
             <th:block th:text="${contract.id}"></th:block>
             /HĐTX
@@ -108,7 +109,6 @@
     <br>
     <br>
     <br>
-
     <div class="container">
         <p>- Căn cứ Bộ Bộ Luật Dân sự năm 2015 số 91/2015/QH13 đã được Quốc Hội nước Cộng Hòa Xã Hội Chủ Nghĩa Việt
             Nam
@@ -152,9 +152,9 @@
             <th:block th:text="${contract.qualification.name}"></th:block>
         </p>
 
-        <h5>ĐIỀU 2: GIÁ TRỊ HỢP ĐỒNG, PHƯƠNG THỨC THANH TOÁN:</h5>
-        <p>- Giá thuê xe là:
-            <th:block th:text="${contract.qualification.fee}"></th:block>
+        <h5>ĐIỀU 2: GIÁ TRỊ HỢP ĐỒNG:</h5>
+        <p>- Giá trị hợp đồng là:
+            <th:block th:text="${contract.fee}"></th:block>
             $
         </p>
 
@@ -171,7 +171,7 @@
         <p>- Học viên có quyền đề xuất, đóng góp ý kiến xây dựng để đảm bảo quyền lợi.</p>
         <p>- Người nhập học đang học vì một lý do nào đó mà không tiếp tục tham gia học được thì nhà trường sẽ xem
             xét bảo
-            lưu điểm và được học lại.(Thời gian bảo lưu không quá 1 năm).</p>
+            lưu điểm và được học lại.( Thời gian bảo lưu không quá 1 năm).</p>
         <p>- Chịu toàn bộ chi phí xăng khi sử dụng xe.</p>
 
         <h5>3.2. Quyền lợi :</h5>
@@ -201,9 +201,9 @@
         <!--        <p>- Hợp đồng có giá trị kể từ ngày <th:block th:text="${contract.date}"></th:block> đến hết ngày <th:block th:text="${contract.student.classes.startDate}"></th:block></p>-->
         <p>- Nếu một trong hai Bên, bên nào muốn chấm dứt Hợp đồng trước thời hạn thì phải thông báo cho Bên kia
             trước
-            ít nhất 010 ngày.</p>
+            ít nhất 10 ngày.</p>
 
-        <h5>ĐIỀU 5: ĐIỀU KHOẢN CHUNG</h5>
+        <h5>ĐIỀU 6: ĐIỀU KHOẢN CHUNG</h5>
         <p>- Trong quá trình thực hiện hợp đồng, nếu có đề nghị điều chỉnh thì phải thông báo cho nhau bằng văn bản
             để
             cùng bàn bạc giải quyết.</p>
@@ -219,37 +219,39 @@
             bản.</p>
     </div>
     <div class="container row" style="margin-top: 5%">
-            <div class="col-6" >
-                <p style="text-align: center"> ĐẠI DIỆN BÊN A</p>
-            </div>
-            <div class="col-6" style="">
-                <p style="text-align: center">ĐẠI DIỆN BÊN B</p>
-                <div style="text-align: center">
-                    <img src="zyro-image.png" alt=""/><br>
-                    <p style="width: 100%">C0523G1 #Đà Nẵng Drift Company</p>
-                </div>
+        <div class="col-6">
+            <p style="text-align: center"> ĐẠI DIỆN BÊN A</p>
+        </div>
+        <div class="col-6" style="">
+            <p style="text-align: center">ĐẠI DIỆN BÊN B</p>
+            <div style="text-align: center">
+                <img src="zyro-image.png" alt=""/><br>
+                <p style="width: 100%">C0523G1 #Đà Nẵng Drift Company</p>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-    <div class="container">
-        <div class="row flex-column-reverse">
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row flex-column-reverse">
 
-        </div>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div id="printButton" style="text-align: center">
-        <button onclick="window.print()">In Trang</button>
-        <button onclick="window.location.href='admin/contract'">Trở về</button>
-    </div>
-    <hr>
-    <p style="text-align: center">C0523G1 #Đà Nẵng Drift Company Company</p>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="printButton" style="text-align: center">
+    <button onclick="window.print()">In Trang</button>
+    <button onclick="window.location.href='admin/contract'">Trở về</button>
+</div>
+<hr>
+<p style="text-align: center">C0523G1 #Đà Nẵng Drift Company Company</p>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
 </html>

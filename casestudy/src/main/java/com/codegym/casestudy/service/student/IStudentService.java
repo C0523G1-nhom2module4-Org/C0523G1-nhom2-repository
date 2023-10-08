@@ -21,4 +21,6 @@ public interface IStudentService {
 
     void edit( Student student);
 
+    void deleteWithId(int id);
+
 }

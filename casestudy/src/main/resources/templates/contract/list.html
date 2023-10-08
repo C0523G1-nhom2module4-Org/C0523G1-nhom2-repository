@@ -96,7 +96,7 @@
     <h1 style=" margin-top: 30px" align="center">Danh Sách Hợp Đồng</h1>
     <nav class="navbar navbar-inverse">
         <div class=" navbar-form navbar-left mb-3">
-            <a href="/contracts/create">
+            <a th:href="@{/contracts/create}">
                 <button title="Thêm mới hợp đồng"
                         class="btn btn-primary">
                     <i class="fa-solid fa-plus"></i>
@@ -125,12 +125,20 @@
             <th>Trạng thái</th>
         </tr>
         <tr th:each="contract, status :${contractDtoPage}">
-            <td hidden="hidden" style="width: 10%" th:text="${contract.getId()}"></td>
+            <td hidden="hidden" style="width: 10%" th:text="${contract.id}"></td>
             <td style="width: 5%" th:text="${status.count}"></td>
-            <td style="width: 15%" th:text="${contract.student.getName()}"></td>
-            <td style="width: 15%" th:text="${contract.qualification.getName()}"></td>
-            <td style="width: 15%" th:text="${contract.qualification.fee * 1.02}"></td>
-            <td hidden="hidden" style="width: 15%" th:text="${contract.getStatus()}"></td>
+            <td style="width: 15%" th:text="${contract.student.name}"></td>
+            <td style="width: 15%" th:text="${contract.qualification.name}"></td>
+            <td style="width: 15%" th:text="${contract.date}"></td>
+<!--            <td style="width: 15%" th:text="${contract.qualification.fee + (contract.qualification.fee * 0.02)}"></td>-->
+<!--            <td hidden="hidden" style="width: 15%" th:text="${contract.isDeleted}"></td>-->
+            <td style="width: 15%"
+                th:text="${#numbers.formatDecimal(contract.qualification.fee * 1.02 , 0, 'COMMA', 0, 'POINT')}"></td>
+<!--            <td style="width: 12%">-->
+            <td style="width: 7%">
+                <span th:if="${contract.isDeleted == 0}">Đã thanh toán</span>
+                <span th:if="${contract.isDeleted == 1} ">Chưa thanh toán</span>
+            </td>
         </tr>
     </table>
 

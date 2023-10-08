@@ -33,17 +33,21 @@ public interface IStudentRepository extends JpaRepository<Student, Integer> {
 //            "where students.is_deleted = true and students.student_name like :searchName ",nativeQuery = true)
 
 
-    @Query(value = "select s.id AS id, s.student_name as studentName, s.classes_id as classId, c.classes_name as className, s.gender as gender, " +
+    @Query(value = "select s.id AS id, s.student_name as studentName, s.class_id as classId, c.class_name as className, s.gender as gender, " +
             "s.identity as identity, s.birthday as birthday, s.phone as phone, s.address as address, " +
             "s.is_deleted as isDeleted, s.graduate_point as graduatePoint from students AS s " +
-            " left join classes as c on s.classes_id = c.id " +
+            " left join classes as c on s.class_id = c.id " +
             " where s.student_name like :searchName and s.is_deleted = 0 ", nativeQuery = true)
     Page<StudentDto> loadStudents(Pageable pageable, @Param("searchName") String searchName);
 
 
     @Modifying
     @Transactional
-    @Query(value = " update students set is_deleted = true where id= :id", nativeQuery = true)
-    void deleteId(@Param(value = "id") Student student);
+    @Query(value = " update students set is_deleted = 1 where id= :id", nativeQuery = true)
+    void deleteId(@Param(value = "id") int id);
 
+    @Modifying
+    @Transactional
+    @Query(value = " update students set is_deleted = 1 where id= :id", nativeQuery = true)
+    void updateById(@Param(value = "id")int id);
 }

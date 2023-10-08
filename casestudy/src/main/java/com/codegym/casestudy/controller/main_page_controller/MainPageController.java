@@ -39,7 +39,7 @@ public class MainPageController {
 
     @GetMapping("/errors")
     public String error() {
-        return "/errors";
+        return "error";
     }
 
     @GetMapping("/qualification")

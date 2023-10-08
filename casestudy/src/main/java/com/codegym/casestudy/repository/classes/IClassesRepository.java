@@ -1,5 +1,6 @@
 package com.codegym.casestudy.repository.classes;
 
+import com.codegym.casestudy.dto.classes.ClassDetailDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
 import com.codegym.casestudy.model.classes.Classes;
@@ -47,4 +48,19 @@ public interface IClassesRepository extends JpaRepository<Classes, Integer> {
             "    where cla.id = :classId and cla.is_deleted = 1 " +
             "     ", nativeQuery = true)
     Page<ListStudentDto> listStudent(Pageable pageable, @Param("classId") int classId);
+
+    @Query(value = " select c.class_name, c.class_description, c.class_start_date,  c.class_end_date, " +
+            " t.teacher_name, s.student_name " +
+            " from classes as c " +
+            " left join assignments as a " +
+            " on c.id = a.teacher_id " +
+            " left join teachers as t " +
+            " on a.teacher_id = t.id " +
+            " left join students as s" +
+            " on c.id = s.class_id " +
+            " where (c.class_name like :className) " +
+            " and (s.is_deleted = 0) " +
+            " order by c.class_name ",
+    nativeQuery = true)
+    ClassDetailDto getClassesByClassNameEquals(@Param(value = "className") String className);
 }

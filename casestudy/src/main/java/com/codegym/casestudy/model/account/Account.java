@@ -1,7 +1,10 @@
 package com.codegym.casestudy.model.account;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
+@Table(name = "accounts")
 @Entity
 public class Account {
     @Id
@@ -11,17 +14,27 @@ public class Account {
     private String email;
     @Column(name = "account_password")
     private String password;
-    @Column(name = "account_status")
-    private boolean status;
+    @Column(name = "is_delete")
+    private boolean isDelete;
+    @Column(name = "create_date")
+    private String createDate;
 
     public Account() {
     }
 
-    public Account(int id, String email, String password, boolean status) {
+    public Account(int id, String email, String password, boolean isDelete) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.status = status;
+        this.isDelete = isDelete;
+    }
+
+    public Account(int id, String email, String password, boolean isDelete, String createDate) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.isDelete = isDelete;
+        this.createDate = createDate;
     }
 
     public int getId() {
@@ -48,11 +61,19 @@ public class Account {
         this.password = password;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isDelete() {
+        return isDelete;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setDelete(boolean delete) {
+        this.isDelete = delete;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 }

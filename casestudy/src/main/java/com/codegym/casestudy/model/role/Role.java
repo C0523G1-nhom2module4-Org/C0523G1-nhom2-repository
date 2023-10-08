@@ -1,7 +1,7 @@
 package com.codegym.casestudy.model.role;
 
 import javax.persistence.*;
-
+@Table(name = "roles")
 @Entity
 public class Role {
     @Id

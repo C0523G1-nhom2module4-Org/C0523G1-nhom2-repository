@@ -20,7 +20,7 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "fee",columnDefinition = "bigint",nullable = false)
-    private long fee;
+    private Long fee;
     @Column(name = "contract_date",columnDefinition = "date",nullable = false)
     private String date;
 
@@ -31,6 +31,9 @@ public class Contract {
     @OneToOne
     @JoinColumn(name = "qualification_id",referencedColumnName = "id")
     private Qualification qualification;
+
+    @Column(name = "is_deleted")
+    private int isDeleted;
 
 
 }

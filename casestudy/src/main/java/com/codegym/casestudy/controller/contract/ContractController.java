@@ -35,9 +35,9 @@ public class ContractController {
 
     @GetMapping("")
     public String showListContract(@RequestParam(defaultValue = "0", required = false) int page,
-                                   @RequestParam(defaultValue = "",required = false) String nameSearch,
-                                   @RequestParam(defaultValue = "",required = false) String sort,
-                                   @RequestParam(defaultValue = "",required = false) String condition,
+                                   @RequestParam(defaultValue = "", required = false) String nameSearch,
+                                   @RequestParam(defaultValue = "", required = false) String sort,
+                                   @RequestParam(defaultValue = "", required = false) String condition,
                                    Model model) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<Contract> contractDtoPage = contractService.findAllBySearch(pageable, nameSearch, sort, condition);
@@ -48,18 +48,23 @@ public class ContractController {
         return "contract/list";
     }
 
-    @GetMapping("/create/{studentId}/{qualificationId}")
-    public String showFormCreate(Model model,
-                                 @PathVariable int studentId,
-                                 @PathVariable long qualificationId) {
-        ContractDto contractDto = new ContractDto();
-        Student student = studentService.findById(studentId);
-        contractDto.setStudent(student);
-        contractDto.setQualification(qualificationService.findById(qualificationId));
-        contractDto.setDate(String.valueOf(LocalDate.now()));
-        model.addAttribute("contractDto", contractDto);
-        model.addAttribute("student", studentService.findById(studentId));
-        model.addAttribute("qualification", qualificationService.findById(qualificationId));
+    //    @GetMapping("/create/{studentId}/{qualificationId}")
+//    public String showFormCreate(Model model,
+//                                 @PathVariable int studentId,
+//                                 @PathVariable long qualificationId) {
+//        ContractDto contractDto = new ContractDto();
+//        Student student = studentService.findById(studentId);
+//        contractDto.setStudent(student);
+//        contractDto.setQualification(qualificationService.findById(qualificationId));
+//        contractDto.setDate(String.valueOf(LocalDate.now()));
+//        model.addAttribute("contractDto", contractDto);
+//        model.addAttribute("student", studentService.findById(studentId));
+//        model.addAttribute("qualification", qualificationService.findById(qualificationId));
+//        return "contract/create";
+//    }
+    @GetMapping("/create")
+    public String showFormCreate(Model model) {
+        model.addAttribute("contractDto", new ContractDto());
         return "contract/create";
     }
 

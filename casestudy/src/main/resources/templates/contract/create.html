@@ -100,7 +100,7 @@
             <div class="row g-3">
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <input th:field="*{qualification.fee * 1.02}" type="text" class="form-control border-0" id="fee"
+                        <input th:field="*{qualification.fee}" type="text" class="form-control border-0" id="fee"
                                placeholder="Nhập phí khóa học">
                         <small style="color:red;" th:if="${#fields.hasErrors('fee')}" th:errors="*{qualification.fee}"></small>
                         <label for="fee">Phí khóa học</label>
