@@ -34,4 +34,9 @@ public class Classes {
 
     @OneToMany(mappedBy = "classes")
     private Set<Student> studentSet;
+
+    @ManyToOne()
+    @JoinColumn(name = "assigment_id", referencedColumnName = "id")
+    private Ass
+
 }
