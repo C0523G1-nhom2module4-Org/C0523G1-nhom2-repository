@@ -57,7 +57,6 @@ public class StudentController {
             return "/student/add";
         }
         Student student = new Student();
-//        student.setDeleted(true);
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.add(student);
         redirectAttributes.addFlashAttribute("mess", "thêm mới thành công");
@@ -67,8 +66,6 @@ public class StudentController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam(name = "id") int id, RedirectAttributes redirectAttributes) {
-//        Student student = studentService.findById(id);
-//        studentService.delete(student);
         this.studentService.deleteWithId(id);
         redirectAttributes.addFlashAttribute("mess", "Xoá Thành Côngg");
         return "redirect:/student";

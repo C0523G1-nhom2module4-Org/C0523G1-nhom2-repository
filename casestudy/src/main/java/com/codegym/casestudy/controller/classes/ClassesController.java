@@ -4,9 +4,8 @@ import com.codegym.casestudy.dto.classes.ClassDetailDto;
 import com.codegym.casestudy.dto.classes.ClassesDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
-import com.codegym.casestudy.dto.teacher.TeacherDto;
 import com.codegym.casestudy.model.classes.Classes;
-import com.codegym.casestudy.model.teacher.Teacher;
+import com.codegym.casestudy.model.student.Student;
 import com.codegym.casestudy.service.classes.IClassesService;
 import com.codegym.casestudy.service.student.IStudentService;
 import org.springframework.beans.BeanUtils;
@@ -120,11 +119,14 @@ public class ClassesController {
 
 
     // thien
-    @GetMapping("/classDetail/{className}")
-    public String classDetail(@PathVariable(name = "className") String className,
-            Model model) {
-        ClassDetailDto classDetail = this.classesService.getClassDetail(className);
-        model.addAttribute("classDetail",classDetail);
-        return "/class-detail";
+    @GetMapping("/class-detail/{classId}")
+    public String classDetail(@PathVariable(name = "classId") int classId,
+                              Model model) {
+        Classes classes = this.classesService.findById(classId);
+        String className = classes.getClassName();
+        List<String> studentList = this.classesService.findAllByClassName(className);
+        model.addAttribute("studentList",studentList);
+        model.addAttribute("classes",classes);
+        return "/classes/class-detail";
     }
 }

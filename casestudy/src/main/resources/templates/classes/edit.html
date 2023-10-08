@@ -1,186 +1,245 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>C0523G1 - Drivin</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+    <meta charset="utf-8">
+    <title>C0523G1 - Drivin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-  <!-- Favicon -->
-  <link href="/img/favicon.ico" rel="icon">
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
 
-  <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Icon Font Stylesheet -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
-  <!-- Libraries Stylesheet -->
-  <link href="/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-  <!-- Customized Bootstrap Stylesheet -->
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Template Stylesheet -->
-  <link href="/css/style.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-  <!-- Icon Font -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-  <style>
-    .content {
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- Icon Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid bg-dark text-light p-0">
-  <div class="row gx-0 d-none d-lg-flex">
-    <div class="col-lg-7 px-5 text-start">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <small class="fa fa-map-marker-alt text-primary me-2"></small>
-        <small>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng</small>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center">
-        <small class="far fa-clock text-primary me-2"></small>
-        <small>Thứ 2 - Thứ 6: 08.15 AM - 05.30 PM</small>
-      </div>
+    <div class="row gx-0 d-none d-lg-flex">
+        <div class="col-lg-7 px-5 text-start">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                <small>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center">
+                <small class="far fa-clock text-primary me-2"></small>
+                <small>Thứ 2 - Thứ 6: 08.15 AM - 05.30 PM</small>
+            </div>
+        </div>
+        <div class="col-lg-5 px-5 text-end">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="fa fa-phone-alt text-primary me-2"></small>
+                <small>+84 12 345 6789</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center mx-n2">
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-twitter"></i></a>
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
     </div>
-    <div class="col-lg-5 px-5 text-end">
-      <div class="h-100 d-inline-flex align-items-center me-4">
-        <small class="fa fa-phone-alt text-primary me-2"></small>
-        <small>+84 12 345 6789</small>
-      </div>
-      <div class="h-100 d-inline-flex align-items-center mx-n2">
-        <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                class="fab fa-twitter"></i></a>
-        <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                class="fab fa-linkedin-in"></i></a>
-        <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
-      </div>
-    </div>
-  </div>
 </div>
 <!-- Topbar End -->
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-  <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-    <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
-  </a>
-  <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ms-auto p-4 p-lg-0">
-      <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-      <a href="/feature" class="nav-item nav-link">Khóa học</a>
-      <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-      <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/classes}" class="nav-item nav-link active">Lớp học</a>
+            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+        </div>
+        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
+                class="fa fa-arrow-right ms-3"></i></a>
     </div>
-    <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
-            class="fa fa-arrow-right ms-3"></i></a>
-  </div>
 </nav>
+
+
+<!--<div th:replace="landing_page::header">-->
+
+<!--BACK-->
 <div class="container-fluid" style="margin-top: 30px"><a href="/classes" class="btn btn-primary"><i
         class="fa-solid fa-arrow-left"></i></a></div>
-<div class="container-fluid" style="min-height: 500px" align="center">
+<!--BACK-->
 
-  <div class="bg-light p-5" style="max-width: 40%">
-    <h2 class="mb-4" style="text-align: center">Sửa Thông Tin Lớp học</h2>
-    <form th:object="${classesDto}" th:action="@{/classes/edit}" th:method="post">
-      <div hidden="hidden">
-        <span class="input-group-text" style="width: 30%">Id<span style="color: red">*</span></span>
-        <input th:field="*{id}" class="form-control"/>
-      </div>
-      <div class="input-group mb-3">
-                    <span class="input-group-text" style="width: 30%">Tên Lớp học<span
-                            style="color: red">*</span></span>
-        <input th:field="*{className}" class="form-control" placeholder="Nhập Tên"/><br/><small
-              style="color: red;font-size: 10px" th:if="${#fields.hasErrors('className')}"
-              th:errors="*{className}"></small>
-      </div>
-      <div class="input-group mb-3">
-                    <span class="input-group-text" style="width: 30%">Mô Tả<span
-                            style="color: red">*</span></span>
-        <input th:field="*{description}" class="form-control" placeholder="Nhập Mô Tả"/><br/><small
-              style="color: red;font-size: 10px" th:if="${#fields.hasErrors('description')}"
-              th:errors="*{description}"></small>
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text" style="width: 30%">Ngày Bắt Đầu</span>
-        <input type="date" th:field="*{startDate}" class="form-control"/>
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text" style="width: 30%">Ngày Kết Thúc</span>
-        <input type="date" th:field="*{endDate}" class="form-control"/>
-      </div>
-      <div class="d-flex justify-content-center">
-        <button class="btn btn-secondary border-0 py-2" type="submit">Xác Nhận
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
-  <div class="container">
-    <div class="row g-5">
-      <div class="col-lg-3 col-md-6">
-        <h4 class="text-white mb-4">Thông tin liên lạc</h4>
-        <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>
-        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng
-        </p>
-        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
-        <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <h4 class="text-light mb-4">Liên kết</h4>
-        <a class="btn btn-link" href="">Về chúng tôi</a>
-        <a class="btn btn-link" href="">Liên hệ</a>
-        <a class="btn btn-link" href="">Dịch vụ</a>
-        <a class="btn btn-link" href="">Điều khoản và quy định</a>
-        <a class="btn btn-link" href="">Hỗ trợ</a>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <h4 class="text-light mb-4">Thông tin thành viên</h4>
-        <a class="btn btn-link" href="">Phan Quốc Sang</a>
-        <a class="btn btn-link" href="">Nguyễn Đức Trung</a>
-        <a class="btn btn-link" href="">Nguyễn Thị Mỹ Hạnh</a>
-        <a class="btn btn-link" href="">Bùi Bảo Thiện</a>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
-        <form action="">
-          <div class="input-group">
-            <input type="text" class="form-control p-3 border-0" placeholder="Nhập địa chỉ email của bạn">
-            <button class="btn btn-primary">Xác nhận</button>
-          </div>
+
+<!--CONTENT START-->
+<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="bg-primary text-center p-5">
+        <h2 class="mb-4">Sửa thông tin lớp học</h2>
+        <form th:object="${classesDto}" th:action="@{/classes/edit}" th:method="post">
+            <div class="row g-3">
+                <!--                id-->
+                <input th:field="*{id}" type="hidden"/>
+                <!--                name-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{className}" type="text" class="form-control border-0" id="className"
+                               placeholder="Tên lop">
+                        <small style="color: red;font-size: 10px" th:if="${#fields.hasErrors('className')}"
+                               th:errors="*{className}"></small>
+                        <label for="className">Tên lớp học</label>
+                    </div>
+                </div>
+                <!--                CMND-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{description}" type="text" class="form-control border-0" id="description"
+                               placeholder="Mô tả" >
+                        <small style="color: red;font-size: 10px" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></small>
+                        <label for="description">Mô tả</label>
+                    </div>
+                </div>
+                <!--                gender + birthday-->
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{startDate}" type="date" class="form-control border-0" id="startDate"
+                               placeholder="Ngày bắt đầu" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('startDate')}"
+                               th:errors="*{startDate}"></small>
+                        <label for="startDate">Ngày bắt đầu</label>
+                    </div>
+                </div>
+                <!--                phone-->
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{endDate}" type="date" class="form-control border-0" id="endDate"
+                               placeholder="Ngày kết thúc">
+                        <small style="color:red;" th:if="${#fields.hasErrors('endDate')}"
+                               th:errors="*{endDate}"></small>
+                        <label for="endDate">Ngày kết thúc</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-light w-100 py-3" type="button"><a href="/classes">Hủy
+                        bỏ</a></button>
+                </div>
+            </div>
         </form>
-        <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>
-        <div class="d-flex pt-2">
-          <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
-          <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>
-          <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
-          <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
+        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>
     </div>
-  </div>
 </div>
+<!--CONTENT END-->
+<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-4">Thông tin liên lạc</h4>
+                <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng
+                </p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Liên kết</h4>
+                <a class="btn btn-link" href="">Về chúng tôi</a>
+                <a class="btn btn-link" href="">Liên hệ</a>
+                <a class="btn btn-link" href="">Dịch vụ</a>
+                <a class="btn btn-link" href="">Điều khoản và quy định</a>
+                <a class="btn btn-link" href="">Hỗ trợ</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Thông tin thành viên</h4>
+                <a class="btn btn-link" href="">Phan Quốc Sang</a>
+                <a class="btn btn-link" href="">Nguyễn Đức Trung</a>
+                <a class="btn btn-link" href="">Nguyễn Thị Mỹ Hạnh</a>
+                <a class="btn btn-link" href="">Bùi Bảo Thiện</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control p-3 border-0" placeholder="Nhập địa chỉ email của bạn">
+                        <button class="btn btn-primary">Xác nhận</button>
+                    </div>
+                </form>
+                <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Footer End -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/easing/easing.min.js"></script>
+<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../lib/isotope/isotope.pkgd.min.js"></script>
+<script src="../lib/lightbox/js/lightbox.min.js"></script>
+<!-- Contact Javascript File -->
+<script src="../mail/jqBootstrapValidation.min.js"></script>
+<script src="../mail/contact.js"></script>
+<!-- Template Javascript -->
+<script src="../js/main.js"></script>
+<script th:src="@{/js/main.js}"></script>
+<!--offline-->
+<script src="../../static/mail/contact.js"></script>
+<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
+<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
+<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../../static/lib/easing/easing.min.js"></script>
+<script src="../../static/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
+        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -198,17 +257,17 @@
 <script src="../mail/contact.js"></script>
 
 <!-- Template Javascript -->
-<script src="../js/main.js"></script>
+<script src="/js/main.js"></script>
 <!--offline-->
-<script src="../../static/mail/contact.js"></script>
-<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
-<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
-<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
-<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../../static/lib/easing/easing.min.js"></script>
-<script src="../../static/js/main.js"></script>
+<script src="/mail/contact.js"></script>
+<script src="/mail/jqBootstrapValidation.min.js"></script>
+<script src="/static/lib/lightbox/js/lightbox.min.js"></script>
+<script src="/static/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/static/lib/easing/easing.min.js"></script>
+<script src="/static/js/main.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
-        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+        src="/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 </html>

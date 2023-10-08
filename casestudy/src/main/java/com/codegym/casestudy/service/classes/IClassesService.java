@@ -7,6 +7,7 @@ import com.codegym.casestudy.model.classes.Classes;
 import com.codegym.casestudy.model.student.Student;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -23,10 +24,13 @@ public interface IClassesService {
 
     Classes findById(int id);
 
-    void edit( Classes classes);
+    void edit(Classes classes);
 
 
     Page<ListStudentDto> findStudent(Pageable pageable, int idClass);
 
     ClassDetailDto getClassDetail(String className);
+
+    List<String> findAllByClassName(@Param(value = "className") String className);
+
 }

@@ -79,19 +79,22 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-            <a href="/feature" class="nav-item nav-link">Khóa học</a>
-            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+            <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/classes}" class="nav-item nav-link active">Lớp học</a>
+            <a th:href="@{/contract
+            }" class="nav-item nav-link">Hợp đồng</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
@@ -99,7 +102,7 @@
 
 <div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
     <div class="bg-primary text-center p-5">
-        <h1 class="mb-4">Thêm mới học viên</h1>
+        <h1 class="mb-4">Thêm mới lớp học</h1>
 
         <form th:object="${classDto}" method="POST" action="/classes/add">
             <div class="row g-3">
@@ -113,43 +116,42 @@
                         <label for="name">Tên lớp học</label>
                     </div>
                 </div>
-                <!--                CMND-->
-<!--                <div class="col-12">-->
-<!--                    <div class="form-floating">-->
-<!--                        <input th:field="*{description}" type="text" class="form-control border-0" id="identity"-->
-<!--                               placeholder="Mô tả" required>-->
-<!--                        <small style="color:red;" th:if="${#fields.hasErrors('description')}"-->
-<!--                               th:errors="*{description}"></small>-->
-<!--                        <label for="identity">Mô tả</label>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{description}" type="text" class="form-control border-0" id="identity"
+                               placeholder="Mô tả" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"></small>
+                        <label for="identity">Mô tả</label>
+                    </div>
+                </div>
 
                 <!--                gender + birthday-->
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <input th:field="*{startDate}" type="date" class="form-control border-0" id="startDate"
-                               placeholder="Ngày bắt đầu" required>
+                               placeholder="Ngày bắt đầu">
                         <small style="color:red;" th:if="${#fields.hasErrors('startDate')}"
                                th:errors="*{startDate}"></small>
                         <label for="startDate">Ngày bắt đầu</label>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-floating">
-                            <input th:field="*{endDate}" type="date" class="form-control border-0" id="endDate"
-                                   placeholder="Ngày kết thúc" required>
-                            <small style="color:red;" th:if="${#fields.hasErrors('endDate')}"
-                                   th:errors="*{endDate}"></small>
-                            <label for="endDate">Ngày kết thúc</label>
-                        </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{endDate}" type="date" class="form-control border-0" id="endDate"
+                               placeholder="Ngày kết thúc">
+                        <small style="color:red;" th:if="${#fields.hasErrors('endDate')}"
+                               th:errors="*{endDate}"></small>
+                        <label for="endDate">Ngày kết thúc</label>
                     </div>
-                    <!--                phone-->
-                    <div class="col-6">
-                        <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn btn-light w-100 py-3" type="button"><a href="/student">Hủy
-                            bỏ</a></button>
-                    </div>
+                </div>
+                <!--                phone-->
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-light w-100 py-3" type="button"><a href="/student">Hủy
+                        bỏ</a></button>
                 </div>
             </div>
         </form>
@@ -205,7 +207,6 @@
 </div>
 <!-- Footer End -->
 
-</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

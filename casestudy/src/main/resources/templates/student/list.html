@@ -35,175 +35,225 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <!-- Icon Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: "Work Sans", sans-serif;
+
+        }
+
+        table {
+            position: relative;
+            margin-top: 20%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-collapse: collapse;
+            width: 85%;
+            height: 200px;
+            border: 1px solid #f5ca33;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        tr {
+            transition: all .2s ease-in;
+            cursor: pointer;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #header {
+            /*background-color: #f3bd01;*/
+            color: #0c2b4b;
+        }
+
+        h1 {
+            font-weight: 600;
+            text-align: center;
+            background-color: #f3bd01;
+            color: #fff;
+            padding: 10px 0px;
+        }
+
+        /*tr:hover {*/
+        /*    background-color: #f5f5f5;*/
+        /*    transform: scale(1.02);*/
+        /*    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);*/
+        /*}*/
+
+        @media only screen and (max-width: 991px) {
+            table {
+                width: 90%;
+                box-sizing: border-box;
+                margin-top: 200px;
+            }
+
+
+            .table-title {
+                position: relative;
+                margin-top: 5%;
+                padding-top: 5%;
+            }
+
+        }
+    </style>
 </head>
 <body>
-<!-- Topbar Start -->
-<div class="container-fluid bg-dark text-light p-0">
-    <div class="row gx-0 d-none d-lg-flex">
-        <div class="col-lg-7 px-5 text-start">
-            <div class="h-100 d-inline-flex align-items-center me-4">
-                <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                <small>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng</small>
-            </div>
-            <div class="h-100 d-inline-flex align-items-center">
-                <small class="far fa-clock text-primary me-2"></small>
-                <small>Thứ 2 - Thứ 6: 08.15 AM - 05.30 PM</small>
-            </div>
-        </div>
-        <div class="col-lg-5 px-5 text-end">
-            <div class="h-100 d-inline-flex align-items-center me-4">
-                <small class="fa fa-phone-alt text-primary me-2"></small>
-                <small>+84 12 345 6789</small>
-            </div>
-            <div class="h-100 d-inline-flex align-items-center mx-n2">
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-twitter"></i></a>
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Topbar End -->
+<!--spinner start-->
+<div th:replace="index::spinner"></div>
+<!--spinner end-->
 
+<!--topbar start-->
+<div th:replace="index::topbar"></div>
+<!--topbar end-->
 
-<!-- Navbar Start -->
+<!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-            <a href="/feature" class="nav-item nav-link">Khóa học</a>
-            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+            <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/student}" class="nav-item nav-link active">Học viên</a>
+            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/classes}" class="nav-item nav-link ">Lớp học</a>
+            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
-<!-- Navbar End -->
+<!--navbar management end-->
 
-
-<div class="container" style="min-height: 550px;margin-top: 30px">
-    <h1 style=" margin-top: 30px" align="center">Danh Sách Học Sinh</h1>
+<!--content start-->
+<div class="container">
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Học Viên</h3>
     <nav class="navbar navbar-inverse">
-        <div class=" navbar-form navbar-left mb-3">
-            <a href="/student/add">
-                <button title="Thêm mới học sinh"
-                        class="btn btn-primary">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </a>
+        <div class="navbar-form navbar-left mb-3">
+            <a th:href="@{/student/add}"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
         </div>
-        <form action="/student" method="get">
+        <form th:href="@{/student}" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
-                    <input id="search-input1" th:value="${name}" name="name" type="search"
-                           class="form-control" placeholder="Tên học sinh"/>
+                    <input type="search" th:value="${name}" name="name"
+                           class="form-control" placeholder="Tên học viên"
+                           style="width: 33%;" id="search-input1">
                 </div>
                 <div class="mb-6 ml-2">
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-
             </div>
         </form>
     </nav>
-    <table class="table table-hover">
-        <tr style="background-color: #f3bd01; color: #ffffff">
+    <table class="table" style="padding-bottom: 5%">
+        <thead>
+        <tr id="header">
             <th>STT</th>
-            <th>Tên</th>
-            <th>Giới Tính</th>
+            <th>Tên học viên</th>
+            <th>Giới tính</th>
             <th>CMND</th>
-            <th>Điện Thoại</th>
-            <th>Ngày Sinh</th>
+            <th>Điện thoại</th>
+            <th>Ngày sinh</th>
             <th>Điểm</th>
             <th>Lớp</th>
             <th>Địa chỉ</th>
             <th colspan="2" style="text-align: center">Quản lý</th>
         </tr>
-        <tr th:each="student, status :${studentDtos}">
-            <td hidden="hidden" style="width: 10%" th:text="${student.getId()}"></td>
-            <td style="width: 5%" th:text="${status.count}"></td>
+        </thead>
+        <tbody>
+        <tr th:each="student, loop : ${studentDtos}">
+            <th style="width: 5%" th:text="${loop.count}"></th>
             <td style="width: 15%" th:text="${student.getStudentName()}"></td>
             <td style="width: 7%">
                 <span th:if="${student.getGender() == 0}">Nam</span>
                 <span th:if="${student.getGender() == 1} ">Nữ</span>
                 <span th:if="${student.getGender() == 2} ">LGBT</span>
             </td>
-            <td style="width: 9%" th:text="${student.getIdentity()}"></td>
-            <td style="width: 9%" th:text="${student.getPhone()}"></td>
-            <td style="width: 9%" class="birthday-cell" th:text="${student.birthday}"></td>
-            <td style="width: 5%" th:text="${student.getGraduatePoint()}"></td>
-            <td style="width: 10%" th:text="${student.getClassName()}"></td>
-            <td style="width: 15%" th:text="${student.getAddress()}"></td>
-            <td style="width: 6%">
+            <td style="width: 9%;" th:text="${student.getIdentity()}"></td>
+            <td style="width: 9%;" th:text="${student.getPhone()}"></td>
+            <td style="width: 9%;" th:text="${student.getBirthday()}"></td>
+            <td style="width: 5%;" th:text="${student.getGraduatePoint()}"></td>
+            <td style="width: 10%;" th:text="${student.getClassName()}"></td>
+            <td style="width: 15%;" th:text="${student.getAddress()}"></td>
+            <td style="width: 6%;">
                 <a th:href="@{/student/edit/(id=${student.getId()})}">
-                    <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
+                    <i type="button" class="fas fa-edit fa-lg"  style="color:#0C2B4B"></i>
                 </a>
+            </td>
+            <td style="width: 6%">
                 <i data-bs-toggle="modal"
                    data-bs-target="#exampleModal"
                    th:attr="onclick=|confirmDelete('${student.id}','${student.studentName}')|" type="button"
                    class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>
             </td>
         </tr>
+        </tbody>
     </table>
+    <!--    phan trang start-->
+
+    <div style="padding-bottom: 5%" th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mb-0">
+                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/student(page=0,studentName=${name})}">
+                        <small>
+                            <i class="fa-solid fa-backward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{student(page=${(studentDtos.number)-1},studentName=${name})}">
+                        <small>
+                            <i class="fa-solid fa-backward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li class="page-item active">
+                    <a href="#" class="page-link">
+                        <span th:text="${studentDtos.number +1}"></span>/<span
+                            th:text="${studentDtos.totalPages}"></span>
+                    </a>
+                </li>
+                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{student(page=${studentDtos.number+1},studentName=${name})}">
+                        <small>
+                            <i class="fa-solid fa-forward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{student(page=${(studentDtos.totalPages)-1},studentName=${name})}">
+                        <small>
+                            <i class="fa-solid fa-forward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!--    phan trang end-->
 </div>
-
-<div th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center mb-0">
-            <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{/student(page=0,studentName=${name})}">
-                    <small>
-                        <i class="fa-solid fa-backward-fast"></i>
-                    </small>
-                </a>
-            </li>
-            <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{student(page=${(studentDtos.number)-1},studentName=${name})}">
-                    <small>
-                        <i class="fa-solid fa-backward-step"></i>
-                    </small>
-                </a>
-            </li>
-            <li class="page-item active">
-                <a href="#" class="page-link">
-                    <span th:text="${studentDtos.number +1}"></span>/<span
-                        th:text="${studentDtos.totalPages}"></span>
-                </a>
-            </li>
-            <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{student(page=${studentDtos.number+1},studentName=${name})}">
-                    <small>
-                        <i class="fa-solid fa-forward-step"></i>
-                    </small>
-                </a>
-            </li>
-            <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{student(page=${(studentDtos.totalPages)-1},studentName=${name})}">
-                    <small>
-                        <i class="fa-solid fa-forward-fast"></i>
-                    </small>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+<!--content end-->
 
 
-<!-- Modal xóa-->
+<!--modal delete start-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -226,72 +276,17 @@
         </div>
     </div>
 </div>
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Thông tin liên lạc</h4>
-                <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà
-                    Nẵng
-                </p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Liên kết</h4>
-                <a class="btn btn-link" href="">Về chúng tôi</a>
-                <a class="btn btn-link" href="">Liên hệ</a>
-                <a class="btn btn-link" href="">Dịch vụ</a>
-                <a class="btn btn-link" href="">Điều khoản và quy định</a>
-                <a class="btn btn-link" href="">Hỗ trợ</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Thông tin thành viên</h4>
-                <a class="btn btn-link" href="">Phan Quốc Sang</a>
-                <a class="btn btn-link" href="">Nguyễn Đức Trung</a>
-                <a class="btn btn-link" href="">Nguyễn Thị Mỹ Hạnh</a>
-                <a class="btn btn-link" href="">Bùi Bảo Thiện</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-3 border-0"
-                               placeholder="Nhập địa chỉ email của bạn">
-                        <button class="btn btn-primary">Xác nhận</button>
-                    </div>
-                </form>
-                <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer End -->
+<!--modal delete end-->
+
+<!--footer start-->
+<div th:replace="index::footer"></div>
+<!--footer end-->
+
+<!--copyright start-->
+<div th:replace="index::copyRight"></div>
+<!--copyright end-->
 
 
-<!-- Copyright Start -->
-<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a href="#">Group 2 - C0523G1</a>, All Right Reserved.
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Copyright End -->
-
-<!--<div th:replace="layout::footer">-->
-
-</body>
 <script th:if="${mess!=null}">
     // toast
     window.onload = function () {
@@ -302,15 +297,19 @@
 
 
 </script>
-
+<script th:src="@{/js/main.js}"></script>
 <script>
-    let birthdayCells = document.getElementsByClassName("birthday-cell");
-    for (let i = 0; i < birthdayCells.length; i++) {
-        let birthday = birthdayCells[i].textContent;
-        let formattedBirthday = birthday.split("-").reverse().join("-");
-        birthdayCells[i].textContent = formattedBirthday;
+    function confirmDelete(id, name) {
+        document.getElementById("usernameDelete").innerText = name;
+        document.getElementById("id").value = id;
     }
 </script>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/easing/easing.min.js"></script>
@@ -321,8 +320,7 @@
 
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
 
-
-<!-- Contact Javascript File -->
+<!--contact js-->
 <script src="../mail/jqBootstrapValidation.min.js"></script>
 <script src="../mail/contact.js"></script>
 
@@ -343,11 +341,8 @@
         crossorigin="anonymous"></script>
 
 <script th:src="@{/js/main.js}"></script>
-<script>
-    function confirmDelete(id, name) {
-        document.getElementById("usernameDelete").innerText = name;
-        document.getElementById("id").value = id;
-    }
-</script>
 
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+</body>
 </html>
