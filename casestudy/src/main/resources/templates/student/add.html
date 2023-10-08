@@ -176,13 +176,27 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
-                        <label for="classes">Lớp</label>
-                        <select id="classes" th:field="*{classes.id}" class="custom-select border-0 px-2" style="height: 47px;">
+                        <select id="classes" th:field="*{classes.id}" class="form-control border-0">
                             <option th:each="c : ${classes}" th:value="${c.id}"
                                     th:text="${c.className}"></option>
                         </select>
+                        <label for="classes">Lớp</label>
                     </div>
                 </div>
+
+<!--                <div class="col-sm-6">-->
+<!--                    <div class="form-floating">-->
+<!--                        <select th:field="*{gender}" class="form-control border-0" id="gender"-->
+<!--                                placeholder="Ngày sinh" style="background-color: #ffffff">-->
+<!--                            <option th:value="0" selected>Nam</option>-->
+<!--                            <option th:value="1">Nữ</option>-->
+<!--                            <option th:value="3">Khác</option>-->
+<!--                        </select>-->
+<!--                        <small style="color:red;" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></small>-->
+<!--                        <label for="gender">Giới tính</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+
                 <div class="col-6">
                     <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                 </div>
