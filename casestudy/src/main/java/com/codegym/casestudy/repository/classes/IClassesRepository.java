@@ -15,14 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface IClassesRepository extends JpaRepository<Classes, Integer> {
-    @Query(value = "SELECT id AS classId, class_name AS className  " +
-            "teacher_name AS name, COUNT(st.id) AS studentCount " +
-            "FROM classes c " +
-            "LEFT JOIN students st ON st.classes_id = c.id " +
-            "LEFT JOIN assignments ass ON ass.classes_id = c.id " +
-            "LEFT JOIN teachers tea ON tea.id = ass.teacher_id " +
-            "WHERE c.id = :classId and c.is_deleted = 1 " +
-            "GROUP BY c.id, c.class_name, tea.teacher_name, ", nativeQuery = true)
+    @Query(value = "SELECT c.id AS classId, c.class_name AS className,  " +
+            " tea.teacher_name AS name, COUNT(st.id) AS studentCount " +
+            " FROM classes c " +
+            " LEFT JOIN students st ON st.class_id = c.id " +
+            " LEFT JOIN assignments ass ON ass.class_id = c.id " +
+            " LEFT JOIN teachers tea ON tea.id = ass.teacher_id " +
+            " WHERE c.id = :classId and c.is_deleted = 0 " +
+            " GROUP BY c.id, c.class_name, tea.teacher_name ", nativeQuery = true)
     List<ListClassesDto> findAllClass(@Param(value = "classId") int classId);
 
     @Modifying
@@ -44,8 +44,8 @@ public interface IClassesRepository extends JpaRepository<Classes, Integer> {
             "    st.phone as phone " +
             "   FROM " +
             "      students st " +
-            "   left JOIN classes cla ON st.classes_id = cla.id " +
-            "    where cla.id = :classId and cla.is_deleted = 1 " +
+            "   left JOIN classes cla ON st.class_id = cla.id " +
+            "    where cla.id = :classId and cla.is_deleted = 0 " +
             "     ", nativeQuery = true)
     Page<ListStudentDto> listStudent(Pageable pageable, @Param("classId") int classId);
 

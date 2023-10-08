@@ -115,7 +115,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{identity}" type="number" class="form-control border-0" id="identity"
-                               placeholder="Học phí (đơn vị: VND)" required>
+                               placeholder="Học phí (đơn vị: VND)">
                         <small style="color:red;" th:if="${#fields.hasErrors('identity')}"
                                th:errors="*{identity}"></small>
                         <label for="identity">Số chứng minh nhân dân</label>
@@ -137,7 +137,7 @@
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <input th:field="*{birthday}" type="date" class="form-control border-0" id="birthday"
-                               placeholder="Ngày sinh" required>
+                               placeholder="Ngày sinh">
                         <small style="color:red;" th:if="${#fields.hasErrors('birthday')}"
                                th:errors="*{birthday}"></small>
                         <label for="birthday">Ngày sinh</label>
@@ -147,7 +147,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{phone}" type="number" class="form-control border-0" id="phone"
-                               placeholder="Số chứng minh nhân dân" required>
+                               placeholder="Số chứng minh nhân dân">
                         <small style="color:red;" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
                         <label for="phone">Số điện thoại</label>
                     </div>
@@ -156,7 +156,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{address}" type="text" class="form-control border-0" id="address"
-                               placeholder="Địa chỉ" required>
+                               placeholder="Địa chỉ">
                         <small style="color:red;" th:if="${#fields.hasErrors('address')}"
                                th:errors="*{address}"></small>
                         <label for="address">Địa chỉ</label>
@@ -166,7 +166,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{salary}" type="number" class="form-control border-0" id="salary"
-                               placeholder="Mức lương" required>
+                               placeholder="Mức lương">
                         <small style="color:red;" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></small>
                         <label for="salary">Mức lương</label>
                     </div>
@@ -228,6 +228,10 @@
         </div>
     </div>
 </div>
+
+<script>
+
+</script>
 <!-- Footer End -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -270,17 +274,17 @@
 <script src="../mail/contact.js"></script>
 
 <!-- Template Javascript -->
-<script src="../js/main.js"></script>
+<script src="/js/main.js"></script>
 <!--offline-->
-<script src="../../static/mail/contact.js"></script>
-<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
-<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
-<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
-<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../../static/lib/easing/easing.min.js"></script>
-<script src="../../static/js/main.js"></script>
+<script src="/mail/contact.js"></script>
+<script src="/mail/jqBootstrapValidation.min.js"></script>
+<script src="/static/lib/lightbox/js/lightbox.min.js"></script>
+<script src="/static/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/static/lib/easing/easing.min.js"></script>
+<script src="/static/js/main.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
-        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+        src="/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 </html>

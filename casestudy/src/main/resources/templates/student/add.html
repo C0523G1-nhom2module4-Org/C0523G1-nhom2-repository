@@ -116,7 +116,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{identity}" type="number" class="form-control border-0" id="identity"
-                               placeholder="Số chứng minh nhân dân" required>
+                               placeholder="Số chứng minh nhân dân" >
                         <small style="color:red;" th:if="${#fields.hasErrors('identity')}"
                                th:errors="*{identity}"></small>
                         <label for="identity">Số chứng minh nhân dân</label>
@@ -138,7 +138,7 @@
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <input th:field="*{birthday}" type="date" class="form-control border-0" id="birthday"
-                               placeholder="Ngày sinh" required>
+                               placeholder="Ngày sinh" >
                         <small style="color:red;" th:if="${#fields.hasErrors('birthday')}"
                                th:errors="*{birthday}"></small>
                         <label for="birthday">Ngày sinh</label>
@@ -148,7 +148,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{phone}" type="text" class="form-control border-0" id="phone"
-                               placeholder="Số chứng minh nhân dân" required>
+                               placeholder="Số chứng minh nhân dân" >
                         <small style="color:red;" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
                         <label for="phone">Số điện thoại</label>
                     </div>
@@ -157,7 +157,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{address}" type="text" class="form-control border-0" id="address"
-                               placeholder="Địa chỉ" required>
+                               placeholder="Địa chỉ" >
                         <small style="color:red;" th:if="${#fields.hasErrors('address')}"
                                th:errors="*{address}"></small>
                         <label for="address">Địa chỉ</label>
@@ -168,7 +168,7 @@
                     <div class="form-floating">
                         <input th:field="*{graduatePoint}" type="number" class="form-control border-0"
                                id="graduatePoint"
-                               placeholder="Điểm" required>
+                               placeholder="Điểm" >
                         <small style="color:red;" th:if="${#fields.hasErrors('graduatePoint')}"
                                th:errors="*{graduatePoint}"></small>
                         <label for="graduatePoint">Điểm</label>
@@ -176,11 +176,11 @@
                 </div>
                 <div class="col-12">
                     <div class="form-floating">
-                        <input th:field="*{classes}" th:value="${1}" type="text" class="form-control border-0" id="classes"
-                               placeholder="Lớp" required>
-<!--                        <small style="color:red;" th:if="${#fields.hasErrors('classes')}"-->
-<!--                               th:errors="*{classes}"></small>-->
                         <label for="classes">Lớp</label>
+                        <select id="classes" th:field="*{classes.id}" class="custom-select border-0 px-2" style="height: 47px;">
+                            <option th:each="c : ${classes}" th:value="${c.id}"
+                                    th:text="${c.className}"></option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-6">

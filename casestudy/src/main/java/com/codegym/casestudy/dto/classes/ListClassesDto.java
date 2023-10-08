@@ -5,7 +5,6 @@ public interface ListClassesDto {
     String getClassName();
     String getStartDate();
     String getEndDate();
-    int getIsDeleted();
     String getTeacherName();
     String getDescription();
     int getStudentCount();
