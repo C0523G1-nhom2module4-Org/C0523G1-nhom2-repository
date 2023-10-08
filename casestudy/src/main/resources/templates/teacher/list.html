@@ -37,63 +37,111 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <!-- Icon Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: "Work Sans", sans-serif;
+
+        }
+
+        table {
+            position: relative;
+            margin-top: 20%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border-collapse: collapse;
+            width: 85%;
+            height: 200px;
+            border: 1px solid #f5ca33;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        tr {
+            transition: all .2s ease-in;
+            cursor: pointer;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #header {
+            /*background-color: #f3bd01;*/
+            color: #0c2b4b;
+        }
+
+        h1 {
+            font-weight: 600;
+            text-align: center;
+            background-color: #f3bd01;
+            color: #fff;
+            padding: 10px 0px;
+        }
+
+        /*tr:hover {*/
+        /*    background-color: #f5f5f5;*/
+        /*    transform: scale(1.02);*/
+        /*    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);*/
+        /*}*/
+
+        @media only screen and (max-width: 991px) {
+            table {
+                width: 90%;
+                box-sizing: border-box;
+                margin-top: 200px;
+            }
+
+
+            .table-title {
+                position: relative;
+                margin-top: 5%;
+                padding-top: 5%;
+            }
+
+        }
+    </style>
 </head>
+
 <body>
-<!-- Topbar Start -->
-<div class="container-fluid bg-dark text-light p-0">
-    <div class="row gx-0 d-none d-lg-flex">
-        <div class="col-lg-7 px-5 text-start">
-            <div class="h-100 d-inline-flex align-items-center me-4">
-                <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                <small>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng</small>
-            </div>
-            <div class="h-100 d-inline-flex align-items-center">
-                <small class="far fa-clock text-primary me-2"></small>
-                <small>Thứ 2 - Thứ 6: 08.15 AM - 05.30 PM</small>
-            </div>
-        </div>
-        <div class="col-lg-5 px-5 text-end">
-            <div class="h-100 d-inline-flex align-items-center me-4">
-                <small class="fa fa-phone-alt text-primary me-2"></small>
-                <small>+84 12 345 6789</small>
-            </div>
-            <div class="h-100 d-inline-flex align-items-center mx-n2">
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-twitter"></i></a>
-                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Topbar End -->
+<!--spinner start-->
+<div th:replace="index::spinner"></div>
+<!--spinner end-->
 
+<!--topbar start-->
+<div th:replace="index::topbar"></div>
+<!--topbar end-->
 
-<!-- Navbar Start -->
+<!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-            <a href="/feature" class="nav-item nav-link">Khóa học</a>
-            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+            <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/student}" class="nav-item nav-link ">Học viên</a>
+            <a th:href="@{/teacher}" class="nav-item nav-link active">Giáo viên</a>
+            <a th:href="@{/classes}" class="nav-item nav-link ">Lớp học</a>
+            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
-<!-- Navbar End --><!--<div th:replace="landing_page::header"></div>-->
-<div class="container" style="min-height: 550px;margin-top: 30px">
-    <h1 style=" margin-top: 30px" align="center">Danh Sách Giảng Viên</h1>
+<!--navbar management end-->
+
+<!--content start-->
+<div class="container">
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Giảng Viên</h3>
     <nav class="navbar navbar-inverse">
         <div class=" navbar-form navbar-left mb-3">
             <a href="/teacher/add">
@@ -106,7 +154,7 @@
         <form action="/teacher" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
-                    <input id="search-input1" th:value="${name}" name="searchName" type="search"
+                    <input id="search-input1" th:value="${name}" name="name" type="search"
                            class="form-control" placeholder="Tên giảng viên"/>
                 </div>
                 <div class="mb-6 ml-2">
@@ -116,17 +164,18 @@
             </div>
         </form>
     </nav>
-    <table class="table table-hover">
+    <table class="table">
         <thead>
-        <tr>
-            <th>#</th>
+        <tr id="header">
+            <th>STT</th>
             <th>Tên</th>
             <th>Giới tính</th>
             <th>CMND</th>
             <th>Ngày sinh</th>
+<!--            <th>Lương</th>-->
             <th>SĐT</th>
             <th>Địa chỉ</th>
-            <th>Chức năng</th>
+            <th>Quản lý</th>
         </tr>
         </thead>
         <tbody>
@@ -139,75 +188,79 @@
                 <span th:if="${teacher.getGender() == 2} ">LGBT</span>
             </td>
             <td th:text="${teacher.getIdentity()}"></td>
-            <td class="birthday-cell" th:text="${teacher.getBirthday()}"></td>
+            <td th:text="${teacher.getBirthday()}"></td>
+<!--            <td th:text="${teacher.getSalary()}"></td>-->
             <td th:text="${teacher.getPhone()}"></td>
             <td th:text="${teacher.getAddress()}"></td>
             <td>
                 <a th:href="@{/teacher/edit/{id}(id=${teacher.getId()})}">
                     <i class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
-                <i data-bs-toggle="modal"
+            </td>
+            <td>
+                <i type="button"
+                   data-bs-toggle="modal"
                    data-bs-target="#exampleModal"
-                   th:attr="onclick=|confirmDelete(${teacher.id},'${teacher.getName}')|" type="button"
+                   th:attr="onclick=|confirmDelete(${teacher.id},'${teacher.getName()}')|"
                    class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>
-<!--                <button-->
-<!--                        data-bs-toggle="modal"-->
-<!--                        data-bs-target="#exampleModal"-->
-<!--                        th:attr="onclick=|confirmDelete(${teacher.id},'${teacher.getName()}')|">-->
-<!--                    <i class="fa-regular fa-trash-can"></i>-->
-<!--                </button>-->
             </td>
         </tr>
         </tbody>
     </table>
+    <!--    phan trang start-->
+    <div th:if="${teacherDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mb-0">
+                <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/teacher(page=0,searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-backward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/teacher(page=${(teacherDtoPage.number)-1},searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-backward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li class="page-item active">
+                    <a href="#" class="page-link">
+                        <span th:text="${teacherDtoPage.number +1}"></span>/<span
+                            th:text="${teacherDtoPage.totalPages}"></span>
+                    </a>
+                </li>
+                <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/teacher(page=${(teacherDtoPage.number)+1},searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-forward-step"></i>
+                        </small>
+                    </a>
+                </li>
+                <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+                    <a class="page-link"
+                       th:href="@{/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${searchName})}">
+                        <small>
+                            <i class="fa-solid fa-forward-fast"></i>
+                        </small>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!--    phan trang end-->
 </div>
+<!--content end-->
 
-<!---------------------------phan trang----------------------------->
-<div th:if="${teacherDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center mb-0">
-            <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{/teacher(page=0,searchName=${searchName})}">
-                    <small>
-                        <i class="fa-solid fa-backward-fast"></i>
-                    </small>
-                </a>
-            </li>
-            <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{/teacher(page=${(teacherDtoPage.number)-1},searchName=${searchName})}">
-                    <small>
-                        <i class="fa-solid fa-backward-step"></i>
-                    </small>
-                </a>
-            </li>
-            <li class="page-item active">
-                <a href="#" class="page-link">
-                    <span th:text="${teacherDtoPage.number +1}"></span>/<span
-                        th:text="${teacherDtoPage.totalPages}"></span>
-                </a>
-            </li>
-            <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{/teacher(page=${(teacherDtoPage.number)+1},searchName=${searchName})}">
-                    <small>
-                        <i class="fa-solid fa-forward-step"></i>
-                    </small>
-                </a>
-            </li>
-            <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
-                <a class="page-link"
-                   th:href="@{/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${searchName})}">
-                    <small>
-                        <i class="fa-solid fa-forward-fast"></i>
-                    </small>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
-<!-- Modal xóa-->
+<!--modal information start-->
+
+<!--modal information end-->
+
+<!--modal delete start-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -230,63 +283,30 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Thông tin liên lạc</h4>
-                <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng
-                </p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Liên kết</h4>
-                <a class="btn btn-link" href="">Về chúng tôi</a>
-                <a class="btn btn-link" href="">Liên hệ</a>
-                <a class="btn btn-link" href="">Dịch vụ</a>
-                <a class="btn btn-link" href="">Điều khoản và quy định</a>
-                <a class="btn btn-link" href="">Hỗ trợ</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Thông tin thành viên</h4>
-                <a class="btn btn-link" href="">Phan Quốc Sang</a>
-                <a class="btn btn-link" href="">Nguyễn Đức Trung</a>
-                <a class="btn btn-link" href="">Nguyễn Thị Mỹ Hạnh</a>
-                <a class="btn btn-link" href="">Bùi Bảo Thiện</a>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-3 border-0" placeholder="Nhập địa chỉ email của bạn">
-                        <button class="btn btn-primary">Xác nhận</button>
-                    </div>
-                </form>
-                <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer End -->
+<!--modal delete end-->
+
+<!--footer start-->
+<div th:replace="index::footer"></div>
+<!--footer end-->
+
+<!--copyright start-->
+<div th:replace="index::copyRight"></div>
+<!--copyright end-->
 
 
-<!-- Copyright Start -->
-<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a href="#">Group 2 - C0523G1</a>, All Right Reserved.
-            </div>
-        </div>
-    </div>
+<script>
+    function sendInfo(qualificationDescription) {
+        document.getElementById("qualificationDescription").innerText = qualificationDescription;
+    }
+
+    function sendInformationForDelete(qualificationId, qualificationName) {
+        document.getElementById("qualificationDeleteId").value = qualificationId;
+        document.getElementById("qualificationDeleteName").innerText = qualificationName;
+    }
+</script>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
 <script th:if="${message!=null}">
     // toast
@@ -296,22 +316,14 @@
         bsAlert.show();//show it
     }
 </script>
-
-<script>
-    let birthdayCells = document.getElementsByClassName("birthday-cell");
-    for (let i = 0; i < birthdayCells.length; i++) {
-        let birthday = birthdayCells[i].textContent;
-        let formattedBirthday = birthday.split("-").reverse().join("-");
-        birthdayCells[i].textContent = formattedBirthday;
-    }
-</script>
 <div style="align-content: center">
     <a th:if="${teacherDtoPage.hasPrevious()}" th:href="@{/teacher(page=${teacherDtoPage.number - 1})}">Trước</a>
     <span th:text="${teacherDtoPage.number + 1}"></span> / <span th:text="${teacherDtoPage.totalPages}"></span>
     <a th:if="${teacherDtoPage.hasNext()}" th:href="@{/teacher(page=${teacherDtoPage.number + 1})}">Sau</a>
 </div>
 </div>
-<!--<div th:replace="layout::footer"></div>-->
+
+<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/easing/easing.min.js"></script>
@@ -336,7 +348,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
-</body>
+<!--js-->
 <script>
     //delete modal
     function confirmDelete(id, name) {
@@ -344,4 +356,5 @@
         document.getElementById("idDelete").value = id;
     }
 </script>
+</body>
 </html>

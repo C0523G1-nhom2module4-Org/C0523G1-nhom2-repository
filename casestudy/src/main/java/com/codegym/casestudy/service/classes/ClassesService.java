@@ -4,6 +4,7 @@ import com.codegym.casestudy.dto.classes.ClassDetailDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
 import com.codegym.casestudy.model.classes.Classes;
+import com.codegym.casestudy.model.student.Student;
 import com.codegym.casestudy.repository.classes.IClassesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -60,5 +61,10 @@ public class ClassesService implements IClassesService {
     @Override
     public ClassDetailDto getClassDetail(String className) {
         return this.classesRepository.getClassesByClassNameEquals(className);
+    }
+
+    @Override
+    public List<String> findAllByClassName(String className) {
+        return this.classesRepository.findAllByClassName(className);
     }
 }
