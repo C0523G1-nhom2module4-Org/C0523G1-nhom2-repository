@@ -30,8 +30,6 @@ public class Teacher {
     private String address;
     @Column(name = "salary")
     private int salary;
-    @Column(name = "is_deleted")
-    private boolean isDeleted;
 
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id")

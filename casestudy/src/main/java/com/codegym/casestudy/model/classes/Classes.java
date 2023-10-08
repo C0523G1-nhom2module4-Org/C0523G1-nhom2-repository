@@ -30,8 +30,6 @@ public class Classes {
     private String startDate;
     @Column(name = "class_end_date")
     private String endDate;
-    @Column(name = "is_deleted")
-    private boolean isDeleted;
 
 
     @OneToMany(mappedBy = "classes")

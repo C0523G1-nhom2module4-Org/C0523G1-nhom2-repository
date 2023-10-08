@@ -76,7 +76,6 @@ public class ClassesController {
             return "/classes/add";
         }
         Classes classes = new Classes();
-        classes.setDeleted(true);
         BeanUtils.copyProperties(classDto, classes);
         classesService.add(classes);
         redirectAttributes.addFlashAttribute("mess", "thêm thành công");
@@ -104,7 +103,7 @@ public class ClassesController {
         }
         Classes classes = new Classes();
         BeanUtils.copyProperties(classesDto, classes);
-        classes.setDeleted(false);
+//        classes.setDeleted(false);
         classesService.edit(classes);
         redirectAttributes.addFlashAttribute("message", "Sửa thành công");
         return "redirect:/classes";

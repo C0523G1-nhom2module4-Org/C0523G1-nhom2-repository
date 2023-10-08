@@ -16,22 +16,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
-
     <!-- Libraries Stylesheet -->
-    <link href="/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/table.css">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -126,8 +122,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="#" class="nav-item nav-link active">Quản lý</a>
-            <a href="#" class="nav-item nav-link">Học viên</a>
+            <a href="#" class="nav-item nav-link">Tài khoản</a>
+            <a href="#" class="nav-item nav-link active">Học viên</a>
             <a href="#" class="nav-item nav-link">Giáo viên</a>
             <a href="#" class="nav-item nav-link">Lớp học</a>
         </div>
@@ -139,18 +135,17 @@
 
 <!--content start-->
 <div class="container">
-    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Hạng Bằng Lái Xe</h3>
-    <h4 th:if="${qualifications.isEmpty()}" th:text="${message}"></h4>
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Học Viên</h3>
     <nav class="navbar navbar-inverse">
         <div class="navbar-form navbar-left mb-3">
-            <a th:href="@{/admin/qualification-add}"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
+            <a href="#"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
         </div>
         <form action="#" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
-                    <input type="search" th:value="${searchName}" name="searchName"
-                           class="form-control" placeholder="Tên bằng lái"
-                           style="width: 33%;">
+                    <input type="search" th:value="${name}" name="name"
+                           class="form-control" placeholder="Tên học viên"
+                           style="width: 33%;" id="search-input1">
                 </div>
                 <div class="mb-6 ml-2">
                     <button class="btn btn-primary" type="submit">
@@ -164,54 +159,62 @@
         <thead>
         <tr id="header">
             <th>STT</th>
-            <th>Tên hạng bằng</th>
-            <th>Thời gian đào tạo (tháng)</th>
-            <th>Học phí (VND)</th>
-            <th colspan="3" style="text-align: center">Quản lý</th>
+            <th>Tên học viên</th>
+            <th>Giới tính</th>
+            <th>CMND</th>
+            <th>Điện thoại</th>
+            <th>Ngày sinh</th>
+            <th>Điểm</th>
+            <th>Lớp</th>
+            <th>Địa chỉ</th>
+            <th colspan="2" style="text-align: center">Quản lý</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="qualification, loop : ${qualifications}">
-            <th style="width: 10%" th:text="${loop.count}"></th>
-            <td style="width: 18%" th:text="${qualification.getName()}"></td>
-            <td style="width: 25%" th:text="${qualification.getCourseDuration()}"></td>
-            <td style="width: 20%"
-                th:text="${#numbers.formatDecimal(qualification.getFee(), 0, 'COMMA', 0, 'POINT')}"></td>
+        <tr th:each="student, loop : ${studentDtos}">
+            <th style="width: 5%" th:text="${loop.count}"></th>
+            <td style="width: 15%" style="width: 15%" th:text="${student.getStudentName()}"></td>
             <td style="width: 7%">
-                <i class="fas fa-info-circle fa-lg" style="color:#0C2B4B"
-                   th:attr="onclick=|sendInfo('${qualification.getDescription()}')|"
-                   type="button" data-bs-toggle="modal"
-                   data-bs-target="#exampleModal"></i>
+                <span th:if="${student.getGender() == 0}">Nam</span>
+                <span th:if="${student.getGender() == 1} ">Nữ</span>
+                <span th:if="${student.getGender() == 2} ">LGBT</span>
             </td>
-            <td style="width: 7%">
-                <a th:href="@{/admin/qualification/edit/__${qualification.getId()}__}">
-                    <i class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
+            <td style="width: 9%;" th:text="${student.getIdentity()}"></td>
+            <td style="width: 9%;" th:text="${student.getPhone()}"></td>
+            <td style="width: 9%;" th:text="${student.getBirthday()}"></td>
+            <td style="width: 5%;" th:text="${student.getGraduatePoint()}"></td>
+            <td style="width: 10%;" th:text="${student.getClassName()}"></td>
+            <td style="width: 15%;" th:text="${student.getAddress()}"></td>
+            <td style="width: 6%;">
+                <a th:href="@{/student/edit/(id=${student.getId()})}">
+                    <i type="button" class="fas fa-edit fa-lg"  style="color:#0C2B4B"></i>
                 </a>
             </td>
-            <td style="width: 7%">
-                <i class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"
-                   th:attr="onclick=|sendInformationForDelete('${qualification.getId()}','${qualification.getName()}')|"
-                   type="button" data-bs-toggle="modal"
-                   data-bs-target="#deleteModal"></i>
+            <td style="width: 6%">
+                <i data-bs-toggle="modal"
+                   data-bs-target="#exampleModal"
+                   th:attr="onclick=|confirmDelete('${student.id}','${student.studentName}')|" type="button"
+                   class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>
             </td>
         </tr>
         </tbody>
     </table>
     <!--    phan trang start-->
-    <div th:if="${qualifications.totalPages>1}" class="col-md-12 mb-4 mt-3">
+
+    <div th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/qualification(page=${qualifications.number - 1} ,searchName = ${searchName})}">
+                       th:href="@{/student(page=0,studentName=${name})}">
                         <small>
                             <i class="fa-solid fa-backward-fast"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/qualification(page=${(qualifications.number) - 1} ,searchName = ${searchName})}">
+                       th:href="@{student(page=${(studentDtos.number)-1},studentName=${name})}">
                         <small>
                             <i class="fa-solid fa-backward-step"></i>
                         </small>
@@ -219,21 +222,21 @@
                 </li>
                 <li class="page-item active">
                     <a href="#" class="page-link">
-                        <span th:text="${qualifications.number +1}"></span>/<span
-                            th:text="${qualifications.totalPages}"></span>
+                        <span th:text="${studentDtos.number +1}"></span>/<span
+                            th:text="${studentDtos.totalPages}"></span>
                     </a>
                 </li>
-                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/qualification(page=${qualifications.number+1},searchName=${searchName})}">
+                       th:href="@{student(page=${studentDtos.number+1},studentName=${name})}">
                         <small>
                             <i class="fa-solid fa-forward-step"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/qualification(page=${(qualifications.totalPages)-1},searchName=${searchName})}">
+                       th:href="@{student(page=${(studentDtos.totalPages)-1},studentName=${name})}">
                         <small>
                             <i class="fa-solid fa-forward-fast"></i>
                         </small>
@@ -242,44 +245,24 @@
             </ul>
         </nav>
     </div>
+    <!--    phan trang end-->
 </div>
-<!--    phan trang end-->
 <!--content end-->
 
-<!--modal information start-->
+
+<!--modal delete start-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Thông tin bằng lái</b></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Thông tin chi tiết bằng lái:
-                <p style="color:#000;" id="qualificationDescription"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Quay lại</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--modal information end-->
-
-<!--modal delete start-->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form th:action="@{/admin/qualification/remove}" method="get">
+            <form th:action="@{/student/delete}" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel"><b>Xóa dữ liệu bằng lái xe</b></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><b>Vô hiệu hóa tài khoản</b></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Bạn có chắc chắn muốn xóa bằng lái xe:
-                        <strong> <span id="qualificationDeleteName"></span></strong></p>
-                    <input type="text" hidden="hidden" name="deleteId" id="qualificationDeleteId">
+                    <p>Bạn muốn vô hiệu hóa tài khoản :
+                        <span id="usernameDelete"></span></p>
+                    <input type="number" hidden="hidden" name="id" id="id">
                     <p style="color: red"><b>Lưu ý:</b> Hoạt động này không thể hoàn tác! </p>
                 </div>
                 <div class="modal-footer">
@@ -301,14 +284,21 @@
 <!--copyright end-->
 
 
-<script>
-    function sendInfo(qualificationDescription) {
-        document.getElementById("qualificationDescription").innerText = qualificationDescription;
+<script th:if="${mess!=null}">
+    // toast
+    window.onload = function () {
+        let myAlert = document.getElementById('liveToast');//select id of toast
+        let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+        bsAlert.show();//show it
     }
 
-    function sendInformationForDelete(qualificationId, qualificationName) {
-        document.getElementById("qualificationDeleteId").value = qualificationId;
-        document.getElementById("qualificationDeleteName").innerText = qualificationName;
+
+</script>
+<script th:src="@{/js/main.js}"></script>
+<script>
+    function confirmDelete(id, name) {
+        document.getElementById("usernameDelete").innerText = name;
+        document.getElementById("id").value = id;
     }
 </script>
 
@@ -318,11 +308,36 @@
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/lib/wow/wow.min.js"></script>
-<script src="/lib/easing/easing.min.js"></script>
-<script src="/lib/waypoints/waypoints.min.js"></script>
-<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/easing/easing.min.js"></script>
+
+<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+
+<script src="../lib/isotope/isotope.pkgd.min.js"></script>
+
+<script src="../lib/lightbox/js/lightbox.min.js"></script>
+
+<!--contact js-->
+<script src="../mail/jqBootstrapValidation.min.js"></script>
+<script src="../mail/contact.js"></script>
+
+<!-- Template Javascript-->
+<script src="../js/main.js"></script>
+<!--offline-->
+<script src="../../static/mail/contact.js"></script>
+<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
+<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
+<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../../static/lib/easing/easing.min.js"></script>
+<script src="../../static/js/main.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
+
+<script th:src="@{/js/main.js}"></script>
 
 <!-- Template Javascript -->
 <script src="/js/main.js"></script>
