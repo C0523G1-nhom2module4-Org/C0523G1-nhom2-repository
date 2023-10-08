@@ -33,8 +33,6 @@ public class Student {
     private int graduatePoint;
     @Column(name = "address")
     private String address;
-    @Column(name = "is_deleted")
-    private boolean isDeleted;
 
     @ManyToOne
     @JoinColumn(name = "class_id", referencedColumnName = "id")

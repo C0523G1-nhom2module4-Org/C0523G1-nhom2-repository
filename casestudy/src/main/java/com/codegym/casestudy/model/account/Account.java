@@ -1,8 +1,6 @@
 package com.codegym.casestudy.model.account;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Table(name = "accounts")
 @Entity
@@ -14,7 +12,7 @@ public class Account {
     private String email;
     @Column(name = "account_password")
     private String password;
-    @Column(name = "is_delete")
+    @Column(name = "is_deleted")
     private boolean isDelete;
     @Column(name = "create_date")
     private String createDate;
