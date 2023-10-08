@@ -79,20 +79,18 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
-            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/student}" class="nav-item nav-link active">Học viên</a>
-            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
-            <a th:href="@{/classes}" class="nav-item nav-link ">Lớp học</a>
-            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/}" class="nav-item nav-link">Tài khoản</a>
+            <a href="/feature" class="nav-item nav-link active">Học viên</a>
+            <a href="/about" class="nav-item nav-link">Giáo viên</a>
+            <a href="/contact" class="nav-item nav-link">Lớp học</a>
+            <a href="/contact" class="nav-item nav-link">Hợp đồng</a>
         </div>
         <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
@@ -100,18 +98,27 @@
 </nav>
 <!--<div th:replace="landing_page::header">-->
 
+<!--BACK-->
+<div class="container-fluid" style="margin-top: 30px"><a href="/student" class="btn btn-primary"><i
+        class="fa-solid fa-arrow-left"></i></a></div>
+<!--BACK-->
 
+<!--CONTENT START-->
 <div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
     <div class="bg-primary text-center p-5">
-        <h1 class="mb-4">Thêm mới học viên</h1>
-        <form th:object="${listStudentDto}" method="POST" action="/student/add">
+        <h2 class="mb-4">Sửa thông tin học viên</h2>
+        <form th:object="${listStudentDto}" th:action="@{/student/edit}" th:method="post">
             <div class="row g-3">
+                <!--                id-->
+                <input th:field="*{id}" type="hidden"/>
+
                 <!--                name-->
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{name}" type="text" class="form-control border-0" id="name"
-                               placeholder="Tên giảng viên">
-                        <small style="color:red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                               placeholder="Tên học viên">
+                        <small style="color: red;font-size: 10px" th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}"></small>
                         <label for="name">Tên học viên</label>
                     </div>
                 </div>
@@ -119,8 +126,8 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{identity}" type="number" class="form-control border-0" id="identity"
-                               placeholder="Số chứng minh nhân dân" >
-                        <small style="color:red;" th:if="${#fields.hasErrors('identity')}"
+                               placeholder="Số chứng minh nhân dân" required>
+                        <small style="color: red;font-size: 10px" th:if="${#fields.hasErrors('identity')}"
                                th:errors="*{identity}"></small>
                         <label for="identity">Số chứng minh nhân dân</label>
                     </div>
@@ -129,19 +136,20 @@
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <select th:field="*{gender}" class="form-control border-0" id="gender"
-                               placeholder="Ngày sinh" style="background-color: #ffffff">
+                                placeholder="Ngày sinh" style="background-color: #ffffff">
                             <option th:value="0" selected>Nam</option>
                             <option th:value="1">Nữ</option>
                             <option th:value="3">Khác</option>
                         </select>
-                        <small style="color:red;" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></small>
+                        <small style="color:red;" th:if="${#fields.hasErrors('gender')}"
+                               th:errors="*{gender}"></small>
                         <label for="gender">Giới tính</label>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <input th:field="*{birthday}" type="date" class="form-control border-0" id="birthday"
-                               placeholder="Ngày sinh" >
+                               placeholder="Ngày sinh" required>
                         <small style="color:red;" th:if="${#fields.hasErrors('birthday')}"
                                th:errors="*{birthday}"></small>
                         <label for="birthday">Ngày sinh</label>
@@ -151,8 +159,9 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{phone}" type="text" class="form-control border-0" id="phone"
-                               placeholder="Số chứng minh nhân dân" >
-                        <small style="color:red;" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
+                               placeholder="Nhập số điện thoại" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('phone')}"
+                               th:errors="*{phone}"></small>
                         <label for="phone">Số điện thoại</label>
                     </div>
                 </div>
@@ -160,46 +169,23 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{address}" type="text" class="form-control border-0" id="address"
-                               placeholder="Địa chỉ" >
+                               placeholder="Địa chỉ" required>
                         <small style="color:red;" th:if="${#fields.hasErrors('address')}"
                                th:errors="*{address}"></small>
                         <label for="address">Địa chỉ</label>
                     </div>
                 </div>
-                <!--                salary-->
+                <!--                lớp -->
                 <div class="col-12">
                     <div class="form-floating">
-                        <input th:field="*{graduatePoint}" type="number" class="form-control border-0"
-                               id="graduatePoint"
-                               placeholder="Điểm" >
-                        <small style="color:red;" th:if="${#fields.hasErrors('graduatePoint')}"
-                               th:errors="*{graduatePoint}"></small>
-                        <label for="graduatePoint">Điểm</label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-floating">
-                        <select id="classes" th:field="*{classes.id}" class="form-control border-0">
-                            <option th:each="c : ${classes}" th:value="${c.id}"
+                        <select disabled th:field="*{classes}" class="form-control border-0" id="classes" style="height: 47px;">
+                            <option th:each="c : ${classesList}" th:value="${c.id}"
+                                    th:selected="${c.id == student.classes.id}"
                                     th:text="${c.className}"></option>
                         </select>
                         <label for="classes">Lớp</label>
                     </div>
                 </div>
-
-<!--                <div class="col-sm-6">-->
-<!--                    <div class="form-floating">-->
-<!--                        <select th:field="*{gender}" class="form-control border-0" id="gender"-->
-<!--                                placeholder="Ngày sinh" style="background-color: #ffffff">-->
-<!--                            <option th:value="0" selected>Nam</option>-->
-<!--                            <option th:value="1">Nữ</option>-->
-<!--                            <option th:value="3">Khác</option>-->
-<!--                        </select>-->
-<!--                        <small style="color:red;" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></small>-->
-<!--                        <label for="gender">Giới tính</label>-->
-<!--                    </div>-->
-<!--                </div>-->
-
                 <div class="col-6">
                     <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                 </div>
@@ -212,7 +198,7 @@
         <small style="color: red" th:if="${message != null}" th:text="${message}"></small>
     </div>
 </div>
-
+<!--CONTENT END-->
 
 <!--<div th:replace="layout::footer">-->
 <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
@@ -221,7 +207,8 @@
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4">Thông tin liên lạc</h4>
                 <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà
+                    Nẵng
                 </p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
                 <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
@@ -245,7 +232,8 @@
                 <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control p-3 border-0" placeholder="Nhập địa chỉ email của bạn">
+                        <input type="text" class="form-control p-3 border-0"
+                               placeholder="Nhập địa chỉ email của bạn">
                         <button class="btn btn-primary">Xác nhận</button>
                     </div>
                 </form>

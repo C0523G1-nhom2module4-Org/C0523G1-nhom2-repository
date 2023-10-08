@@ -77,7 +77,8 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -119,13 +120,15 @@
             <h6 class="text-primary text-uppercase mb-2">Khóa học</h6>
             <h1 class="display-6 mb-4">Hoàn thành khóa học và hỗ trợ nhận bằng lái trong thời gian ngắn nhất</h1>
         </div>
-        <div class="row g-4" >
+        <div class="row g-4">
             <!--            -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" th:each="qualification : ${qualificationList}">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s"
+                 th:each="qualification : ${qualificationList}">
                 <div class="courses-item d-flex flex-column bg-white overflow-hidden h-100">
                     <div class="text-center p-4 pt-0">
                         <div class="d-inline-block bg-primary text-white fs-5 py-1 px-4 mb-4">Bắt đầu từ <span
-                                th:text="${#numbers.formatDecimal(qualification.getFee(), 0, 'COMMA', 0, 'POINT')}"></span> .VND
+                                th:text="${#numbers.formatDecimal(qualification.getFee(), 0, 'COMMA', 0, 'POINT')}"></span>
+                            .VND
                         </div>
                         <h5 class="mb-3">GPLX hạng: <span th:text="${qualification.getName()}"></span></h5>
                         <p>Chúng tôi cung cấp các khóa học bán thời gian và toàn thời gian linh động</p>
@@ -141,7 +144,8 @@
                         <img class="img-fluid" src="img/courses-1.jpg" alt="">
                         <div class="courses-overlay">
                             <a class="btn btn-outline-primary border-2"
-                               >Đăng ký khóa học</a>
+                               th:href="@{/account/login}"
+                            >Đăng ký khóa học</a>
                         </div>
                     </div>
                 </div>

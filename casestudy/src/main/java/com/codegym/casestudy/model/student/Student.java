@@ -42,5 +42,10 @@ public class Student {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-
+    public Student(String name, int gender, String birthday, String phone) {
+        this.name = name;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.phone = phone;
+    }
 }

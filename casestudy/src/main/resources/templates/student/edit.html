@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
@@ -7,35 +8,35 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicon -->
+    &lt;!&ndash; Favicon &ndash;&gt;
     <link href="/img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
+    &lt;!&ndash; Google Web Fonts &ndash;&gt;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
+    &lt;!&ndash; Icon Font Stylesheet &ndash;&gt;
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
-    <!-- Libraries Stylesheet -->
+    &lt;!&ndash; Libraries Stylesheet &ndash;&gt;
     <link href="/lib/animate/animate.min.css" rel="stylesheet">
     <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
+    &lt;!&ndash; Customized Bootstrap Stylesheet &ndash;&gt;
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
+    &lt;!&ndash; Template Stylesheet &ndash;&gt;
     <link href="/css/style.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    &lt;!&ndash; Font Awesome &ndash;&gt;
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-    <!-- Icon Font -->
+    &lt;!&ndash; Icon Font &ndash;&gt;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <style>
         .content {
@@ -45,7 +46,7 @@
     </style>
 </head>
 <body>
-<!-- Topbar Start -->
+&lt;!&ndash; Topbar Start &ndash;&gt;
 <div class="container-fluid bg-dark text-light p-0">
     <div class="row gx-0 d-none d-lg-flex">
         <div class="col-lg-7 px-5 text-start">
@@ -75,8 +76,8 @@
         </div>
     </div>
 </div>
-<!-- Topbar End -->
-<!-- Navbar Start -->
+&lt;!&ndash; Topbar End &ndash;&gt;
+&lt;!&ndash; Navbar Start &ndash;&gt;
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
@@ -102,7 +103,7 @@
     <div class="bg-light p-5" style="max-width: 40%">
         <h2 class="mb-4" style="text-align: center">Sửa Thông Tin Học Sinh</h2>
         <form th:object="${listStudentDto}" th:action="@{/student/edit}" th:method="post">
-            <!--            <input type="hidden" th:field="*{graduatePoint}">-->
+            &lt;!&ndash;            <input type="hidden" th:field="*{graduatePoint}">&ndash;&gt;
             <div hidden="hidden">
                 <span class="input-group-text" style="width: 30%">Id<span style="color: red">*</span></span>
                 <input th:field="*{id}" class="form-control"/>
@@ -129,7 +130,7 @@
                     th:errors="*{identity}"></small>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" style="width: 30%">Ngày Sinh <span style="color: red">*</span></span></span>
+                <span class="input-group-text" style="width: 30%">Ngày Sinh </span>
                 <input type="date" th:field="*{birthday}" class="form-control"/><br/><small
                     style="color: red;font-size: 10px" th:if="${#fields.hasErrors('birthday')}"
                     th:errors="*{birthday}"></small>
@@ -213,9 +214,277 @@
         </div>
     </div>
 </div>
-<!-- Footer End -->
+&lt;!&ndash; Footer End &ndash;&gt;
 </div>
 </body>
+<script th:if="${mess!=null}">
+    // toast
+    window.onload = function () {
+        let myAlert = document.getElementById('liveToast');//select id of toast
+        let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
+        bsAlert.show();//show it
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="../lib/easing/easing.min.js"></script>
+
+<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+
+<script src="../lib/isotope/isotope.pkgd.min.js"></script>
+
+<script src="../lib/lightbox/js/lightbox.min.js"></script>
+
+
+&lt;!&ndash; Contact Javascript File &ndash;&gt;
+<script src="../mail/jqBootstrapValidation.min.js"></script>
+<script src="../mail/contact.js"></script>
+
+&lt;!&ndash; Template Javascript &ndash;&gt;
+<script src="../js/main.js"></script>
+&lt;!&ndash;offline&ndash;&gt;
+<script src="../../static/mail/contact.js"></script>
+<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
+<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
+<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="../../static/lib/easing/easing.min.js"></script>
+<script src="../../static/js/main.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
+        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+<script th:src="@{/js/main.js}"></script>
+<script>
+
+    function showModal(id) {
+        document.getElementById("idDelete").innerText = id;
+        document.getElementById("id").value = id;
+        $("#deleteModal").modal("show");
+    }
+</script>
+</html>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>C0523G1 - Drivin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- Icon Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <style>
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<!-- Topbar Start -->
+<div class="container-fluid bg-dark text-light p-0">
+    <div class="row gx-0 d-none d-lg-flex">
+        <div class="col-lg-7 px-5 text-start">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                <small>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center">
+                <small class="far fa-clock text-primary me-2"></small>
+                <small>Thứ 2 - Thứ 6: 08.15 AM - 05.30 PM</small>
+            </div>
+        </div>
+        <div class="col-lg-5 px-5 text-end">
+            <div class="h-100 d-inline-flex align-items-center me-4">
+                <small class="fa fa-phone-alt text-primary me-2"></small>
+                <small>+84 12 345 6789</small>
+            </div>
+            <div class="h-100 d-inline-flex align-items-center mx-n2">
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-twitter"></i></a>
+                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/student}" class="nav-item nav-link active">Học viên</a>
+            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/classes}" class="nav-item nav-link ">Lớp học</a>
+            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+        </div>
+        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
+                class="fa fa-arrow-right ms-3"></i></a>
+    </div>
+</nav>
+
+
+<!--<div th:replace="landing_page::header">-->
+
+<!--BACK-->
+<div class="container-fluid" style="margin-top: 30px"><a href="/student" class="btn btn-primary"><i
+        class="fa-solid fa-arrow-left"></i></a></div>
+<!--BACK-->
+
+<!--CONTENT START-->
+<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="bg-primary text-center p-5">
+        <h2 class="mb-4">Sửa thông tin học viên</h2>
+        <form th:object="${listStudentDto}" th:action="@{/student/edit}" th:method="post">
+            <div class="row g-3">
+                <!--                id-->
+                <input th:field="*{id}" type="hidden"/>
+                <!--                name-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{name}" type="text" class="form-control border-0" id="name"
+                               placeholder="Tên học viên">
+                        <small style="color: red;font-size: 10px" th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}"></small>
+                        <label for="name">Tên học viên</label>
+                    </div>
+                </div>
+                <!--                CMND-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{identity}" type="number" class="form-control border-0" id="identity"
+                               placeholder="Số chứng minh nhân dân" required>
+                        <small style="color: red;font-size: 10px" th:if="${#fields.hasErrors('identity')}"
+                               th:errors="*{identity}"></small>
+                        <label for="identity">Số chứng minh nhân dân</label>
+                    </div>
+                </div>
+                <!--                gender + birthday-->
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <select th:field="*{gender}" class="form-control border-0" id="gender"
+                                placeholder="Ngày sinh" style="background-color: #ffffff">
+                            <option th:value="0" selected>Nam</option>
+                            <option th:value="1">Nữ</option>
+                            <option th:value="3">Khác</option>
+                        </select>
+                        <small style="color:red;" th:if="${#fields.hasErrors('gender')}"
+                               th:errors="*{gender}"></small>
+                        <label for="gender">Giới tính</label>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input th:field="*{birthday}" type="date" class="form-control border-0" id="birthday"
+                               placeholder="Ngày sinh" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('birthday')}"
+                               th:errors="*{birthday}"></small>
+                        <label for="birthday">Ngày sinh</label>
+                    </div>
+                </div>
+                <!--                phone-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{phone}" type="text" class="form-control border-0" id="phone"
+                               placeholder="Nhập số điện thoại" required>
+                        <small style="color:red;" th:if="${#fields.hasErrors('phone')}"
+                               th:errors="*{phone}"></small>
+                        <label for="phone">Số điện thoại</label>
+                    </div>
+                </div>
+                <!--                address-->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input th:field="*{address}" type="text" class="form-control border-0" id="address"
+                               placeholder="Địa chỉ">
+                        <small style="color:red;" th:if="${#fields.hasErrors('address')}"
+                               th:errors="*{address}"></small>
+                        <label for="address">Địa chỉ</label>
+                    </div>
+                </div>
+                <!--                lớp -->
+                <div class="col-12">
+                    <div class="form-floating">
+                        <select th:field="*{classes}" class="form-control border-0" id="classes">
+                            <option th:each="c : ${classesList}" th:value="${c.id}"
+                                    th:text="${c.className}"></option>
+                        </select>
+                        <label for="classes">Lớp</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-light w-100 py-3" type="button"><a href="/student">Hủy
+                        bỏ</a></button>
+                </div>
+            </div>
+        </form>
+        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>
+    </div>
+</div>
+<!--CONTENT END-->
+
+
+<!--footer start-->
+<div th:replace="index::footer"></div>
+<!--footer end-->
+
+<!--copyright start-->
+<div th:replace="index::copyRight"></div>
+<!--copyright end-->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+</body>
+
 <script th:if="${mess!=null}">
     // toast
     window.onload = function () {
@@ -254,12 +523,4 @@
 <script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
         src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 <script th:src="@{/js/main.js}"></script>
-<script>
-
-    function showModal(id) {
-        document.getElementById("idDelete").innerText = id;
-        document.getElementById("id").value = id;
-        $("#deleteModal").modal("show");
-    }
-</script>
 </html>

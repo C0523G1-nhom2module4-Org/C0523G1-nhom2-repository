@@ -4,6 +4,7 @@ import com.codegym.casestudy.dto.classes.ClassDetailDto;
 import com.codegym.casestudy.dto.classes.ListClassesDto;
 import com.codegym.casestudy.dto.student.ListStudentDto;
 import com.codegym.casestudy.model.classes.Classes;
+import com.codegym.casestudy.model.student.Student;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -61,6 +62,15 @@ public interface IClassesRepository extends JpaRepository<Classes, Integer> {
             " where (c.class_name like :className) " +
             " and (s.is_deleted = 0) " +
             " order by c.class_name ",
-    nativeQuery = true)
+            nativeQuery = true)
     ClassDetailDto getClassesByClassNameEquals(@Param(value = "className") String className);
+
+    @Query(value = " select s.student_name from students as s " +
+            "right join classes as c " +
+            "on c.id = s.class_id " +
+            "where c.class_name like :className " +
+            "and s.is_deleted = 0 " +
+            "order by s.student_name ",
+            nativeQuery = true)
+    List<String> findAllByClassName(@Param(value = "className") String className);
 }

@@ -14,23 +14,6 @@ import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
 
 public interface IStudentRepository extends JpaRepository<Student, Integer> {
-//    @Query(value = "SELECT " +
-//            "    classes_name as name, " +
-//            "    id as id," +
-//            "    birthday as birthday, " +
-//            "    gender as  gender, " +
-//            "    identity as identity, " +
-//            "    student_name as name, " +
-//            "    phone as phone," +
-//            "    is_deleted as isDeleted " +
-//            "   FROM " +
-//            "      student st " +
-//            "   left JOIN classes cla ON st.classes_id = cla.id " +
-//            "    where st.student_name like :name and st.isDeleted = true ", nativeQuery = true)
-
-//    @Query(value = "select students.* from students\n " +
-//            "join classes on students.classes_id = classes.id\n " +
-//            "where students.is_deleted = true and students.student_name like :searchName ",nativeQuery = true)
 
 
     @Query(value = "select s.id AS id, s.student_name as studentName, s.class_id as classId, c.class_name as className, s.gender as gender, " +
