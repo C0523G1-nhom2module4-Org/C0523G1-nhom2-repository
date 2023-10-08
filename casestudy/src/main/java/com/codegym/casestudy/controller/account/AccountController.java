@@ -1,8 +1,10 @@
 package com.codegym.casestudy.controller.account;
 
+import com.codegym.casestudy.dto.account.AccountDto;
 import com.codegym.casestudy.dto.account.IAccountDto;
 import com.codegym.casestudy.model.account.Account;
 import com.codegym.casestudy.service.account.IAccountService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,9 +13,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -29,7 +33,7 @@ public class AccountController {
                               Model model) {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("email").ascending());
         Page<IAccountDto> accountDtoPage = accountService.searchByEmail(pageable, keyword);
-        System.out.println("-------------------"  + accountDtoPage);
+        System.out.println("-------------------" + accountDtoPage);
         model.addAttribute("accountDtoPage", accountDtoPage);
         model.addAttribute("keyword", keyword);
         return "/account/list";
@@ -43,7 +47,7 @@ public class AccountController {
 
     @GetMapping("/signup")
     public String showSignup(Model model) {
-        model.addAttribute("account", new Account());
+        model.addAttribute("account", new AccountDto());
         return "/account_signup";
     }
 
@@ -65,7 +69,6 @@ public class AccountController {
             model.addAttribute("msg", "Email Đã Được Đăng Kí");
             return "/account_signup";
         } else if (account.getPassword().equals(repeat)) {
-            account.setDeleted(true);
             account.setCreateDate(String.valueOf(LocalDate.now()));
             accountService.addAccount(account);
             redirectAttributes.addFlashAttribute("msg", "Đăng Kí Thành Công");
@@ -113,4 +116,89 @@ public class AccountController {
     public String backToMainPage() {
         return "redirect:/";
     }
+
+    @GetMapping("/forgot")
+    public String showForgot(Model model) {
+        return "/forgotPassword";
+    }
+
+    @PostMapping("/forgot")
+    public String retrievalPassword(@RequestParam String email, Model model) {
+        Account account = accountService.findByEmail(email);
+        if (account != null) {
+            String code = accountService.sendEmailAndReturnCode(email);
+            model.addAttribute("code", code);
+            model.addAttribute("email", email);
+            model.addAttribute("msg", "Gửi Thành Công Hãy Kiểm Tra Email !");
+            return "/confirm_password";
+        } else
+            model.addAttribute("msg", "Tài Khoản Không Tồn Tại");
+        return "/forgotPassword";
+    }
+
+    @GetMapping("/confirm")
+    public String showFormConfirm() {
+        return "confirm_password";
+    }
+
+    @PostMapping("/confirm-code")
+    public String confirmPassword(Model model,
+                                  @RequestParam("code") String code,
+                                  @RequestParam("newPassword") String newPassword,
+                                  @RequestParam("rePassword") String rePassword,
+                                  @RequestParam("codeEmail") String codeEmail,
+                                  @RequestParam("email") String email,
+                                  RedirectAttributes redirectAttributes) {
+        if (newPassword.equals(rePassword)) {
+            if (code.equals(codeEmail)) {
+                Account account = accountService.findByEmail(email);
+                account.setPassword(newPassword);
+                accountService.forgotPassword(account);
+                model.addAttribute("msg", "Đổi mật khẩu thành công vui lòng đăng nhập");
+                return "/login";
+            } else {
+                redirectAttributes.addFlashAttribute("newPassword", newPassword);
+                redirectAttributes.addFlashAttribute("rePassword", rePassword);
+                redirectAttributes.addFlashAttribute("codeEmail", codeEmail);
+                redirectAttributes.addFlashAttribute("code", code);
+                redirectAttributes.addFlashAttribute("msg", "vui lòng kiểm tra lại mã");
+                return "redirect:/account/confirm";
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("newPassword", newPassword);
+            redirectAttributes.addFlashAttribute("rePassword", rePassword);
+            redirectAttributes.addFlashAttribute("codeEmail", codeEmail);
+            redirectAttributes.addFlashAttribute("code", code);
+            redirectAttributes.addFlashAttribute("msg", "vui lòng kiểm tra lại mật khẩu mới");
+            return "redirect:/account/confirm";
+        }
+    }
+
+    @GetMapping("/add")
+    public String showFormAddAccount(Model model) {
+        model.addAttribute("accountDto", new AccountDto());
+        return "/add";
+    }
+
+    @PostMapping("/add")
+    public String addAccount(@Valid @ModelAttribute AccountDto accountDto,
+                             BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes,
+                             @RequestParam("rePassword") String repeatPass,
+                             @RequestParam("role") int role) {
+        new AccountDto().validate(accountDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "/add";
+        }
+        if (accountService.findByEmail(accountDto.getEmail())!=null){
+            redirectAttributes.addFlashAttribute("msg","Email đã được đăng kí");
+            return "redirect:/account/add";
+        }
+        Account newAccount = new Account();
+        BeanUtils.copyProperties(accountDto,newAccount);
+        accountService.createAccount(newAccount,role);
+        redirectAttributes.addFlashAttribute("msg","Thêm Mới Thành Công");
+        return "redirect:/account";
+    }
+
 }

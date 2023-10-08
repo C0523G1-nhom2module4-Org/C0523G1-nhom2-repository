@@ -36,6 +36,87 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 
 </head>
+<!--<style>-->
+<!--    body {-->
+<!--        padding: 0;-->
+<!--        margin: 0;-->
+<!--        font-family: "Work Sans", sans-serif;-->
+
+<!--    }-->
+
+<!--    table {-->
+<!--        position: relative;-->
+<!--        margin-top: 10%;-->
+<!--        left: 50%;-->
+<!--        top: 50%;-->
+<!--        transform: translate(-50%, -50%);-->
+<!--        border-collapse: collapse;-->
+<!--        width: 85%;-->
+<!--        height: 200px;-->
+<!--        border: 1px solid #f5ca33;-->
+<!--        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);-->
+<!--    }-->
+
+<!--    tr {-->
+<!--        transition: all .2s ease-in;-->
+<!--        cursor: pointer;-->
+<!--    }-->
+
+<!--    th, td {-->
+<!--        padding: 12px;-->
+<!--        text-align: left;-->
+<!--        border-bottom: 1px solid #ddd;-->
+<!--    }-->
+
+<!--    #header {-->
+<!--        /*background-color: #f3bd01;*/-->
+<!--        color: #0c2b4b;-->
+<!--    }-->
+
+<!--    h1 {-->
+<!--        font-weight: 600;-->
+<!--        text-align: center;-->
+<!--        background-color: #f3bd01;-->
+<!--        color: #fff;-->
+<!--        padding: 10px 0px;-->
+<!--    }-->
+
+<!--    h3 {-->
+<!--        margin-right: 30%;-->
+<!--        margin-left: 30%;-->
+<!--        margin-top: 5%;-->
+<!--        font-weight: 600;-->
+<!--        text-align: center;-->
+<!--        /*background-color: #f3bd01;*/-->
+<!--        color: #0c2b4b;-->
+<!--        padding: 10px 0px;-->
+<!--    }-->
+
+<!--    /*tr:hover {*/-->
+<!--    /*    background-color: #f5f5f5;*/-->
+<!--    /*    transform: scale(1.02);*/-->
+<!--    /*    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);*/-->
+
+<!--    /*}*/-->
+
+
+<!--    @media only screen and (max-width: 991px) {-->
+<!--        table {-->
+<!--            width: 90%;-->
+<!--            box-sizing: border-box;-->
+<!--            margin-top: 200px;-->
+<!--        }-->
+
+
+<!--        .table-title {-->
+<!--            position: relative;-->
+<!--            margin-top: 5%;-->
+<!--            padding-top: 5%;-->
+<!--        }-->
+
+<!--    }-->
+
+<!--</style>-->
 <style>
     body {
         padding: 0;
@@ -53,7 +134,7 @@
         border-collapse: collapse;
         width: 85%;
         height: 200px;
-        border: 1px solid #f5ca33;
+        /*border: 1px solid #f5ca33;*/
         box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
     }
 
@@ -81,24 +162,11 @@
         padding: 10px 0px;
     }
 
-    h3 {
-        margin-right: 30%;
-        margin-left: 30%;
-        margin-top: 5%;
-        font-weight: 600;
-        text-align: center;
-        background-color: #f3bd01;
-        color: #fff;
-        padding: 10px 0px;
-    }
-
     /*tr:hover {*/
     /*    background-color: #f5f5f5;*/
     /*    transform: scale(1.02);*/
     /*    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);*/
-
     /*}*/
-
 
     @media only screen and (max-width: 991px) {
         table {
@@ -115,8 +183,8 @@
         }
 
     }
-
 </style>
+
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid bg-dark text-light p-0">
@@ -152,57 +220,70 @@
 
 
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <a th:href="@{/account/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-            <a href="/feature" class="nav-item nav-link">Khóa học</a>
-            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+            <a th:href="@{/account}" class="nav-item nav-link active">Tài khoản</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link ">Bằng cấp</a>
+            <a th:href="@{/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/classes}" class="nav-item nav-link">Lớp học</a>
+            <a th:href="@{/contract}" class="nav-item nav-link">Hợp đồng</a>
         </div>
-        <a href="/account/login" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i
+        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
 <!-- Navbar End -->
-<div class="container-fluid">
-    <form th:action="@{/account}" method="get" class="navbar-form navbar-right">
-        <div class="d-flex justify-content-end">
-            <div class="input-group mb-3" style="width: 20%;margin-top: 20px">
-                <input id="search-input1" th:value="${keyword}" name="keyword" type="search"
-                       class="form-control"
-                       placeholder="Email" style="height: 38px"/>
-                <div class="mb-3 ml-2">
-                    <button id="search-button" type="submit" class="btn btn-primary">
+<!--content start-->
+<div class="container">
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Tài Khoản</h3>
+    <!--  find + add-->
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-form navbar-left mb-3">
+            <a href="/account/add"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
+        </div>
+        <form th:href="@{/account}" method="get">
+            <div class="d-flex justify-content-end">
+                <div class="input-group mb-6">
+                    <input type="search" th:value="${keyword}" name="keyword"
+                           class="form-control" placeholder="Account email"
+                           style="width: 33%;margin-bottom: 75px">
+                </div>
+                <div class="mb-6 ml-2">
+                    <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </nav>
 </div>
 <div class="container">
-    <h3>Danh Sách Account</h3>
     <div>
     </div>
     <table>
-        <tr id="header">
-            <th>STT</th>
-            <th>Email</th>
-            <th>Ngày Tạo</th>
-            <th>Vai Trò</th>
-            <th>Chức Năng</th>
-        </tr>
+       <thead>
+       <tr id="header">
+           <th>STT</th>
+           <th>Email</th>
+           <!--            <th>Ngày Tạo</th>-->
+           <th>Vai trò</th>
+           <th>Quản lý</th>
+       </tr>
+       </thead>
+        <tbody>
         <tr th:each="account,status:${accountDtoPage}">
             <td style="width: 10%" th:text="${status.count}"></td>
             <td style="width: 30%" th:text="${account.email}"></td>
-            <td style="width: 30%" th:text="${account.createDate}"></td>
+            <!--            <td style="width: 30%" th:text="${account.createDate}"></td>-->
             <td style="width: 30%">
                 <span th:switch="${account.roleName}">
                     <span th:case="'ROLE_ADMIN'" th:text="'Giám Đốc'"></span>
@@ -212,20 +293,21 @@
             </td>
             <td style="width: 20%">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-danger"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal"
-                        th:attr="onclick=|confirmDelete(${account.id},'${account.email}')|">
-                    <i class="fas fa-trash"></i>
+                <i type="button"
+                   data-bs-toggle="modal"
+                   data-bs-target="#exampleModal"
+                   th:attr="onclick=|confirmDelete(${account.id},'${account.email}')|"
+                   class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>
                 </button>
             </td>
         </tr>
+        </tbody>
     </table>
 </div>
 <!--   phan trang-->
 
 <div th:if="${accountDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" style="margin-top: -160px">
         <ul class="pagination justify-content-center mb-0">
             <li th:class="${!accountDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                 <a class="page-link"
