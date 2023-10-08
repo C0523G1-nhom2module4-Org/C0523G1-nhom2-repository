@@ -62,8 +62,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/account/create").permitAll();
         http.authorizeRequests().antMatchers("/account/confirm").permitAll();
         http.authorizeRequests().antMatchers("/account/confirm-code").permitAll();
-
-
+        //teacher
+        http.authorizeRequests().antMatchers("/teacher").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/teacherList").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/add").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/teacher/add").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/teacher/edit/{id}/").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/edit").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/edit/").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/delete").access("hasAnyRole('ROLE_AMDIN')");
+        //student
+        http.authorizeRequests().antMatchers("/student").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/student/").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
 
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
