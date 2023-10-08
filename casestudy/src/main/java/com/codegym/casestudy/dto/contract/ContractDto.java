@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class ContractDto implements Validator {
     private int id;
-//    private long fee;
+    private long fee;
     private String date;
     private Student student;
     private Qualification qualification;
