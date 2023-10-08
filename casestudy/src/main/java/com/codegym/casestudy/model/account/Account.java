@@ -8,30 +8,34 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "account_email")
+    @Column(name = "user_name")
     private String email;
     @Column(name = "account_password")
     private String password;
     @Column(name = "is_deleted")
-    private boolean isDelete;
+
+    private boolean isDeleted;
+
+
+
     @Column(name = "create_date")
     private String createDate;
 
     public Account() {
     }
 
-    public Account(int id, String email, String password, boolean isDelete) {
+    public Account(int id, String email, String password, boolean isDeleted) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.isDelete = isDelete;
+        this.isDeleted = isDeleted;
     }
 
-    public Account(int id, String email, String password, boolean isDelete, String createDate) {
+    public Account(int id, String email, String password, boolean isDeleted, String createDate) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.isDelete = isDelete;
+        this.isDeleted = isDeleted;
         this.createDate = createDate;
     }
 
@@ -59,12 +63,12 @@ public class Account {
         this.password = password;
     }
 
-    public boolean isDelete() {
-        return isDelete;
+    public boolean isDeleted() {
+        return isDeleted;
     }
 
-    public void setDelete(boolean delete) {
-        this.isDelete = delete;
+    public void setDeleted(boolean deleted) {
+        this.isDeleted = deleted;
     }
 
     public String getCreateDate() {

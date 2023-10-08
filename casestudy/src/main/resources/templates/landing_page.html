@@ -75,42 +75,63 @@
 
 
 <!-- Navbar Start -->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>
+        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>
-            <a href="/feature" class="nav-item nav-link">Khóa học</a>
-            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>
-            <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+            <a href="#" class="nav-item nav-link">Tài khoản</a>
+            <a href="#" class="nav-item nav-link">Học viên</a>
+            <a href="#" class="nav-item nav-link">Giáo viên</a>
+            <a href="#" class="nav-item nav-link">Lớp học</a>
+            <a href="#" class="nav-item nav-link">Hợp đồng</a>
         </div>
-        <div class="collapse navbar-collapse justify-content-end">
-            <div class="navbar-nav ms-auto text-light">
-                <div class="dropdown mx-2">
-                    <label for="user-container" class="text-dark"
-
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false"></label>
-                    <button class="btn btn-outline-light" style="border: none;"
-                            id="user-container"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        <i class="fa-solid fa-user" style="color: #000000;"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
-                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
+                class="fa fa-arrow-right ms-3"></i></a>
     </div>
 </nav>
+<!--<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">-->
+<!--    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">-->
+<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>-->
+<!--    </a>-->
+<!--    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--        <div class="navbar-nav ms-auto p-4 p-lg-0">-->
+<!--&lt;!&ndash;            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>&ndash;&gt;-->
+<!--            <a href="/account" class="nav-item nav-link">Tài Khoản</a>-->
+<!--            <a href="/teachers" class="nav-item nav-link">Giáo Viên</a>-->
+<!--            <a href="/student" class="nav-item nav-link">Học Sinh</a>-->
+<!--            <a href="/contracts" class="nav-item nav-link">Hợp Đồng</a>-->
+<!--        </div>-->
+<!--        <div class="collapse navbar-collapse justify-content-end">-->
+<!--            <div class="navbar-nav ms-auto text-light">-->
+<!--                <div class="dropdown mx-2">-->
+<!--                    <label for="user-container" class="text-dark"-->
+
+<!--                           data-bs-toggle="dropdown"-->
+<!--                           aria-expanded="false"></label>-->
+<!--                    <button class="btn btn-outline-light" style="border: none;"-->
+<!--                            id="user-container"-->
+<!--                            data-bs-toggle="dropdown"-->
+<!--                            aria-expanded="false">-->
+<!--                        <i class="fa-solid fa-user" style="color: #000000;"></i>-->
+<!--                    </button>-->
+<!--                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">-->
+<!--                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>-->
+<!--                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 <!-- Navbar End -->
 
 
