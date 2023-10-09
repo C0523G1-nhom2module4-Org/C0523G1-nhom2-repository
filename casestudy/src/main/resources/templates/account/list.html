@@ -223,7 +223,8 @@
 <nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
+        <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -232,31 +233,29 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link active">Tài khoản</a>
             <a th:href="@{/admin/qualification}" class="nav-item nav-link ">Bằng cấp</a>
-            <a th:href="@{/student}" class="nav-item nav-link">Học viên</a>
-            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
-            <a th:href="@{/classes}" class="nav-item nav-link">Lớp học</a>
-            <a th:href="@{/contract}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+            <a th:href="@{/admin/contract}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
-<!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
-<!--                class="fa fa-arrow-right ms-3"></i></a>-->
-    </div>
-    <div class="collapse navbar-collapse justify-content-end">
-        <div class="navbar-nav ms-auto text-light">
-            <div class="dropdown mx-2">
-                <label for="user-container" class="text-dark"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false"></label>
-                <button class="btn btn-outline-light" style="border: none;"
-                        id="user-container"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    <i class="fas fa-user" style="color: #000000;"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
-                    <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
-                </ul>
+        <div class="collapse navbar-collapse justify-content-end">
+            <div class="navbar-nav ms-auto text-light">
+                <div class="dropdown mx-2">
+                    <label for="user-container" class="text-dark"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"></label>
+                    <button class="btn btn-outline-light" style="border: none;"
+                            id="user-container"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <i class="fas fa-user" style="color: #000000;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -267,9 +266,9 @@
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Tài Khoản</h3>
     <!--  find + add-->
     <nav class="navbar navbar-inverse">
-<!--        <div class="navbar-form navbar-left mb-3">-->
-<!--            <a href="/account/add"><i class="fa-solid fa-square-plus fa-2xl"></i></a>-->
-<!--        </div>-->
+        <!--        <div class="navbar-form navbar-left mb-3">-->
+        <!--            <a href="/account/add"><i class="fa-solid fa-square-plus fa-2xl"></i></a>-->
+        <!--        </div>-->
         <form th:href="@{/account}" method="get" style="padding-left: 72.5%">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
@@ -290,15 +289,15 @@
     <div>
     </div>
     <table>
-       <thead>
-       <tr id="header">
-           <th>STT</th>
-           <th>Email</th>
-           <!--            <th>Ngày Tạo</th>-->
-           <th>Vai trò</th>
-           <th>Quản lý</th>
-       </tr>
-       </thead>
+        <thead>
+        <tr id="header">
+            <th>STT</th>
+            <th>Email</th>
+            <!--            <th>Ngày Tạo</th>-->
+            <th>Vai trò</th>
+            <th>Quản lý</th>
+        </tr>
+        </thead>
         <tbody>
         <tr th:each="account,status:${accountDtoPage}">
             <td style="width: 10%" th:text="${status.count}"></td>
