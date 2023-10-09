@@ -93,15 +93,17 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
             <a th:href="@{/admin/qualification}" class="nav-item nav-link ">Bằng cấp</a>
-            <a th:href="@{/student}" class="nav-item nav-link">Học viên</a>
-            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
-            <a th:href="@{/classes}" class="nav-item nav-link">Lớp học</a>
-            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+            <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link active">Phân công</a>
 
         </div>
-        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
-                class="fa fa-arrow-right ms-3"></i></a>
+<!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
+<!--                class="fa fa-arrow-right ms-3"></i></a>-->
+        <div th:replace="assignment-list::log-in-nav"></div>
+
     </div>
 </nav>
 <!--Navbar end-->

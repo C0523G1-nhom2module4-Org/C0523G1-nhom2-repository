@@ -390,8 +390,9 @@
             <a th:href="@{/admin/contracts}" class="nav-item nav-link active">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
-        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
-                class="fa fa-arrow-right ms-3"></i></a>
+<!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
+<!--                class="fa fa-arrow-right ms-3"></i></a>-->
+        <div th:replace="assignment-list::log-in-nav"></div>
     </div>
 </nav>
 <!--navbar management end-->
