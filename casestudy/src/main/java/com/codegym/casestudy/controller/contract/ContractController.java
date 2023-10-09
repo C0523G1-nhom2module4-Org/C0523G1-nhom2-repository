@@ -32,7 +32,6 @@ public class ContractController {
     @Autowired
     private IQualificationService qualificationService;
 
-
     @GetMapping("contracts")
     public String showListContract(@RequestParam(defaultValue = "0", required = false) int page,
                                    @RequestParam(defaultValue = "", required = false) String nameSearch,
@@ -91,10 +90,11 @@ public class ContractController {
                               RedirectAttributes redirectAttributes) {
         try {
             contractService.save(contract);
-            redirectAttributes.addFlashAttribute("mess", "Bạn đã đặt khóa học thành công!!");
+            redirectAttributes.addFlashAttribute("mess", "Bạn đã đăng ký khóa học thành công!!");
         } catch (IllegalArgumentException exception) {
-            redirectAttributes.addFlashAttribute("mess", "Vui lòng chọn lại !!!");
+            redirectAttributes.addFlashAttribute("mess", "Có lỗi xảy ra, vui lòng thử lại hoặc " +
+                    "liên hệ QTV để được giải đáp!!!");
         }
-        return "redirect:contracts";
+        return "redirect:/admin/contracts";
     }
 }
