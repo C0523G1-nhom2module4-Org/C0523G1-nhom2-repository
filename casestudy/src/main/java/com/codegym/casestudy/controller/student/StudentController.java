@@ -32,7 +32,7 @@ public class StudentController {
     @GetMapping("/student")
     public String showList(@RequestParam(defaultValue = "", required = false) String name, Model model,
                            @RequestParam(defaultValue = "0", required = false) int page) {
-        Pageable pageable = PageRequest.of(page, 5, Sort.by("student_name").ascending());
+        Pageable pageable = PageRequest.of(page, 5,Sort.by("student_name").ascending());
         Page<StudentDto> studentDtos = studentService.findAllStudent(pageable, name);
         model.addAttribute("studentDtos", studentDtos);
         model.addAttribute("name", name);
@@ -50,9 +50,11 @@ public class StudentController {
     @PostMapping("/student/add")
     public String add(@Valid @ModelAttribute ListStudentDto listStudentDto,
                       BindingResult bindingResult,
-                      RedirectAttributes redirectAttributes) {
+                      RedirectAttributes redirectAttributes, Model model) {
+        List<Classes> classesList = classesService.findAll();
         new ListStudentDto().validate(listStudentDto, bindingResult);
         if (bindingResult.hasErrors()) {
+            model.addAttribute("classes", classesList);
             return "/student/add";
         }
         Student student = new Student();
@@ -96,4 +98,12 @@ public class StudentController {
         redirectAttributes.addFlashAttribute("mess", "Sửa Thành Công");
         return "redirect:/admin/student";
     }
+
+    @GetMapping("/student/student-detail/{studentId}")
+    public String studentDetail(@PathVariable(name = "studentId") int studentId, Model model){
+        Student student = this.studentService.findById(studentId);
+        model.addAttribute("student",student);
+        return "/student/student-detail";
+    }
+
 }

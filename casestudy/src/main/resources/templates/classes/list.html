@@ -118,8 +118,7 @@
 
 <!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5"><!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -161,9 +160,9 @@
 <!--content start-->
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Lớp Học</h3>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse" style="margin-right: 65px">
         <div class=" navbar-form navbar-left mb-3">
-            <a th:href="@{/admin/classes/add}">
+            <a th:href="@{/admin/classes/add}"style="margin-left: 65px">
                 <button title="Thêm mới lớp sinh"
                         class="btn btn-primary">
                     <i class="fa-solid fa-plus"></i>
@@ -183,14 +182,14 @@
             </div>
         </form>
     </nav>
-    <table class="table" style="margin-top: 10%">
+    <table class="table" style="margin-top: 12%;width: 90%">
         <thead>
         <tr id="header" >
             <th>STT</th>
             <th>Tên Lớp</th>
             <th>Ngày Bắt Đầu</th>
             <th>Ngày Kết Thúc</th>
-            <th colspan="2" style="text-align: center">Quản Lý</th>
+            <th colspan="2">Quản Lý</th>
         </tr>
         </thead>
         <tbody>
@@ -201,12 +200,12 @@
             <td style="width: 25%" th:text="${cla.startDate}" class="birthday-cell"></td>
             <td style="width: 25%" th:text="${cla.endDate}" class="birthday-cell"></td>
 
-            <td style="width: 14%">
+            <td style="width: 5%">
                 <a th:href="@{/admin/classes/edit/{id}(id=${cla.getId()})}">
                     <i class="fas fa-edit fa-lg"  style="color:#0C2B4B"></i>
                 </a>
             </td>
-            <td style="width: 14%">
+            <td style="width: 5%">
                 <a th:href="@{/admin/classes/class-detail/__${cla.getId()}__}">
                     <i class="fas fa-info-circle fa-lg"  style="color:#0C2B4B"></i>
                 </a>
@@ -218,8 +217,8 @@
     </table>
     <!--    phan trang start-->
     <div th:if="${classList.totalPages>1}" class="col-md-12 mb-4 mt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mb-0">
+        <nav aria-label="Page navigation example" style="margin-top: -100px">
+            <ul class="pagination justify-content-center mb-0" >
                 <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
                        th:href="@{/admin//classes(page=0,name=${name})}">

@@ -114,8 +114,7 @@
 
 <!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
         <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
@@ -158,9 +157,11 @@
 <!--content start-->
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Học Viên</h3>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse" style="margin-right: 130px">
         <div class="navbar-form navbar-left mb-3">
-            <a th:href="@{/admin/student/add}"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
+            <a th:href="@{/admin/student/add}" style="margin-left: 130px">
+                <i class="fa-solid fa-square-plus fa-2xl"></i>
+            </a>
         </div>
         <form th:href="@{/admin/student}" method="get">
             <div class="d-flex justify-content-end">
@@ -177,98 +178,96 @@
             </div>
         </form>
     </nav>
-    <table class="table" style="margin-top: 20%">
+    <table class="table" style="margin-top: 12%;width: 80%" >
         <thead>
         <tr id="header">
             <th>STT</th>
             <th>Tên học viên</th>
             <th>Giới tính</th>
-            <th>CMND</th>
-            <th>Điện thoại</th>
-            <th>Ngày sinh</th>
-            <th>Điểm</th>
             <th>Lớp</th>
-            <th>Địa chỉ</th>
-            <th colspan="2" style="text-align: center">Quản lý</th>
+            <th>Quản lý</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="student, loop : ${studentDtos}">
             <th style="width: 5%" th:text="${loop.count}"></th>
-            <td style="width: 15%" th:text="${student.getStudentName()}"></td>
-            <td style="width: 7%">
+            <td style="width: 10%" th:text="${student.getStudentName()}"></td>
+            <td style="width: 10%">
                 <span th:if="${student.getGender() == 0}">Nam</span>
                 <span th:if="${student.getGender() == 1} ">Nữ</span>
                 <span th:if="${student.getGender() == 2} ">LGBT</span>
             </td>
-            <td style="width: 9%;" th:text="${student.getIdentity()}"></td>
-            <td style="width: 9%;" th:text="${student.getPhone()}"></td>
-            <td style="width: 9%;" th:text="${student.getBirthday()}" class="birthday-cell"></td>
-            <td style="width: 5%;" th:text="${student.getGraduatePoint()}"></td>
             <td style="width: 10%;" th:text="${student.getClassName()}"></td>
-            <td style="width: 15%;" th:text="${student.getAddress()}"></td>
-            <td style="width: 6%;">
+            <td style="width: 10%;">
                 <a th:href="@{/admin/student/edit/(id=${student.getId()})}">
                     <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
-            </td>
-            <td style="width: 6%">
+                <a th:href="@{/admin/student/student-detail/__${student.getId()}__}">
+                    <i class="fas fa-info-circle fa-lg"  style="color:#0C2B4B"></i>
+                </a>
                 <i data-bs-toggle="modal"
                    data-bs-target="#exampleModal"
                    th:attr="onclick=|confirmDelete('${student.id}','${student.studentName}')|" type="button"
                    class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>
-            </td>
+<!--            <td style="width: 14%">-->
+<!--                -->
+<!--            </td>-->
+<!--            <td style="width: 20%">-->
+<!--                &lt;!&ndash;            <td style="width: 6%">&ndash;&gt;-->
+<!--                -->
+<!--            </td>-->
         </tr>
         </tbody>
     </table>
-    <!--    phan trang start-->
-
-    <div style="padding-bottom: 5%;margin-top: 100%" th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/student(page=0,studentName=${name})}">
-                        <small>
-                            <i class="fa-solid fa-backward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/student(page=${(studentDtos.number)-1},studentName=${name})}">
-                        <small>
-                            <i class="fa-solid fa-backward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">
-                        <span th:text="${studentDtos.number +1}"></span>/<span
-                            th:text="${studentDtos.totalPages}"></span>
-                    </a>
-                </li>
-                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/student(page=${studentDtos.number+1},studentName=${name})}">
-                        <small>
-                            <i class="fa-solid fa-forward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/student(page=${(studentDtos.totalPages)-1},studentName=${name})}">
-                        <small>
-                            <i class="fa-solid fa-forward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <!--    phan trang end-->
 </div>
+<!--    phan trang start-->
+
+<div style="padding-bottom: 5%;margin-top: 100%" th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
+    <nav aria-label="Page navigation example" style="margin-top: -100px">
+        <ul class="pagination justify-content-center mb-0">
+            <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/student(page=0,studentName=${name})}">
+                    <small>
+                        <i class="fa-solid fa-backward-fast"></i>
+                    </small>
+                </a>
+            </li>
+            <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/student(page=${(studentDtos.number)-1},studentName=${name})}">
+                    <small>
+                        <i class="fa-solid fa-backward-step"></i>
+                    </small>
+                </a>
+            </li>
+            <li class="page-item active">
+                <a href="#" class="page-link">
+                    <span th:text="${studentDtos.number +1}"></span>/<span
+                        th:text="${studentDtos.totalPages}"></span>
+                </a>
+            </li>
+            <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/student(page=${studentDtos.number+1},studentName=${name})}">
+                    <small>
+                        <i class="fa-solid fa-forward-step"></i>
+                    </small>
+                </a>
+            </li>
+            <li th:class="${!studentDtos.hasNext()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/student(page=${(studentDtos.totalPages)-1},studentName=${name})}">
+                    <small>
+                        <i class="fa-solid fa-forward-fast"></i>
+                    </small>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--    phan trang end-->
+<!---->
 <!--content end-->
 
 
@@ -334,7 +333,6 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
