@@ -109,6 +109,7 @@
     <div class="bg-primary text-center p-5">
         <h1 class="mb-4">Thêm mới phân công</h1>
         <form th:object="${assignmentDto}" method="POST" th:action="@{/admin/assignment/add}">
+            <input type="hidden" th:field="*{id}">
             <div class="row g-3">
                 <div class="col-sm-6">
                     <div class="form-floating">
@@ -128,25 +129,26 @@
                         <label for="classes">Giáo viên</label>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-floating">
-                        <input th:field="*{dayStart}" type="date" class="form-control border-0" id="dayStart"
-                               placeholder="Ngày bắt đầu" required>
-                        <small style="color:red;" th:if="${#fields.hasErrors('dayStart')}"
-                               th:errors="*{dayStart}"></small>
-                        <label for="dayStart">Ngày bắt đầu</label>
-                    </div>
-                </div>
-                <!--                phone-->
-                <div class="col-sm-6">
-                    <div class="form-floating">
-                        <input th:field="*{dayEnd}" type="date" class="form-control border-0" id="dayEnd"
-                               placeholder="Ngày kết thúc">
-                        <small style="color:red;" th:if="${#fields.hasErrors('dayEnd')}"
-                               th:errors="*{dayEnd}"></small>
-                        <label for="dayEnd">Ngày kết thúc</label>
-                    </div>
-                </div>
+                <!--                day start-->
+                <!--                <div class="col-sm-6">-->
+                <!--                    <div class="form-floating">-->
+                <!--                        <input th:field="*{dayStart}" type="date" class="form-control border-0" id="dayStart"-->
+                <!--                               placeholder="Ngày bắt đầu" required>-->
+                <!--                        <small style="color:red;" th:if="${#fields.hasErrors('dayStart')}"-->
+                <!--                               th:errors="*{dayStart}"></small>-->
+                <!--                        <label for="dayStart">Ngày bắt đầu</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                day end-->
+                <!--                <div class="col-sm-6">-->
+                <!--                    <div class="form-floating">-->
+                <!--                        <input th:field="*{dayEnd}" type="date" class="form-control border-0" id="dayEnd"-->
+                <!--                               placeholder="Ngày kết thúc">-->
+                <!--                        <small style="color:red;" th:if="${#fields.hasErrors('dayEnd')}"-->
+                <!--                               th:errors="*{dayEnd}"></small>-->
+                <!--                        <label for="dayEnd">Ngày kết thúc</label>-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <div class="col-6">
                     <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/assignment/back}">Hủy
                         bỏ</a></button>

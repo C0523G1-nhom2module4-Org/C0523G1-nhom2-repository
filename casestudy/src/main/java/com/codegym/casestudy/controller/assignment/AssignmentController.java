@@ -53,8 +53,8 @@ public class AssignmentController {
 
     @GetMapping("/add")
     public String showAssignmentAddForm(Model model) {
-        List<Classes> classList = this.classesService.findAll();
-        List<Teacher> teacherList = this.teacherService.findAll();
+        List<Classes> classList = this.assignmentService.findAllClassAvailable();
+        List<Teacher> teacherList = this.assignmentService.findAllTeacherAvailable();
         AssignmentDto assignmentDto = new AssignmentDto();
 
         model.addAttribute("classList", classList);

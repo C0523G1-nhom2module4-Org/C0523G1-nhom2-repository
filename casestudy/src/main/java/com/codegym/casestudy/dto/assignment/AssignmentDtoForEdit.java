@@ -15,6 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssignmentDtoForEdit {
+    private Long id;
     private LocalDate dayStart;
     private LocalDate dayEnd;
     private Classes classes;
