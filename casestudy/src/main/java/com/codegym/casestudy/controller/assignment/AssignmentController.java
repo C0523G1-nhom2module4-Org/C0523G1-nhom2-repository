@@ -8,7 +8,6 @@ import com.codegym.casestudy.model.teacher.Teacher;
 import com.codegym.casestudy.service.assignment.IAssignmentService;
 import com.codegym.casestudy.service.classes.IClassesService;
 import com.codegym.casestudy.service.teacher.ITeacherService;
-import com.codegym.casestudy.utilities.DayTimeFormat;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,7 +19,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -39,7 +37,7 @@ public class AssignmentController {
     public String assignmentList(@RequestParam(defaultValue = "0", required = false) Integer page,
                                  @RequestParam(defaultValue = "", required = false) String searchName,
                                  Model model) {
-        Pageable pageable = PageRequest.of(page, 5, Sort.by("id").ascending());
+        Pageable pageable = PageRequest.of(page, 5);
         Page<Assignment> assignments = this.assignmentService.findAll(pageable, searchName);
         model.addAttribute("searchName", searchName);
         model.addAttribute("page", page);
