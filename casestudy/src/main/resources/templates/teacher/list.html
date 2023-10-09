@@ -22,14 +22,14 @@
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -128,10 +128,11 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
             <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/student}" class="nav-item nav-link ">Học viên</a>
-            <a th:href="@{/teacher}" class="nav-item nav-link active">Giáo viên</a>
-            <a th:href="@{/classes}" class="nav-item nav-link ">Lớp học</a>
+            <a th:href="@{/admin/student}" class="nav-item nav-link ">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link active">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp học</a>
             <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
         <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
@@ -144,14 +145,14 @@
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Giảng Viên</h3>
     <nav class="navbar navbar-inverse">
         <div class=" navbar-form navbar-left mb-3">
-            <a href="/teacher/add">
+            <a th:href="@{/admin/teacher/add}">
                 <button title="Thêm mới học sinh"
                         class="btn btn-primary">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             </a>
         </div>
-        <form action="/teacher" method="get">
+        <form th:href="@{/admin/teacher}" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
                     <input id="search-input1" th:value="${name}" name="name" type="search"
@@ -188,12 +189,12 @@
                 <span th:if="${teacher.getGender() == 2} ">LGBT</span>
             </td>
             <td th:text="${teacher.getIdentity()}"></td>
-            <td th:text="${teacher.getBirthday()}"></td>
+            <td th:text="${teacher.getBirthday()}" class="birthday-cell"></td>
 <!--            <td th:text="${teacher.getSalary()}"></td>-->
             <td th:text="${teacher.getPhone()}"></td>
             <td th:text="${teacher.getAddress()}"></td>
             <td>
-                <a th:href="@{/teacher/edit/{id}(id=${teacher.getId()})}">
+                <a th:href="@{/admin/teacher/edit/{id}(id=${teacher.getId()})}">
                     <i class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
@@ -213,7 +214,7 @@
             <ul class="pagination justify-content-center mb-0">
                 <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/teacher(page=0,searchName=${searchName})}">
+                       th:href="@{/admin/teacher(page=0,searchName=${name})}">
                         <small>
                             <i class="fa-solid fa-backward-fast"></i>
                         </small>
@@ -221,7 +222,7 @@
                 </li>
                 <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/teacher(page=${(teacherDtoPage.number)-1},searchName=${searchName})}">
+                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)-1},searchName=${name})}">
                         <small>
                             <i class="fa-solid fa-backward-step"></i>
                         </small>
@@ -235,7 +236,7 @@
                 </li>
                 <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/teacher(page=${(teacherDtoPage.number)+1},searchName=${searchName})}">
+                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)+1},searchName=${name})}">
                         <small>
                             <i class="fa-solid fa-forward-step"></i>
                         </small>
@@ -243,7 +244,7 @@
                 </li>
                 <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${searchName})}">
+                       th:href="@{/admin/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${name})}">
                         <small>
                             <i class="fa-solid fa-forward-fast"></i>
                         </small>
@@ -264,7 +265,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form th:action="@{/teacher/delete}" method="get">
+            <form th:action="@{/admin/teacher/delete}" method="get">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><b>Thông báo</b></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -305,6 +306,15 @@
     }
 </script>
 
+
+<script>
+    let birthdayCells = document.getElementsByClassName("birthday-cell");
+    for (let i = 0; i < birthdayCells.length; i++) {
+        let birthday = birthdayCells[i].textContent;
+        let formattedBirthday = birthday.split("-").reverse().join("-");
+        birthdayCells[i].textContent = formattedBirthday;
+    }
+</script>
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
@@ -317,9 +327,9 @@
     }
 </script>
 <div style="align-content: center">
-    <a th:if="${teacherDtoPage.hasPrevious()}" th:href="@{/teacher(page=${teacherDtoPage.number - 1})}">Trước</a>
+    <a th:if="${teacherDtoPage.hasPrevious()}" th:href="@{/admin/teacher(page=${teacherDtoPage.number - 1})}">Trước</a>
     <span th:text="${teacherDtoPage.number + 1}"></span> / <span th:text="${teacherDtoPage.totalPages}"></span>
-    <a th:if="${teacherDtoPage.hasNext()}" th:href="@{/teacher(page=${teacherDtoPage.number + 1})}">Sau</a>
+    <a th:if="${teacherDtoPage.hasNext()}" th:href="@{/admin/teacher(page=${teacherDtoPage.number + 1})}">Sau</a>
 </div>
 </div>
 
