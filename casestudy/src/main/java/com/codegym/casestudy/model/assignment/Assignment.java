@@ -31,4 +31,11 @@ public class Assignment {
     @OneToOne()
     @JoinColumn(name = "class_id", referencedColumnName = "id", nullable = false)
     private Classes classes;
+
+    public Assignment(String dateStart, String dateEnd, Teacher teacher, Classes classes) {
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.teacher = teacher;
+        this.classes = classes;
+    }
 }

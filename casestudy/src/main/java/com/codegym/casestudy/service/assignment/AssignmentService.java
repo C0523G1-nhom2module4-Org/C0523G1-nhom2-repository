@@ -16,7 +16,7 @@ public class AssignmentService implements IAssignmentService {
 
     @Override
     public Page<Assignment> findAll(Pageable pageable, String searchName) {
-        return this.assignmentRepository.findAllBySearch(pageable, searchName);
+        return this.assignmentRepository.findAllBySearch(pageable, "%" + searchName + "%");
     }
 
     @Override
