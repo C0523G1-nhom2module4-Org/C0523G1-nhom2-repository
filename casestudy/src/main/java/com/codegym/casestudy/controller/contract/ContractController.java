@@ -32,8 +32,7 @@ public class ContractController {
     @Autowired
     private IQualificationService qualificationService;
 
-
-    @GetMapping("/contracts")
+    @GetMapping("contracts")
     public String showListContract(@RequestParam(defaultValue = "0", required = false) int page,
                                    @RequestParam(defaultValue = "", required = false) String nameSearch,
                                    Model model) {

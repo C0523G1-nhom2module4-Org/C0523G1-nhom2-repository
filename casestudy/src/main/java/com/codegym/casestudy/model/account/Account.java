@@ -13,11 +13,7 @@ public class Account {
     @Column(name = "account_password")
     private String password;
     @Column(name = "is_deleted")
-
     private boolean isDeleted;
-
-
-
     @Column(name = "create_date")
     private String createDate;
 

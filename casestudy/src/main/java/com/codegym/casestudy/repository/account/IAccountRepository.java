@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface IAccountRepository extends JpaRepository<Account,Integer> {
-    @Query(value = "select account_id as id, user_name as email,create_date as date, role_name as roleName " +
+    @Query(value = "select account_id as id, user_name as email,create_date, role_name as roleName " +
             "from accounts " +
             "join user_roles on accounts.id = user_roles.account_id " +
             "join roles on user_roles.role_id = roles.id " +
@@ -38,4 +38,14 @@ public interface IAccountRepository extends JpaRepository<Account,Integer> {
     @Query(value = "call add_account(:p_email, :p_password,:p_create_date)", nativeQuery = true)
 //    @Query(value = "insert into accounts (account_email,account_password,create_date,) values (:email,:pass,:date)",nativeQuery = true)
     void addAccount(@Param("p_email") String email, @Param("p_password") String newPass, @Param("p_create_date") String createDate);
+
+    @Query(value = "call add_user(:p_email,:p_password,:p_role)",nativeQuery = true)
+    void createAccount(@Param("p_email") String email, @Param("p_password") String newPass, @Param("p_role") int role);
+
+
+    @Query(value = "update user_roles \n" +
+            "join accounts on accounts.id = user_roles.account_id\n" +
+            "set user_roles.role_id = 2\n" +
+            "where accounts.id = id",nativeQuery = true)
+    void changeRole(@Param("id") int id, Account account);
 }

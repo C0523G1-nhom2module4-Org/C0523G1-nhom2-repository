@@ -24,14 +24,14 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/classes")
+@RequestMapping("/admin")
 public class ClassesController {
     @Autowired
     private IClassesService classesService;
     @Autowired
     private IStudentService studentService;
 
-    @GetMapping("")
+    @GetMapping("/classes")
     public String showClass(@RequestParam(defaultValue = "", required = false) String name,
                             Model model, @RequestParam(defaultValue = "0", required = false) int page) {
         Pageable pageable = PageRequest.of(page, 5);
@@ -41,32 +41,32 @@ public class ClassesController {
         return "/classes/list";
     }
 
-    @GetMapping("/listStudent")
-    public String showStudent(
-            @RequestParam(defaultValue = "0", required = false) int page,
-            @RequestParam(defaultValue = "-1", required = false) int id, Model model) {
-        Pageable pageable = PageRequest.of(page, 5);
-        Page<ListStudentDto> studentDtoPage = classesService.findStudent(pageable, id);
-        List<ListClassesDto> classesDto = classesService.findAllClass(id);
-        model.addAttribute("classesDto", classesDto);
-        model.addAttribute("studentDtoPage", studentDtoPage);
-        model.addAttribute("id", id);
-        return "/classes/newDetail";
-    }
+//    @GetMapping("/listStudent")
+//    public String showStudent(=
+//            @RequestParam(defaultValue = "0", required = false) int page,
+//            @RequestParam(defaultValue = "-1", required = false) int id, Model model) {
+//        Pageable pageable = PageRequest.of(page, 5);
+//        Page<ListStudentDto> studentDtoPage = classesService.findStudent(pageable, id);
+//        List<ListClassesDto> classesDto = classesService.findAllClass(id);
+//        model.addAttribute("classesDto", classesDto);
+//        model.addAttribute("studentDtoPage", studentDtoPage);
+//        model.addAttribute("id", id);
+//        return "/classes/newDetail";
+//    }
 
-    @ModelAttribute("classesList")
-    public List<Classes> list() {
-        return classesService.findAll();
-    }
+//    @ModelAttribute("classesList")
+//    public List<Classes> list() {
+//        return classesService.findAll();
+//    }
 
-    @GetMapping("/add")
+    @GetMapping("/classes/add")
     public String showAdd(Model model) {
         ClassesDto classDto = new ClassesDto();
         model.addAttribute("classDto", classDto);
         return "/classes/add";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/classes/add")
     public String add(@Valid @ModelAttribute("classDto") ClassesDto classDto,
                       BindingResult bindingResult,
                       RedirectAttributes redirectAttributes) {
@@ -78,10 +78,10 @@ public class ClassesController {
         BeanUtils.copyProperties(classDto, classes);
         classesService.add(classes);
         redirectAttributes.addFlashAttribute("mess", "thêm thành công");
-        return "redirect:/classes";
+        return "redirect:/admin/classes";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/classes/edit/{id}")
     public String showEdit(@PathVariable int id, Model model) {
         Classes classes = classesService.findById(id);
         ClassesDto classesDto = new ClassesDto();
@@ -90,7 +90,7 @@ public class ClassesController {
         return "/classes/edit";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/classes/edit")
     public String update(@Valid @ModelAttribute ClassesDto classesDto,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
@@ -102,24 +102,23 @@ public class ClassesController {
         }
         Classes classes = new Classes();
         BeanUtils.copyProperties(classesDto, classes);
-//        classes.setDeleted(false);
         classesService.edit(classes);
         redirectAttributes.addFlashAttribute("message", "Sửa thành công");
-        return "redirect:/classes";
+        return "redirect:/admin/classes";
     }
 
 
-    @PostMapping("/delete")
+    @PostMapping("/classes/delete")
     public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {
         Classes classes = classesService.findById(id);
         classesService.delete(classes);
         redirectAttributes.addFlashAttribute("mess", "xoá thành công");
-        return "redirect:/classes";
+        return "redirect:/admin/classes";
     }
 
 
     // thien
-    @GetMapping("/class-detail/{classId}")
+    @GetMapping("/classes/class-detail/{classId}")
     public String classDetail(@PathVariable(name = "classId") int classId,
                               Model model) {
         Classes classes = this.classesService.findById(classId);
@@ -129,4 +128,17 @@ public class ClassesController {
         model.addAttribute("classes",classes);
         return "/classes/class-detail";
     }
+
+
+//    @GetMapping("/classes/class-detail/{classId}")
+//    public String classDetail(@PathVariable(name = "classId") int classId, Model model,
+//                              @RequestParam(defaultValue = "0", required = false) int page) {
+//        Classes classes = this.classesService.findById(classId);
+//        String className = classes.getClassName();
+//        Pageable pageable = PageRequest.of(page, 5);
+//        Page<Classes> studentPage = this.classesService.findAllByClassName(pageable, className);
+//        model.addAttribute("studentPage", studentPage);
+//        model.addAttribute("classes", classes);
+//        return "classes/class-detail";
+//    }
 }

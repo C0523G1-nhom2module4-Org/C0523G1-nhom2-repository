@@ -1,6 +1,7 @@
 package com.codegym.casestudy.model.classes;
 
 
+import com.codegym.casestudy.model.assignment.Assignment;
 import com.codegym.casestudy.model.student.Student;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,4 +35,6 @@ public class Classes {
 
     @OneToMany(mappedBy = "classes")
     private Set<Student> studentSet;
+
+
 }

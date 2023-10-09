@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
+
     <!-- Libraries Stylesheet -->
     <link href="/lib/animate/animate.min.css" rel="stylesheet">
     <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -30,6 +31,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/table.css">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -47,7 +49,7 @@
 
         table {
             position: relative;
-            margin-top: 20%;
+            margin-top: 10%;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
@@ -105,7 +107,6 @@
         }
     </style>
 </head>
-
 <body>
 <!--spinner start-->
 <div th:replace="index::spinner"></div>
@@ -116,10 +117,11 @@
 <!--topbar end-->
 
 <!--navbar management start-->
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <a th:href="@{/account/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
+        <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -128,11 +130,11 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
             <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/admin/student}" class="nav-item nav-link ">Học viên</a>
-            <a th:href="@{/admin/teacher}" class="nav-item nav-link active">Giáo viên</a>
-            <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp học</a>
+            <a th:href="@{/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/classes}" class="nav-item nav-link">Lớp học</a>
             <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
-            <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:href="@{/admin/assignment}" class="nav-item nav-link active">Phân công</a>
         </div>
         <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
@@ -142,87 +144,76 @@
 
 <!--content start-->
 <div class="container">
-    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Giảng Viên</h3>
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Phân Công Đào Tạo</h3>
+    <h4 th:if="${assignments.isEmpty()}">Hiện tại chưa có phân công nào</h4>
+    <h5 th:if="${addSuccess != null}" th:text="${addSuccess}"></h5>
     <nav class="navbar navbar-inverse">
-        <div class=" navbar-form navbar-left mb-3">
-            <a th:href="@{/admin/teacher/add}">
-                <button title="Thêm mới học sinh"
-                        class="btn btn-primary">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </a>
+        <div class="navbar-form navbar-left mb-3">
+            <a th:href="@{/admin/assignment/add}"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
         </div>
-        <form th:href="@{/admin/teacher}" method="get">
+        <form th:action="@{/admin/assignment}" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
-                    <input id="search-input1" th:value="${name}" name="name" type="search"
-                           class="form-control" placeholder="Tên giảng viên"/>
+                    <input type="search" th:value="${searchName}" name="searchName"
+                           class="form-control" placeholder="Tìm kiếm"
+                           style="width: 33%;">
                 </div>
                 <div class="mb-6 ml-2">
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
-
             </div>
         </form>
     </nav>
-    <table class="table" style="margin-top: 10%">
+    <table class="table">
         <thead>
         <tr id="header">
             <th>STT</th>
-            <th>Tên</th>
-            <th>Giới tính</th>
-            <th>CMND</th>
-            <th>Ngày sinh</th>
-<!--            <th>Lương</th>-->
-            <th>SĐT</th>
-            <th>Địa chỉ</th>
-            <th>Quản lý</th>
+            <th>Lớp</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+            <th>Giáo viên</th>
+            <th colspan="2" style="text-align: center">Quản lý</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="teacher,loop : ${teacherDtoPage}">
-            <td th:text="${loop.count}"></td>
-            <td th:text="${teacher.getName()}"></td>
-            <td style="width: 5%">
-                <span th:if="${teacher.getGender() == 0}">Nam</span>
-                <span th:if="${teacher.getGender() == 1} ">Nữ</span>
-                <span th:if="${teacher.getGender() == 2} ">LGBT</span>
-            </td>
-            <td th:text="${teacher.getIdentity()}"></td>
-            <td th:text="${teacher.getBirthday()}" class="birthday-cell"></td>
-<!--            <td th:text="${teacher.getSalary()}"></td>-->
-            <td th:text="${teacher.getPhone()}"></td>
-            <td th:text="${teacher.getAddress()}"></td>
-            <td>
-                <a th:href="@{/admin/teacher/edit/{id}(id=${teacher.getId()})}">
+        <tr th:each="assignment, loop: ${assignments}">
+            <td th:text="${loop.count}" style="width: 15%"></td>
+            <td th:text="${assignment.getClasses().getClassName()}" style="width: 15%"></td>
+            <td th:text="${assignment.getClasses().getStartDate()}" class="birthday-cell" style="width: 15%"></td>
+            <td th:text="${assignment.getClasses().getEndDate()}" class="birthday-cell" style="width: 15%"></td>
+            <td th:text="${assignment.getTeacher().getName()}" style="width: 15%"></td>
+            <td style="width: 7%">
+                <a th:href="@{/admin/assignment/edit/__${assignment.getId()}__}">
                     <i class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
-            <td>
-                <i type="button"
-                   data-bs-toggle="modal"
-                   data-bs-target="#exampleModal"
-                   th:attr="onclick=|confirmDelete(${teacher.id},'${teacher.getName()}')|"
-                   class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>
+            <td style="width: 7%">
+                <i class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"
+                   th:attr="onclick=|sendInformationForDelete('${assignment.getId()}','${assignment.getClasses().getClassName()}',
+                   '${assignment.getClasses().getStartDate()}', '${assignment.getClasses().getEndDate()}')|"
+                   type="button" data-bs-toggle="modal"
+                   data-bs-target="#deleteModal"></i>
             </td>
         </tr>
         </tbody>
     </table>
     <!--    phan trang start-->
-    <div th:if="${teacherDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
+    <div th:if="${assignments.totalPages>1}" class="col-md-12 mb-4 mt-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!assignments.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=0,searchName=${name})}">
+                       th:href="@{/admin/qualification(page=${assignments.number - 1} ,searchName = ${searchName})}">
                         <small>
                             <i class="fa-solid fa-backward-fast"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!assignments.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)-1},searchName=${name})}">
+                       th:href="@{/admin/qualification(page=${(assignments.number) - 1} ,searchName = ${searchName})}">
                         <small>
                             <i class="fa-solid fa-backward-step"></i>
                         </small>
@@ -230,21 +221,21 @@
                 </li>
                 <li class="page-item active">
                     <a href="#" class="page-link">
-                        <span th:text="${teacherDtoPage.number +1}"></span>/<span
-                            th:text="${teacherDtoPage.totalPages}"></span>
+                        <span th:text="${assignments.number +1}"></span>/<span
+                            th:text="${assignments.totalPages}"></span>
                     </a>
                 </li>
-                <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!assignments.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)+1},searchName=${name})}">
+                       th:href="@{/admin/assignment(page=${assignments.number+1},searchName=${searchName})}">
                         <small>
                             <i class="fa-solid fa-forward-step"></i>
                         </small>
                     </a>
                 </li>
-                <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+                <li th:class="${!assignments.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${name})}">
+                       th:href="@{/admin/qualification(page=${(assignments.totalPages)-1},searchName=${searchName})}">
                         <small>
                             <i class="fa-solid fa-forward-fast"></i>
                         </small>
@@ -262,18 +253,21 @@
 <!--modal information end-->
 
 <!--modal delete start-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form th:action="@{/admin/teacher/delete}" method="get">
+            <form th:action="@{/admin/assignment/delete}" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><b>Thông báo</b></h5>
+                    <h5 class="modal-title" id="deleteModalLabel"><b>Xóa dữ liệu bằng lái xe</b></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Bạn muốn xóa giảng viên
-                        <span id="teacherName"></span> không ???</p>
-                    <input type="text" hidden="hidden" name="idDelete" id="idDelete">
+                    <p>Bạn có chắc chắn muốn hủy phân công:
+                    <p><strong>Lớp: <span id="name"></span></strong></p>
+                    <p><strong>Ngày bắt đầu: <span id="start"></span></strong></p>
+                    <p><strong>Ngày kết thúc: <span id="end"></span></strong></p>
+                    </p>
+                    <input type="text" hidden="hidden" name="id" id="id">
                     <p style="color: red"><b>Lưu ý:</b> Hoạt động này không thể hoàn tác! </p>
                 </div>
                 <div class="modal-footer">
@@ -296,74 +290,34 @@
 
 
 <script>
-    function sendInfo(qualificationDescription) {
-        document.getElementById("qualificationDescription").innerText = qualificationDescription;
-    }
-
-    function sendInformationForDelete(qualificationId, qualificationName) {
-        document.getElementById("qualificationDeleteId").value = qualificationId;
-        document.getElementById("qualificationDeleteName").innerText = qualificationName;
+    function sendInformationForDelete(id, name, start, end) {
+        document.getElementById("id").value = id;
+        document.getElementById("name").innerText = name;
+        document.getElementById("start").innerText = start;
+        document.getElementById("end").innerText = end;
     }
 </script>
 
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/wow/wow.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
 <script>
     let birthdayCells = document.getElementsByClassName("birthday-cell");
     for (let i = 0; i < birthdayCells.length; i++) {
         let birthday = birthdayCells[i].textContent;
         let formattedBirthday = birthday.split("-").reverse().join("-");
         birthdayCells[i].textContent = formattedBirthday;
-    }
-</script>
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-</div>
-<script th:if="${message!=null}">
-    // toast
-    window.onload = function () {
-        let myAlert = document.getElementById('liveToast');//select id of toast
-        let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-        bsAlert.show();//show it
-    }
-</script>
-<div style="align-content: center">
-    <a th:if="${teacherDtoPage.hasPrevious()}" th:href="@{/admin/teacher(page=${teacherDtoPage.number - 1})}">Trước</a>
-    <span th:text="${teacherDtoPage.number + 1}"></span> / <span th:text="${teacherDtoPage.totalPages}"></span>
-    <a th:if="${teacherDtoPage.hasNext()}" th:href="@{/admin/teacher(page=${teacherDtoPage.number + 1})}">Sau</a>
-</div>
-</div>
-
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="../lib/easing/easing.min.js"></script>
-<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../lib/isotope/isotope.pkgd.min.js"></script>
-<script src="../lib/lightbox/js/lightbox.min.js"></script>
-<!-- Contact Javascript File -->
-<script src="../mail/jqBootstrapValidation.min.js"></script>
-<script src="../mail/contact.js"></script>
-<!-- Template Javascript -->
-<script src="../js/main.js"></script>
-<script th:src="@{/js/main.js}"></script>
-<!--offline-->
-<script src="../../static/mail/contact.js"></script>
-<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
-<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
-<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
-<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../../static/lib/easing/easing.min.js"></script>
-<script src="../../static/js/main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-<!--js-->
-<script>
-    //delete modal
-    function confirmDelete(id, name) {
-        document.getElementById("teacherName").innerText = name;
-        document.getElementById("idDelete").value = id;
     }
 </script>
 </body>
