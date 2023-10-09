@@ -62,24 +62,57 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/account/confirm").permitAll();
         http.authorizeRequests().antMatchers("/account/confirm-code").permitAll();
         //teacher
-        http.authorizeRequests().antMatchers("/teacher").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
-        http.authorizeRequests().antMatchers("/teacher/").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
-        http.authorizeRequests().antMatchers("/teacher/teacherList").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
-        http.authorizeRequests().antMatchers("/teacher/add").access("hasAnyRole('ROLE_AMDIN')");
-        http.authorizeRequests().antMatchers("/teacher/add").access("hasAnyRole('ROLE_AMDIN')");
-        http.authorizeRequests().antMatchers("/teacher/edit/{id}/").access("hasAnyRole('ROLE_AMDIN')");
-        http.authorizeRequests().antMatchers("/teacher/edit").access("hasAnyRole('ROLE_AMDIN')");
-        http.authorizeRequests().antMatchers("/teacher/edit/").access("hasAnyRole('ROLE_AMDIN')");
-        http.authorizeRequests().antMatchers("/teacher/delete").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/admin/teacher").access("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/admin/teacher/").access("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/admin/teacher/teacherList").access("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/admin/teacher/add").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/teacher/add").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/teacher/edit/{id}/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/teacher/edit").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/teacher/edit/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/teacher/delete").access("hasAnyRole('ROLE_ADMIN')");
         //student
-        http.authorizeRequests().antMatchers("/student").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
-        http.authorizeRequests().antMatchers("/student/").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
-        http.authorizeRequests().antMatchers("/student/add").access("hasAnyRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/student/add/").access("hasAnyRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/student/delete").access("hasAnyRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/student/edit").access("hasAnyRole('ROLE_ADMIN')");
-        http.authorizeRequests().antMatchers("/student/edit/").access("hasAnyRole('ROLE_ADMIN')");
-
+        http.authorizeRequests().antMatchers("/admin/student").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/admin/student/").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/admin/student/add").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/student/add/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/student/delete").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/student/edit").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/student/edit/").access("hasAnyRole('ROLE_ADMIN')");
+        //contract
+        http.authorizeRequests().antMatchers("/admin/contracts").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/contracts/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/contracts/create").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/contracts/create/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/contracts/confirm").access("hasAnyRole('ROLE_ADMIN')");
+        //classes
+        http.authorizeRequests().antMatchers("/admin/classes").access("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/admin/classes/").access("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/admin/classes/add").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/classes/add/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/classes/add/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/classes/edit").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/classes/edit/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/classes/delete").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/classes/delete/").access("hasAnyRole('ROLE_ADMIN')");
+        //assigment
+        http.authorizeRequests().antMatchers("/admin/assignment").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment/add").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment/add/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment/delete").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment/delete/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment/edit").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment/edit/").access("hasAnyRole('ROLE_ADMIN')");
+        //qualification
+        http.authorizeRequests().antMatchers("/admin/qualification").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/qualification/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/qualification-add").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/qualification-add/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/qualification/remove").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/qualification/remove/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/qualification/edit").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/qualification/edit/").access("hasAnyRole('ROLE_ADMIN')");
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
         // Ngoại lệ AccessDeniedException sẽ ném ra.
