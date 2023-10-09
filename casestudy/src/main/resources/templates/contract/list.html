@@ -105,260 +105,6 @@
         }
     </style>
 </head>
-<!--<body>-->
-<!--&lt;!&ndash; Topbar Start &ndash;&gt;-->
-<!--<div class="container-fluid bg-dark text-light p-0">-->
-<!--    <div class="row gx-0 d-none d-lg-flex">-->
-<!--        <div class="col-lg-7 px-5 text-start">-->
-<!--            <div class="h-100 d-inline-flex align-items-center me-4">-->
-<!--                <small class="fa fa-map-marker-alt text-primary me-2"></small>-->
-<!--                <small>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng</small>-->
-<!--            </div>-->
-<!--            <div class="h-100 d-inline-flex align-items-center">-->
-<!--                <small class="far fa-clock text-primary me-2"></small>-->
-<!--                <small>Thứ 2 - Thứ 6: 08.15 AM - 05.30 PM</small>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-lg-5 px-5 text-end">-->
-<!--            <div class="h-100 d-inline-flex align-items-center me-4">-->
-<!--                <small class="fa fa-phone-alt text-primary me-2"></small>-->
-<!--                <small>+84 12 345 6789</small>-->
-<!--            </div>-->
-<!--            <div class="h-100 d-inline-flex align-items-center mx-n2">-->
-<!--                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i-->
-<!--                        class="fab fa-facebook-f"></i></a>-->
-<!--                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i-->
-<!--                        class="fab fa-twitter"></i></a>-->
-<!--                <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i-->
-<!--                        class="fab fa-linkedin-in"></i></a>-->
-<!--                <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; Topbar End &ndash;&gt;-->
-
-<!--&lt;!&ndash; Navbar Start &ndash;&gt;-->
-<!--<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">-->
-<!--    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">-->
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Group 2 - C0523G1</h2>-->
-<!--    </a>-->
-<!--    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse" id="navbarCollapse">-->
-<!--        <div class="navbar-nav ms-auto p-4 p-lg-0">-->
-<!--            <a th:href="@{/}" class="nav-item nav-link active">Trang chủ</a>-->
-<!--            <a href="/feature" class="nav-item nav-link">Khóa học</a>-->
-<!--            <a href="/about" class="nav-item nav-link">Về chúng tôi</a>-->
-<!--            <a href="/contact" class="nav-item nav-link">Liên hệ</a>-->
-<!--        </div>-->
-<!--        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Đăng nhập<i-->
-<!--                class="fa fa-arrow-right ms-3"></i></a>-->
-<!--    </div>-->
-<!--</nav>-->
-<!--&lt;!&ndash; Navbar End &ndash;&gt;-->
-
-<!--<div class="container" style="min-height: 550px;margin-top: 30px">-->
-<!--    <h1 style=" margin-top: 30px" align="center">Danh Sách Hợp Đồng</h1>-->
-<!--    <nav class="navbar navbar-inverse">-->
-<!--        <div class=" navbar-form navbar-left mb-3">-->
-<!--            <a th:href="@{/contracts/create}">-->
-<!--                <button title="Thêm mới hợp đồng"-->
-<!--                        class="btn btn-primary">-->
-<!--                    <i class="fa-solid fa-plus"></i>-->
-<!--                </button>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        <form action="/contracts" method="get">-->
-<!--            <div class="d-flex justify-content-end">-->
-<!--                <div class="input-group mb-6">-->
-<!--                    <input id="search-input1" th:value="${nameSearch}" name="nameSearch" type="text"-->
-<!--                           class="form-control" placeholder="Tên hợp đồng"/>-->
-<!--                </div>-->
-<!--                <div class="mb-6 ml-2">-->
-<!--                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </nav>-->
-<!--    <table class="table table-hover">-->
-<!--        <tr>-->
-<!--            <th>STT</th>-->
-<!--            <th>Tên học viên</th>-->
-<!--            <th>Bằng cấp</th>-->
-<!--            <th>Ngày làm hợp đồng</th>-->
-<!--            <th>Phí hợp đồng</th>-->
-<!--            <th>Trạng thái</th>-->
-<!--        </tr>-->
-<!--        <tr th:each="contract, status :${contractDtoPage}">-->
-<!--            <td hidden="hidden" style="width: 10%" th:text="${contract.id}"></td>-->
-<!--            <td style="width: 5%" th:text="${status.count}"></td>-->
-<!--            <td style="width: 15%" th:text="${contract.student.name}"></td>-->
-<!--            <td style="width: 15%" th:text="${contract.qualification.name}"></td>-->
-<!--            <td style="width: 15%" th:text="${contract.date}"></td>-->
-<!--&lt;!&ndash;            <td style="width: 15%" th:text="${contract.qualification.fee + (contract.qualification.fee * 0.02)}"></td>&ndash;&gt;-->
-<!--&lt;!&ndash;            <td hidden="hidden" style="width: 15%" th:text="${contract.isDeleted}"></td>&ndash;&gt;-->
-<!--            <td style="width: 15%"-->
-<!--                th:text="${#numbers.formatDecimal(contract.qualification.fee * 1.02 , 0, 'COMMA', 0, 'POINT')}"></td>-->
-<!--&lt;!&ndash;            <td style="width: 12%">&ndash;&gt;-->
-<!--            <td style="width: 7%">-->
-<!--                <span th:if="${contract.isDeleted == 0}">Đã thanh toán</span>-->
-<!--                <span th:if="${contract.isDeleted == 1} ">Chưa thanh toán</span>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
-
-<!--    <div th:if="${contractDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">-->
-<!--        <nav aria-label="Page navigation example">-->
-<!--            <ul class="pagination justify-content-center mb-0">-->
-<!--                <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">-->
-<!--                    <a class="page-link"-->
-<!--                       th:href="@{/contract(page=0,studentName=${nameSearch})}">-->
-<!--                        <small>-->
-<!--                            <i class="fa-solid fa-backward-fast"></i>-->
-<!--                        </small>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">-->
-<!--                    <a class="page-link"-->
-<!--                       th:href="@{contract(page=${(contractDtoPage.number)-1},studentName=${nameSearch})}">-->
-<!--                        <small>-->
-<!--                            <i class="fa-solid fa-backward-step"></i>-->
-<!--                        </small>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li class="page-item active">-->
-<!--                    <a href="#" class="page-link">-->
-<!--                        <span th:text="${contractDtoPage.number +1}"></span>/<span-->
-<!--                            th:text="${contractDtoPage.totalPages}"></span>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">-->
-<!--                    <a class="page-link"-->
-<!--                       th:href="@{contract(page=${contractDtoPage.number+1},studentName=${nameSearch})}">-->
-<!--                        <small>-->
-<!--                            <i class="fa-solid fa-forward-step"></i>-->
-<!--                        </small>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">-->
-<!--                    <a class="page-link"-->
-<!--                       th:href="@{contract(page=${(contractDtoPage.totalPages)-1},studentName=${nameSearch})}">-->
-<!--                        <small>-->
-<!--                            <i class="fa-solid fa-forward-fast"></i>-->
-<!--                        </small>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </nav>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; Footer Start &ndash;&gt;-->
-<!--<div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">-->
-<!--    <div class="container">-->
-<!--        <div class="row g-5">-->
-<!--            <div class="col-lg-3 col-md-6">-->
-<!--                <h4 class="text-white mb-4">Thông tin liên lạc</h4>-->
-<!--                <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Group 2 - C0523G1</h2>-->
-<!--                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng-->
-<!--                </p>-->
-<!--                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>-->
-<!--                <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>-->
-<!--            </div>-->
-<!--            <div class="col-lg-3 col-md-6">-->
-<!--                <h4 class="text-light mb-4">Liên kết</h4>-->
-<!--                <a class="btn btn-link" href="">Về chúng tôi</a>-->
-<!--                <a class="btn btn-link" href="">Liên hệ</a>-->
-<!--                <a class="btn btn-link" href="">Dịch vụ</a>-->
-<!--                <a class="btn btn-link" href="">Điều khoản và quy định</a>-->
-<!--                <a class="btn btn-link" href="">Hỗ trợ</a>-->
-<!--            </div>-->
-<!--            <div class="col-lg-3 col-md-6">-->
-<!--                <h4 class="text-light mb-4">Thông tin thành viên</h4>-->
-<!--                <a class="btn btn-link" href="">Phan Quốc Sang</a>-->
-<!--                <a class="btn btn-link" href="">Nguyễn Đức Trung</a>-->
-<!--                <a class="btn btn-link" href="">Nguyễn Thị Mỹ Hạnh</a>-->
-<!--                <a class="btn btn-link" href="">Bùi Bảo Thiện</a>-->
-<!--            </div>-->
-<!--            <div class="col-lg-3 col-md-6">-->
-<!--                <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>-->
-<!--                <form action="">-->
-<!--                    <div class="input-group">-->
-<!--                        <input type="text" class="form-control p-3 border-0" placeholder="Nhập địa chỉ email của bạn">-->
-<!--                        <button class="btn btn-primary">Xác nhận</button>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--                <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>-->
-<!--                <div class="d-flex pt-2">-->
-<!--                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>-->
-<!--                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>-->
-<!--                    <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>-->
-<!--                    <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; Footer End &ndash;&gt;-->
-
-<!--&lt;!&ndash; Copyright Start &ndash;&gt;-->
-<!--<div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">-->
-<!--                &copy; <a href="#">Group 2 - C0523G1</a>, All Right Reserved.-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; Copyright End &ndash;&gt;-->
-
-<!--<script th:if="${mess!=null}">-->
-<!--    // toast-->
-<!--    window.onload = function () {-->
-<!--        let myAlert = document.getElementById('liveToast');//select id of toast-->
-<!--        let bsAlert = new bootstrap.Toast(myAlert);//inizialize it-->
-<!--        bsAlert.show();//show it-->
-<!--    }-->
-
-
-<!--</script>-->
-
-<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>-->
-<!--<script src="/lib/easing/easing.min.js"></script>-->
-
-<!--<script src="/lib/owlcarousel/owl.carousel.min.js"></script>-->
-
-<!--<script src="/lib/isotope/isotope.pkgd.min.js"></script>-->
-
-<!--<script src="/lib/lightbox/js/lightbox.min.js"></script>-->
-
-
-<!--&lt;!&ndash; Contact Javascript File &ndash;&gt;-->
-<!--<script src="/../mail/jqBootstrapValidation.min.js"></script>-->
-<!--<script src="/../mail/contact.js"></script>-->
-
-<!--&lt;!&ndash; Template Javascript&ndash;&gt;-->
-<!--<script src="../js/main.js"></script>-->
-<!--&lt;!&ndash;offline&ndash;&gt;-->
-<!--<script src="/mail/contact.js"></script>-->
-<!--<script src="/mail/jqBootstrapValidation.min.js"></script>-->
-<!--<script src="/lib/lightbox/js/lightbox.min.js"></script>-->
-<!--<script src="/lib/isotope/isotope.pkgd.min.js"></script>-->
-<!--<script src="/lib/owlcarousel/owl.carousel.min.js"></script>-->
-<!--<script src="/lib/easing/easing.min.js"></script>-->
-<!--<script src="/js/main.js"></script>-->
-
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>-->
-<!--<script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"-->
-<!--        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>-->
-<!--<script th:src="@{/js/main.js}"></script>-->
-<!--</body>-->
-<!--</html>-->
-
 <body>
 <!--spinner start-->
 <div th:replace="index::spinner"></div>
@@ -370,9 +116,8 @@
 
 <!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-
     <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
         <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
@@ -389,27 +134,28 @@
             <a th:href="@{/admin/contracts}" class="nav-item nav-link active">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
-<!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
-<!--                class="fa fa-arrow-right ms-3"></i></a>-->
+        <!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
+        <!--                class="fa fa-arrow-right ms-3"></i></a>-->
     </div>
     <div class="collapse navbar-collapse justify-content-end">
-        <div class="navbar-nav ms-auto text-light">
-            <div class="dropdown mx-2">
-                <label for="user-container" class="text-dark"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false"></label>
-                <button class="btn btn-outline-light" style="border: none;"
-                        id="user-container"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                    <i class="fas fa-user" style="color: #000000;"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
-                    <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
-                </ul>
-            </div>
-        </div>
+<!--        <div class="navbar-nav ms-auto text-light">-->
+<!--            <div class="dropdown mx-2">-->
+<!--                <label for="user-container" class="text-dark"-->
+<!--                       data-bs-toggle="dropdown"-->
+<!--                       aria-expanded="false"></label>-->
+<!--                <button class="btn btn-outline-light" style="border: none;"-->
+<!--                        id="user-container"-->
+<!--                        data-bs-toggle="dropdown"-->
+<!--                        aria-expanded="false">-->
+<!--                    <i class="fas fa-user" style="color: #000000;"></i>-->
+<!--                </button>-->
+<!--                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">-->
+<!--                    <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>-->
+<!--                    <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div th:replace="assignment-list::log-in-nav"></div>
     </div>
 </nav>
 <!--navbar management end-->
@@ -417,16 +163,18 @@
 <!--content start-->
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Hợp Đồng</h3>
+    <h4 th:if="${contractDtoPage.isEmpty()}" th:text="${message}"></h4>
+    <!--  find + add-->
     <nav class="navbar navbar-inverse">
-        <div class="navbar-form navbar-left mb-3">
-            <a th:href="@{/admin/create}"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
-        </div>
-        <form action="#" method="get">
+        <!--        <div class="navbar-form navbar-left mb-3">-->
+        <!--            <a href="/account/add"><i class="fa-solid fa-square-plus fa-2xl"></i></a>-->
+        <!--        </div>-->
+        <form th:href="@{/}" method="get" style="padding-left: 82.5%">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
                     <input type="search" th:value="${nameSearch}" name="nameSearch"
-                           class="form-control" placeholder="Nhập thông tin "
-                           style="width: 33%;" id="search-input1">
+                           class="form-control" placeholder="Tìm kiếm"
+                           style="width: 33%;margin-bottom: 75px">
                 </div>
                 <div class="mb-6 ml-2">
                     <button class="btn btn-primary" type="submit">
@@ -436,6 +184,10 @@
             </div>
         </form>
     </nav>
+</div>
+<div class="container">
+    <div>
+    </div>
     <table class="table" th:if="${!contractDtoPage.isEmpty()}">
         <thead>
         <tr id="header">
@@ -445,17 +197,17 @@
             <th>Ngày làm hợp đồng</th>
             <th>Phí hợp đồng</th>
             <th>Trạng thái</th>
-<!--            <th colspan="2" style="text-align: center">Quản lý</th>-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="contract, loop : ${contractDtoPage}">
-            <th style="width: 5%" th:text="${loop.count}"></th>
-            <td style="width: 15%" th:text="${contract.student.name}"></td>
-            <td style="width: 9%;" th:text="${contract.qualification.name}"></td>
-            <td style="width: 9%;" th:text="${contract.date}"></td>
-            <td style="width: 9%;" th:text="${#numbers.formatDecimal(contract.qualification.fee * 1.02 , 0, 'COMMA', 0, 'POINT')}"></td>
-            <td style="width: 7%">
+            <th style="width: 2%" th:text="${loop.count}"></th>
+            <td style="width: 10%" th:text="${contract.student.name}"></td>
+            <td style="width: 4%;" th:text="${contract.qualification.name}"></td>
+            <td style="width: 9%;" th:text="${contract.date}" class="birthday-cell"></td>
+            <td style="width: 10%;"
+                th:text="${#numbers.formatDecimal(contract.qualification.fee * 1.02 , 0, 'COMMA', 0, 'POINT')}"></td>
+            <td style="width: 8%">
                 <span th:if="${contract.isDeleted == 0}">Đã thanh toán</span>
                 <span th:if="${contract.isDeleted == 1} ">Chưa thanh toán</span>
             </td>
@@ -463,55 +215,54 @@
         </tbody>
     </table>
 </div>
-    <!--    phan trang start-->
+<!--    phan trang start-->
 
-    <div th:if="${contractDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mb-0">
-                <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/contracts(page=0,studentName=${nameSearch})}">
-                        <small>
-                            <i class="fa-solid fa-backward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{contracts(page=${(contractDtoPage.number)-1},studentName=${nameSearch})}">
-                        <small>
-                            <i class="fa-solid fa-backward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">
-                        <span th:text="${contractDtoPage.number +1}"></span>/<span
-                            th:text="${contractDtoPage.totalPages}"></span>
-                    </a>
-                </li>
-                <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{contracts(page=${contractDtoPage.number+1},studentName=${nameSearch})}">
-                        <small>
-                            <i class="fa-solid fa-forward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{contracts(page=${(contractDtoPage.totalPages)-1},studentName=${nameSearch})}">
-                        <small>
-                            <i class="fa-solid fa-forward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <!--    phan trang end-->
+<div th:if="${contractDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3">
+    <nav aria-label="Page navigation example" style="margin-top: -100px">
+        <ul class="pagination justify-content-center mb-0">
+            <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/contracts(page=0,studentName=${nameSearch})}">
+                    <small>
+                        <i class="fa-solid fa-backward-fast"></i>
+                    </small>
+                </a>
+            </li>
+            <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{contracts(page=${(contractDtoPage.number)-1},studentName=${nameSearch})}">
+                    <small>
+                        <i class="fa-solid fa-backward-step"></i>
+                    </small>
+                </a>
+            </li>
+            <li class="page-item active">
+                <a href="#" class="page-link">
+                    <span th:text="${contractDtoPage.number +1}"></span>/<span
+                        th:text="${contractDtoPage.totalPages}"></span>
+                </a>
+            </li>
+            <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{contracts(page=${contractDtoPage.number+1},studentName=${nameSearch})}">
+                    <small>
+                        <i class="fa-solid fa-forward-step"></i>
+                    </small>
+                </a>
+            </li>
+            <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{contracts(page=${(contractDtoPage.totalPages)-1},studentName=${nameSearch})}">
+                    <small>
+                        <i class="fa-solid fa-forward-fast"></i>
+                    </small>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!--    phan trang end-->
 <!--content end-->
-
 
 
 <!--footer start-->
@@ -538,6 +289,15 @@
     function confirmDelete(id, name) {
         document.getElementById("usernameDelete").innerText = name;
         document.getElementById("id").value = id;
+    }
+</script>
+
+<script>
+    let birthdayCells = document.getElementsByClassName("birthday-cell");
+    for (let i = 0; i < birthdayCells.length; i++) {
+        let birthday = birthdayCells[i].textContent;
+        let formattedBirthday = birthday.split("-").reverse().join("-");
+        birthdayCells[i].textContent = formattedBirthday;
     }
 </script>
 

@@ -38,6 +38,9 @@ public class ContractController {
                                    Model model) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<Contract> contractDtoPage = contractService.findAllBySearch(pageable, nameSearch);
+        if (contractDtoPage.isEmpty()) {
+            model.addAttribute("message", "Không có dữ liệu bạn tìm kiếm");
+        }
         model.addAttribute("contractDtoPage", contractDtoPage);
         model.addAttribute("nameSearch", nameSearch);
         return "contract/list";
