@@ -39,6 +39,13 @@ public interface IAccountRepository extends JpaRepository<Account,Integer> {
 //    @Query(value = "insert into accounts (account_email,account_password,create_date,) values (:email,:pass,:date)",nativeQuery = true)
     void addAccount(@Param("p_email") String email, @Param("p_password") String newPass, @Param("p_create_date") String createDate);
 
-    @Query(value = "call add_user(:p_email,:p_password,:p_create_date,:p_role)",nativeQuery = true)
+    @Query(value = "call add_user(:p_email,:p_password,:p_role)",nativeQuery = true)
     void createAccount(@Param("p_email") String email, @Param("p_password") String newPass, @Param("p_role") int role);
+
+
+    @Query(value = "update user_roles \n" +
+            "join accounts on accounts.id = user_roles.account_id\n" +
+            "set user_roles.role_id = 2\n" +
+            "where accounts.id = id",nativeQuery = true)
+    void changeRole(@Param("id") int id, Account account);
 }

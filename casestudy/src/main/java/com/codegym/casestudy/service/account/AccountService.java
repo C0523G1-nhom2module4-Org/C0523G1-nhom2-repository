@@ -125,6 +125,11 @@ public class AccountService implements IAccountService {
     accountRepository.createAccount(newAccount.getEmail(),newPass,role);
     }
 
+    @Override
+    public void editRole(int id, Account account) {
+        accountRepository.changeRole(id,account);
+    }
+
     private String generateRandomCode(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder code = new StringBuilder();
