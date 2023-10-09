@@ -22,14 +22,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/student")
+@RequestMapping("/admin")
 public class StudentController {
     @Autowired
     private IStudentService studentService;
     @Autowired
     private IClassesService classesService;
 
-    @GetMapping("")
+    @GetMapping("/student")
     public String showList(@RequestParam(defaultValue = "", required = false) String name, Model model,
                            @RequestParam(defaultValue = "0", required = false) int page) {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("student_name").ascending());
@@ -39,7 +39,7 @@ public class StudentController {
         return "/student/list";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/student/add")
     public String showAdd(Model model) {
         List<Classes> classes = classesService.findAll();
         model.addAttribute("classes", classes);
@@ -47,31 +47,29 @@ public class StudentController {
         return "/student/add";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/student/add")
     public String add(@Valid @ModelAttribute ListStudentDto listStudentDto,
                       BindingResult bindingResult,
                       RedirectAttributes redirectAttributes) {
         new ListStudentDto().validate(listStudentDto, bindingResult);
         if (bindingResult.hasErrors()) {
-            System.out.println("Loi");
             return "/student/add";
         }
         Student student = new Student();
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.add(student);
         redirectAttributes.addFlashAttribute("mess", "thêm mới thành công");
-        System.out.println("OK");
-        return "redirect:/student";
+        return "redirect:/admin/student";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/student/delete")
     public String delete(@RequestParam(name = "id") int id, RedirectAttributes redirectAttributes) {
         this.studentService.deleteWithId(id);
         redirectAttributes.addFlashAttribute("mess", "Xoá Thành Côngg");
-        return "redirect:/student";
+        return "redirect:/admin/student";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/student/edit")
     public String showEdit(@RequestParam int id, Model model) {
         List<Classes> classesList = classesService.findAll();
         Student student = studentService.findById(id);
@@ -82,7 +80,7 @@ public class StudentController {
         return "/student/edit";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/student/edit")
     public String edit(@Valid @ModelAttribute ListStudentDto listStudentDto,
                        BindingResult bindingResult,
                        RedirectAttributes redirectAttributes, Model model) {
@@ -96,6 +94,6 @@ public class StudentController {
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.edit(student);
         redirectAttributes.addFlashAttribute("mess", "Sửa Thành Công");
-        return "redirect:/student";
+        return "redirect:/admin/student";
     }
 }

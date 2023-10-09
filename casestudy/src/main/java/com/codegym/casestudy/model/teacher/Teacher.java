@@ -1,6 +1,7 @@
 package com.codegym.casestudy.model.teacher;
 
 import com.codegym.casestudy.model.account.Account;
+import com.codegym.casestudy.model.assignment.Assignment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,4 +35,5 @@ public class Teacher {
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
+
 }

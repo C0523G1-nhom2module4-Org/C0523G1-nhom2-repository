@@ -130,10 +130,11 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
             <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/student}" class="nav-item nav-link">Học viên</a>
-            <a th:href="@{/teacher}" class="nav-item nav-link">Giáo viên</a>
-            <a th:href="@{/classes}" class="nav-item nav-link active">Lớp học</a>
+            <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link active">Lớp học</a>
             <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
         <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
                 class="fa fa-arrow-right ms-3"></i></a>
@@ -152,7 +153,7 @@
     </h3>
     <h5 class="table-title" style="margin-top: 2%">Ngày bắt đầu: <span th:text="${classes.getStartDate()}"> </span></h5>
     <h5 class="table-title" style="margin-top: 2%">Ngày kết thúc: <span th:text="${classes.getEndDate()}"></span></h5>
-    <table class="table" style="width: 75%;" >
+    <table class="table" style="margin-top: 25% ; width:55%">
         <thead>
         <tr id="header">
             <th colspan="4">Tên giảng viên: <span></span></th>
@@ -167,7 +168,7 @@
         <tr th:each="student, loop : ${studentList}">
             <td style="width: 3%"></td>
             <td th:text="${loop.count}" style="width: 10%;"></td>
-            <td th:text="${student}" style="width: 35%;"></td>
+            <td th:text="${student}" style="width: 25%;"></td>
         </tr>
         </tbody>
     </table>
@@ -195,51 +196,51 @@
 
 
 
-    <!--    phan trang start-->
-    <!--    <div th:if="${qualifications.totalPages>1}" class="col-md-12 mb-4 mt-3">-->
-    <!--        <nav aria-label="Page navigation example">-->
-    <!--            <ul class="pagination justify-content-center mb-0">-->
-    <!--                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">-->
-    <!--                    <a class="page-link"-->
-    <!--                       th:href="@{/admin/qualification(page=${qualifications.number - 1} ,searchName = ${searchName})}">-->
-    <!--                        <small>-->
-    <!--                            <i class="fa-solid fa-backward-fast"></i>-->
-    <!--                        </small>-->
-    <!--                    </a>-->
-    <!--                </li>-->
-    <!--                <li th:class="${!qualifications.hasPrevious()}?'page-item disabled' : 'page-item'">-->
-    <!--                    <a class="page-link"-->
-    <!--                       th:href="@{/admin/qualification(page=${(qualifications.number) - 1} ,searchName = ${searchName})}">-->
-    <!--                        <small>-->
-    <!--                            <i class="fa-solid fa-backward-step"></i>-->
-    <!--                        </small>-->
-    <!--                    </a>-->
-    <!--                </li>-->
-    <!--                <li class="page-item active">-->
-    <!--                    <a href="#" class="page-link">-->
-    <!--                        <span th:text="${qualifications.number +1}"></span>/<span-->
-    <!--                            th:text="${qualifications.totalPages}"></span>-->
-    <!--                    </a>-->
-    <!--                </li>-->
-    <!--                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">-->
-    <!--                    <a class="page-link"-->
-    <!--                       th:href="@{/admin/qualification(page=${qualifications.number+1},searchName=${searchName})}">-->
-    <!--                        <small>-->
-    <!--                            <i class="fa-solid fa-forward-step"></i>-->
-    <!--                        </small>-->
-    <!--                    </a>-->
-    <!--                </li>-->
-    <!--                <li th:class="${!qualifications.hasNext()}?'page-item disabled' : 'page-item'">-->
-    <!--                    <a class="page-link"-->
-    <!--                       th:href="@{/admin/qualification(page=${(qualifications.totalPages)-1},searchName=${searchName})}">-->
-    <!--                        <small>-->
-    <!--                            <i class="fa-solid fa-forward-fast"></i>-->
-    <!--                        </small>-->
-    <!--                    </a>-->
-    <!--                </li>-->
-    <!--            </ul>-->
-    <!--        </nav>-->
-    <!--    </div>-->
+<!--        phan trang start-->
+<!--        <div th:if="${studentPage.totalPages>1}" class="col-md-12 mb-4 mt-3">-->
+<!--            <nav aria-label="Page navigation example">-->
+<!--                <ul class="pagination justify-content-center mb-0">-->
+<!--                    <li th:class="${!studentPage.hasPrevious()}?'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link"-->
+<!--                           th:href="@{/admin/classes(page=${studentPage.number - 1} ,className = ${classes})}">-->
+<!--                            <small>-->
+<!--                                <i class="fa-solid fa-backward-fast"></i>-->
+<!--                            </small>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li th:class="${!studentPage.hasPrevious()}?'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link"-->
+<!--                           th:href="@{/admin/classes(page=${(studentPage.number) - 1} ,className = ${clases})}">-->
+<!--                            <small>-->
+<!--                                <i class="fa-solid fa-backward-step"></i>-->
+<!--                            </small>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item active">-->
+<!--                        <a href="#" class="page-link">-->
+<!--                            <span th:text="${studentPage.number +1}"></span>/<span-->
+<!--                                th:text="${studentPage.totalPages}"></span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li th:class="${!studentPage.hasNext()}?'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link"-->
+<!--                           th:href="@{/admin/classes(page=${studentPage.number+1},className=${classes})}">-->
+<!--                            <small>-->
+<!--                                <i class="fa-solid fa-forward-step"></i>-->
+<!--                            </small>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li th:class="${!studentPage.hasNext()}?'page-item disabled' : 'page-item'">-->
+<!--                        <a class="page-link"-->
+<!--                           th:href="@{/admin/classes(page=${(studentPage.totalPages)-1},className=${classes})}">-->
+<!--                            <small>-->
+<!--                                <i class="fa-solid fa-forward-fast"></i>-->
+<!--                            </small>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+<!--        </div>-->
 </div>
 
 
