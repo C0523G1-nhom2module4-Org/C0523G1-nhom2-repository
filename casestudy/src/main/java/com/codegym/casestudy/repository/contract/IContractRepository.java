@@ -15,7 +15,7 @@ public interface IContractRepository extends JpaRepository<Contract, Integer> {
             "join qualifications on contracts.qualification_id = qualifications.id " +
             "where students.student_name like :search " +
             "or qualifications.qualification_name like :search " +
-            "or contracts.contract_date like :search ", nativeQuery = true)
+            "or contracts.contract_date like :search ORDER BY contracts.contract_date desc ", nativeQuery = true)
     Page<Contract> findContractBySearch(Pageable pageable,
                                         @Param("search") String search
     );
