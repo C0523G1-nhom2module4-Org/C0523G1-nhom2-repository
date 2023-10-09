@@ -267,10 +267,10 @@
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Tài Khoản</h3>
     <!--  find + add-->
     <nav class="navbar navbar-inverse">
-        <div class="navbar-form navbar-left mb-3">
-            <a href="/account/add"><i class="fa-solid fa-square-plus fa-2xl"></i></a>
-        </div>
-        <form th:href="@{/account}" method="get">
+<!--        <div class="navbar-form navbar-left mb-3">-->
+<!--            <a href="/account/add"><i class="fa-solid fa-square-plus fa-2xl"></i></a>-->
+<!--        </div>-->
+        <form th:href="@{/account}" method="get" style="padding-left: 72.5%">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
                     <input type="search" th:value="${keyword}" name="keyword"
