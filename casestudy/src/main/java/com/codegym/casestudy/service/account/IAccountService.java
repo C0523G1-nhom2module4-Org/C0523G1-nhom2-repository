@@ -20,4 +20,14 @@ public interface IAccountService {
     boolean testPass(String email, String currentPassword);
 
     void changePass(String email, String newPassword);
+
+    void sendEmail(String to, String subject, String body);
+
+    String sendEmailAndReturnCode(String email);
+
+    void forgotPassword(Account account);
+
+    void createAccount(Account newAccount, int role);
+
+    void editRole(int id, Account account);
 }

@@ -47,7 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Các trang không yêu cầu login
         http.authorizeRequests().antMatchers("/", "/account/signup", "/account/login", "/index", "/account/logoutSuccessful").permitAll();
-
         http.authorizeRequests().antMatchers("/account").authenticated();
         // các trang cần login
         http.authorizeRequests().antMatchers("/success").access("hasAnyRole('ROLE_STUDENT', 'ROLE_ADMIN', 'ROLE_TEACHER')");
@@ -62,8 +61,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/account/create").permitAll();
         http.authorizeRequests().antMatchers("/account/confirm").permitAll();
         http.authorizeRequests().antMatchers("/account/confirm-code").permitAll();
-
-
+        //teacher
+        http.authorizeRequests().antMatchers("/teacher").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/teacherList").access("hasAnyRole('ROLE_AMDIN','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/teacher/add").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/teacher/add").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/teacher/edit/{id}/").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/teacher/edit").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/teacher/edit/").access("hasAnyRole('ROLE_AMDIN')");
+        http.authorizeRequests().antMatchers("/teacher/delete").access("hasAnyRole('ROLE_AMDIN')");
+        //student
+        http.authorizeRequests().antMatchers("/student").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/student/").access("hasAnyRole('ROLE_ADMIN','ROLE_STUDENT','ROLE_TEACHER')");
+        http.authorizeRequests().antMatchers("/student/add").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/student/add/").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/student/delete").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/student/edit").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/student/edit/").access("hasAnyRole('ROLE_ADMIN')");
 
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
