@@ -1,12 +1,16 @@
 package com.codegym.casestudy.service.assignment;
 
 import com.codegym.casestudy.model.assignment.Assignment;
+import com.codegym.casestudy.model.classes.Classes;
+import com.codegym.casestudy.model.teacher.Teacher;
 import com.codegym.casestudy.repository.assignment.IAssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 @Service
@@ -66,5 +70,15 @@ public class AssignmentService implements IAssignmentService {
             }
             return true;
         }
+    }
+
+    @Override
+    public List<Classes> findAllClassAvailable() {
+        return this.assignmentRepository.findAllClassAvailable();
+    }
+
+    @Override
+    public List<Teacher> findAllTeacherAvailable() {
+        return this.assignmentRepository.findAllTeacherAvailable();
     }
 }
