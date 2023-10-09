@@ -1,5 +1,8 @@
 package com.codegym.casestudy.controller.main_page_controller;
 
+import com.codegym.casestudy.dto.contact_email_dto.ContactEmailDto;
+import com.codegym.casestudy.model.contact_email.ContactEmail;
+import com.codegym.casestudy.model.contact_email.GuessEmail;
 import com.codegym.casestudy.model.qualification.Qualification;
 import com.codegym.casestudy.service.qualification.IQualificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +19,18 @@ public class MainPageController {
     @Autowired
     private IQualificationService qualificationService;
     @GetMapping()
-    public String index() {
+    public String index(Model model) {
+        GuessEmail guessEmail = new GuessEmail();
+        model.addAttribute("guessEmail",guessEmail);
         return "/index";
     }
 
     @GetMapping("/feature")
     public String feature(Model model) {
         List<Qualification> qualificationList = this.qualificationService.findAll();
+
         model.addAttribute("qualificationList", qualificationList);
+
         return "/feature";
     }
 
@@ -33,13 +40,14 @@ public class MainPageController {
     }
 
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(Model model) {
+        model.addAttribute("contactEmail", new ContactEmailDto());
         return "/contact";
     }
 
     @GetMapping("/errors")
     public String error() {
-        return "error";
+        return "errors";
     }
 
     @GetMapping("/qualification")

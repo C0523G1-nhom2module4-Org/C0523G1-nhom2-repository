@@ -81,7 +81,7 @@
 
 <!--Navbar start-->
 <nav th:href="@{/account/success}" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
         <h2 class="m-0">Đà Nẵng Drift</h2>
         <!--        <i class="fa fa-car text-primary me-2"></i> -->
@@ -151,12 +151,13 @@
                         <label for="description">Mô tả</label>
                     </div>
                 </div>
-                <div class="col-6">
-                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
-                </div>
+
                 <div class="col-6">
                     <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/qualification/back}">Hủy
                         bỏ</a></button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                 </div>
             </div>
         </form>
