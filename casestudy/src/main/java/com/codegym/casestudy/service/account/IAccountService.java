@@ -28,4 +28,6 @@ public interface IAccountService {
     void forgotPassword(Account account);
 
     void createAccount(Account newAccount, int role);
+
+    void editRole(int id, Account account);
 }

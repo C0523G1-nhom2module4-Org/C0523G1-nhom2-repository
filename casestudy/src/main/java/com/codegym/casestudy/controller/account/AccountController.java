@@ -3,7 +3,11 @@ package com.codegym.casestudy.controller.account;
 import com.codegym.casestudy.dto.account.AccountDto;
 import com.codegym.casestudy.dto.account.IAccountDto;
 import com.codegym.casestudy.model.account.Account;
+import com.codegym.casestudy.model.role.Role;
+import com.codegym.casestudy.model.user_role.UserRole;
 import com.codegym.casestudy.service.account.IAccountService;
+import com.codegym.casestudy.service.role.IRoleService;
+import com.codegym.casestudy.service.user_role.IUserRoleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -26,6 +31,10 @@ import java.util.Objects;
 public class AccountController {
     @Autowired
     private IAccountService accountService;
+    @Autowired
+    private IRoleService roleService;
+    @Autowired
+    private IUserRoleService userRoleService;
 
     @GetMapping("")
     public String showAccount(@RequestParam(defaultValue = "0", required = false) int page,
@@ -194,11 +203,32 @@ public class AccountController {
             redirectAttributes.addFlashAttribute("msg","Email đã được đăng kí");
             return "redirect:/account/add";
         }
+        if(!accountDto.getPassword().equals(repeatPass)){
+        redirectAttributes.addFlashAttribute("msg","Xác Thực Mật Khẩu Không Hợp Lệ");
+        return "redirect:/account/add";
+        }
         Account newAccount = new Account();
         BeanUtils.copyProperties(accountDto,newAccount);
+        accountDto.setCreateDate(String.valueOf(LocalDate.now()));
         accountService.createAccount(newAccount,role);
         redirectAttributes.addFlashAttribute("msg","Thêm Mới Thành Công");
         return "redirect:/account";
+    }
+    @GetMapping("/edit/{id}")
+    public String showFormRole(@PathVariable int id, Model model){
+        List<UserRole> userRoleList = userRoleService.findAll();
+        Account account = accountService.findById(id);
+        model.addAttribute("userRoleList",userRoleList);
+        model.addAttribute("account",account);
+        return "/edit";
+    }
+    @PostMapping("/edit")
+    public String changeRole(@Valid @ModelAttribute Account account,
+                             RedirectAttributes redirectAttributes){
+    account.setCreateDate(String.valueOf(LocalDate.now()));
+    accountService.editRole(account.getId(),account);
+    redirectAttributes.addFlashAttribute("msg","Chỉnh Sửa Thành Công");
+    return "redirect:/account";
     }
 
 }
