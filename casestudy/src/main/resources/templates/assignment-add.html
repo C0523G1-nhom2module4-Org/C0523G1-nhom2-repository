@@ -81,7 +81,7 @@
 
 <!--Navbar start-->
 <nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/account/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
         <h2 class="m-0">Đà Nẵng Drift</h2>
@@ -99,8 +99,6 @@
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link active">Phân công</a>
         </div>
-        <!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
-        <!--                class="fa fa-arrow-right ms-3"></i></a>-->
         <div th:replace="assignment-list::log-in-nav"></div>
     </div>
 </nav>
@@ -150,15 +148,14 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
-                </div>
-                <div class="col-6">
                     <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/assignment/back}">Hủy
                         bỏ</a></button>
                 </div>
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
+                </div>
             </div>
         </form>
-        <!--        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>-->
     </div>
 </div>
 <!--Add form end-->

@@ -77,8 +77,9 @@
 <!-- Navbar Start -->
 <nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
+        <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -544,15 +545,15 @@
      data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h4 class="text-white mb-4">Thông tin liên lạc</h4>
                 <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Đà Nẵng Drift</h2>
                 <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>280 Trần Hưng Đạo, An Hải Tây, Sơn Trà, Đà Nẵng
                 </p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+84 12 345 6789</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>group2@gmail.com</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>casestudymd4group2@gmail.com</p>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
                 <h4 class="text-light mb-4">Liên kết</h4>
                 <a class="btn btn-link" href="">Về chúng tôi</a>
                 <a class="btn btn-link" href="">Liên hệ</a>
@@ -571,8 +572,12 @@
                 <h4 class="text-light mb-4">Đăng ký để nhận thông tin mới nhất</h4>
                 <form action="">
                     <div class="input-group">
-                        <input type="text" class="form-control p-3 border-0" placeholder="Nhập địa chỉ email của bạn">
-                        <button class="btn btn-primary">Xác nhận</button>
+                        <input type="text" class="form-control p-3 border-0"
+                               placeholder="Nhập địa chỉ email của bạn" name="emailForm" id="emailForm">
+                        <button class="btn btn-primary" type="button" onclick="sendEmailAddress()"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Xác nhận
+                        </button>
                     </div>
                 </form>
                 <h6 class="text-white mt-4 mb-3">Theo dõi chúng tôi</h6>
@@ -594,14 +599,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a href="#">Group 2 - C0523G1</a>, All Right Reserved.
+                &copy; <a style="text-align: center" href="#">Group 2 - C0523G1</a>, All Right Reserved.
             </div>
         </div>
     </div>
 </div>
 <!-- Copyright End -->
 
+<!--Modal confirm email start-->
 
+<!--Modal confirm email end-->
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
@@ -620,5 +627,10 @@
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
 </body>
-
+<script>
+    function sendEmailAddress() {
+        let emailForm = document.getElementById("emailForm").innerText
+        document.getElementById("newGuessEmailAddress").innerText = emailForm;
+    }
+</script>
 </html>

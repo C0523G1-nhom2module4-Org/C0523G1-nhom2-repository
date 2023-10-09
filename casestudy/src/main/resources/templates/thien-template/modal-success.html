@@ -1,0 +1,43 @@
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form th:action="@{/admin/qualification/remove}" method="get">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel"><b>Xóa dữ liệu bằng lái xe</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc chắn muốn xóa bằng lái xe:
+            <strong> <span id="qualificationDeleteName"></span></strong></p>
+          <input type="text" hidden="hidden" name="deleteId" id="qualificationDeleteId">
+          <p style="color: red"><b>Lưu ý:</b> Hoạt động này không thể hoàn tác! </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+          <button type="submit" class="btn btn-primary">Xác nhận</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--modal done-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form th:action="@{/main-page/guess-email/add}" method="get" th:object="${guessEmail}">
+        <div class="modal-header">
+          <input type="hidden" th:field="*{email}" id="emailModal" name="emailModal">
+          <h5 class="modal-title" id="exampleModalLabel"><b>Cảm ơn</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Cảm ơn bạn đã để lại thông tin liên lạc, mọi cập nhật mới nhất sẽ được gửi tới thùng thư của bạn
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Xác nhận</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
