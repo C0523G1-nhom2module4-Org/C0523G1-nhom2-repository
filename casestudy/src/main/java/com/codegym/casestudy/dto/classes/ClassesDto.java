@@ -4,6 +4,7 @@ import com.codegym.casestudy.model.classes.Classes;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,13 +83,44 @@ public class ClassesDto implements Validator {
         ClassesDto classesDto = (ClassesDto) target;
         String name = classesDto.getClassName();
         List<Classes> classList1 = classesDto.getClassList();
-
-        if (classesDto.getClassName().equals("")) {
-            errors.rejectValue("className", null, "Không được để trống!");
-        } else if (!classesDto.getClassName().matches("^(B2|C|D)-\\d{4}$")) {
-            errors.rejectValue("className", null, "Tên lớp phải bắt đầu từ B2-xxxx hoặc C-xxxx hoặc D-xxxx");
-        } else if (classList1 != null && classList1.contains(name)) {
-            errors.rejectValue("className", null, "Tên lớp đã tồn tại");
+        if (classesDto.startDate.equals("") || classesDto.endDate.equals("")) {
+            if (classesDto.getClassName().equals("")) {
+                errors.rejectValue("className", null, "Không được để trống!");
+            } else if (!classesDto.getClassName().matches("^(B2|C|D)-\\d{4}$")) {
+                errors.rejectValue("className", null, "Tên lớp phải bắt đầu từ B2-xxxx hoặc C-xxxx hoặc D-xxxx");
+            } else if (classList1 != null && classList1.contains(name)) {
+                errors.rejectValue("className", null, "Tên lớp đã tồn tại");
+            }
+            if (classesDto.startDate.equals("")) {
+                errors.rejectValue("startDate", null, "Không được để trống!");
+            }
+            if (classesDto.endDate.equals("")) {
+                errors.rejectValue("endDate", null, "Không được để trống!");
+            }
+            if (classesDto.description.equals("")) {
+                errors.rejectValue("description", null, "Không được để trống!");
+            }
+        } else {
+            LocalDate dayNow = LocalDate.now();
+            LocalDate temp = LocalDate.parse(classesDto.startDate);
+            LocalDate temp1 = LocalDate.parse(classesDto.endDate);
+            if (temp.isAfter(dayNow)) {
+                errors.rejectValue("startDate", null, "Không nhập quá ngày hiện tại");
+            } else if (temp1.isAfter(dayNow)) {
+                errors.rejectValue("endDate", null, "Không nhập quá ngày hiện tại");
+            } else if (classesDto.getClassName().equals("")) {
+                errors.rejectValue("className", null, "Không được để trống!");
+            } else if (!classesDto.getClassName().matches("^(B2|C|D)-\\d{4}$")) {
+                errors.rejectValue("className", null, "Tên lớp phải bắt đầu từ B2-xxxx hoặc C-xxxx hoặc D-xxxx");
+            } else if (classList1 != null && classList1.contains(name)) {
+                errors.rejectValue("className", null, "Tên lớp đã tồn tại");
+            }
+            if (classesDto.startDate.equals("")) {
+                errors.rejectValue("startDate", null, "Không được để trống!");
+            }
+            if (classesDto.description.equals("")) {
+                errors.rejectValue("description", null, "Không được để trống!");
+            }
         }
     }
 }

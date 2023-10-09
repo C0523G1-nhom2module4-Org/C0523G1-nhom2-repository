@@ -78,8 +78,7 @@
 <!-- Topbar End -->
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -118,12 +117,7 @@
 <!--<div th:replace="landing_page::header">-->
 
 
-<!--BACK-->
-<div class="container-fluid" style="margin-top: 30px"><a th:href="@{/admin/classes}" class="btn btn-primary"><i
-        class="fa-solid fa-arrow-left"></i></a></div>
-<!--BACK-->
-
-<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 0rem">
     <div class="bg-primary text-center p-5">
         <h1 class="mb-4">Thêm mới lớp học</h1>
 
@@ -142,7 +136,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{description}" type="text" class="form-control border-0" id="identity"
-                               placeholder="Mô tả" required>
+                               placeholder="Mô tả" >
                         <small style="color:red;" th:if="${#fields.hasErrors('description')}"
                                th:errors="*{description}"></small>
                         <label for="identity">Mô tả</label>
@@ -168,13 +162,13 @@
                         <label for="endDate">Ngày kết thúc</label>
                     </div>
                 </div>
-                <!--                phone-->
-                <div class="col-6">
-                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
-                </div>
                 <div class="col-6">
                     <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/classes}">Hủy
                         bỏ</a></button>
+                </div>
+                <!--                phone-->
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                 </div>
             </div>
         </form>

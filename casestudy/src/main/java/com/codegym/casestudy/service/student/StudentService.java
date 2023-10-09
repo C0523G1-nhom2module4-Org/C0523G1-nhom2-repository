@@ -56,4 +56,9 @@ public class StudentService implements IStudentService {
             System.out.println("------" + e.getMessage());
         }
     }
+
+//    @Override
+//    public List<String> findAllByStudent(String studentName) {
+//        return studentRepository.findAllByStudent(studentName);
+//    }
 }

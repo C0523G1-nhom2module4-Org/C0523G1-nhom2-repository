@@ -117,8 +117,8 @@
 
 <!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -159,7 +159,7 @@
 
 <!--content start-->
 <div class="container">
-    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Giảng Viên</h3>
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Giáo Viên</h3>
     <nav class="navbar navbar-inverse">
         <div class=" navbar-form navbar-left mb-3">
             <a th:href="@{/admin/teacher/add}">
@@ -172,7 +172,7 @@
         <form th:href="@{/admin/teacher}" method="get">
             <div class="d-flex justify-content-end">
                 <div class="input-group mb-6">
-                    <input id="search-input1" th:value="${name}" name="name" type="search"
+                    <input id="search-input1" th:value="${searchName}" name="searchName" type="search"
                            class="form-control" placeholder="Tên giảng viên"/>
                 </div>
                 <div class="mb-6 ml-2">
@@ -182,7 +182,7 @@
             </div>
         </form>
     </nav>
-    <table class="table" style="margin-top: 10%">
+    <table class="table" style="margin-top: 12%">
         <thead>
         <tr id="header">
             <th>STT</th>
@@ -225,13 +225,15 @@
         </tr>
         </tbody>
     </table>
+</div>
+<div>
     <!--    phan trang start-->
-    <div th:if="${teacherDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3" style="margin-top: 50%">
-        <nav aria-label="Page navigation example">
+    <div th:if="${teacherDtoPage.totalPages>1}" class="col-md-12 mb-4 mt-3" >
+        <nav aria-label="Page navigation example" style="margin-top: -100px">
             <ul class="pagination justify-content-center mb-0">
                 <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=0,searchName=${name})}">
+                       th:href="@{/admin/teacher(page=0,searchName=${searchName})}">
                         <small>
                             <i class="fa-solid fa-backward-fast"></i>
                         </small>
@@ -239,7 +241,7 @@
                 </li>
                 <li th:class="${!teacherDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)-1},searchName=${name})}">
+                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)-1},searchName=${searchName})}">
                         <small>
                             <i class="fa-solid fa-backward-step"></i>
                         </small>
@@ -253,7 +255,7 @@
                 </li>
                 <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)+1},searchName=${name})}">
+                       th:href="@{/admin/teacher(page=${(teacherDtoPage.number)+1},searchName=${searchName})}">
                         <small>
                             <i class="fa-solid fa-forward-step"></i>
                         </small>
@@ -261,7 +263,7 @@
                 </li>
                 <li th:class="${!teacherDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${name})}">
+                       th:href="@{/admin/teacher(page=${(teacherDtoPage.totalPages)-1},searchName=${searchName})}">
                         <small>
                             <i class="fa-solid fa-forward-fast"></i>
                         </small>
@@ -347,7 +349,6 @@
     <a th:if="${teacherDtoPage.hasPrevious()}" th:href="@{/admin/teacher(page=${teacherDtoPage.number - 1})}">Trước</a>
     <span th:text="${teacherDtoPage.number + 1}"></span> / <span th:text="${teacherDtoPage.totalPages}"></span>
     <a th:if="${teacherDtoPage.hasNext()}" th:href="@{/admin/teacher(page=${teacherDtoPage.number + 1})}">Sau</a>
-</div>
 </div>
 
 <!-- JavaScript Libraries -->

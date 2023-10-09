@@ -5,6 +5,7 @@ import com.codegym.casestudy.dto.student.StudentDto;
 import com.codegym.casestudy.model.student.Student;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -22,5 +23,7 @@ public interface IStudentService {
     void edit( Student student);
 
     void deleteWithId(int id);
+//    List<String> findAllByStudent(@Param(value = "studentName") String studentName);
+
 
 }

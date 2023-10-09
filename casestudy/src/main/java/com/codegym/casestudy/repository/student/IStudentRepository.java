@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 public interface IStudentRepository extends JpaRepository<Student, Integer> {
 
@@ -33,4 +34,12 @@ public interface IStudentRepository extends JpaRepository<Student, Integer> {
     @Transactional
     @Query(value = " update students set is_deleted = 1 where id= :id", nativeQuery = true)
     void updateById(@Param(value = "id")int id);
+
+//    @Query(value = "select s.id AS id, s.student_name as studentName, s.class_id as classId, c.class_name as className, s.gender as gender, " +
+//            "s.identity as identity, s.birthday as birthday, s.phone as phone, s.address as address, " +
+//            "s.is_deleted as isDeleted, s.graduate_point as graduatePoint from students AS s " +
+//            " left join classes as c on s.class_id = c.id " +
+//            " where s.student_name like :searchName and s.is_deleted = 0", nativeQuery = true)
+//    List<String> findAllByStudent(@Param(value = "studentName") String studentName);
+
 }

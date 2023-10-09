@@ -78,9 +78,9 @@
 <!-- Topbar End -->
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
+        <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -120,10 +120,8 @@
 
 
 <!--BACK-->
-<div class="container-fluid" style="margin-top: 30px"><a th:href="@{/admin/student}" class="btn btn-primary"><i
-        class="fa-solid fa-arrow-left"></i></a></div>
 <!--BACK-->
-<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 0rem">
     <div class="bg-primary text-center p-5">
         <h1 class="mb-4">Thêm mới học viên</h1>
         <form th:object="${listStudentDto}" method="POST" th:action="@{/admin/student/add}">
@@ -141,7 +139,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{identity}" type="number" class="form-control border-0" id="identity"
-                               placeholder="Số chứng minh nhân dân" >
+                               placeholder="Số chứng minh nhân dân">
                         <small style="color:red;" th:if="${#fields.hasErrors('identity')}"
                                th:errors="*{identity}"></small>
                         <label for="identity">Số chứng minh nhân dân</label>
@@ -151,7 +149,7 @@
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <select th:field="*{gender}" class="form-control border-0" id="gender"
-                               placeholder="Ngày sinh" style="background-color: #ffffff">
+                                placeholder="giới tính" style="background-color: #ffffff">
                             <option th:value="0" selected>Nam</option>
                             <option th:value="1">Nữ</option>
                             <option th:value="3">Khác</option>
@@ -163,7 +161,7 @@
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <input th:field="*{birthday}" type="date" class="form-control border-0" id="birthday"
-                               placeholder="Ngày sinh" >
+                               placeholder="Ngày sinh">
                         <small style="color:red;" th:if="${#fields.hasErrors('birthday')}"
                                th:errors="*{birthday}"></small>
                         <label for="birthday">Ngày sinh</label>
@@ -173,7 +171,7 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{phone}" type="text" class="form-control border-0" id="phone"
-                               placeholder="Số chứng minh nhân dân" >
+                               placeholder="Số điện thoại">
                         <small style="color:red;" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
                         <label for="phone">Số điện thoại</label>
                     </div>
@@ -182,21 +180,10 @@
                 <div class="col-12">
                     <div class="form-floating">
                         <input th:field="*{address}" type="text" class="form-control border-0" id="address"
-                               placeholder="Địa chỉ" >
+                               placeholder="Địa chỉ">
                         <small style="color:red;" th:if="${#fields.hasErrors('address')}"
                                th:errors="*{address}"></small>
                         <label for="address">Địa chỉ</label>
-                    </div>
-                </div>
-                <!--                salary-->
-                <div class="col-12">
-                    <div class="form-floating">
-                        <input th:field="*{graduatePoint}" type="number" class="form-control border-0"
-                               id="graduatePoint"
-                               placeholder="Điểm" >
-                        <small style="color:red;" th:if="${#fields.hasErrors('graduatePoint')}"
-                               th:errors="*{graduatePoint}"></small>
-                        <label for="graduatePoint">Điểm</label>
                     </div>
                 </div>
                 <div class="col-12">
@@ -208,26 +195,12 @@
                         <label for="classes">Lớp</label>
                     </div>
                 </div>
-
-<!--                <div class="col-sm-6">-->
-<!--                    <div class="form-floating">-->
-<!--                        <select th:field="*{gender}" class="form-control border-0" id="gender"-->
-<!--                                placeholder="Ngày sinh" style="background-color: #ffffff">-->
-<!--                            <option th:value="0" selected>Nam</option>-->
-<!--                            <option th:value="1">Nữ</option>-->
-<!--                            <option th:value="3">Khác</option>-->
-<!--                        </select>-->
-<!--                        <small style="color:red;" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></small>-->
-<!--                        <label for="gender">Giới tính</label>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-                <div class="col-6">
-                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
-                </div>
                 <div class="col-6">
                     <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/student}">Hủy
                         bỏ</a></button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                 </div>
             </div>
         </form>
