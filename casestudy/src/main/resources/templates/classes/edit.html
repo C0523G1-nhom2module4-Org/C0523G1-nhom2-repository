@@ -92,11 +92,28 @@
             <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link active">Lớp học</a>
-            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
-        <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
-                class="fa fa-arrow-right ms-3"></i></a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <div class="navbar-nav ms-auto text-light">
+                <div class="dropdown mx-2">
+                    <label for="user-container" class="text-dark"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"></label>
+                    <button class="btn btn-outline-light" style="border: none;"
+                            id="user-container"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <i class="fas fa-user" style="color: #000000;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 

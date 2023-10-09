@@ -115,8 +115,9 @@
 <!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
+        <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -128,11 +129,28 @@
             <a th:href="@{/admin/student}" class="nav-item nav-link active">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp học</a>
-            <a th:href="@{/contracts}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
-        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i
-                class="fa fa-arrow-right ms-3"></i></a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <div class="navbar-nav ms-auto text-light">
+                <div class="dropdown mx-2">
+                    <label for="user-container" class="text-dark"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"></label>
+                    <button class="btn btn-outline-light" style="border: none;"
+                            id="user-container"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <i class="fas fa-user" style="color: #000000;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
+                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
 <!--navbar management end-->
@@ -191,7 +209,7 @@
             <td style="width: 15%;" th:text="${student.getAddress()}"></td>
             <td style="width: 6%;">
                 <a th:href="@{/admin/student/edit/(id=${student.getId()})}">
-                    <i type="button" class="fas fa-edit fa-lg"  style="color:#0C2B4B"></i>
+                    <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
             <td style="width: 6%">
@@ -205,7 +223,7 @@
     </table>
     <!--    phan trang start-->
 
-    <div style="padding-bottom: 5%" th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
+    <div style="padding-bottom: 5%;margin-top: 100%" th:if="${studentDtos.totalPages>1}" class="col-md-12 mb-4 mt-3">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center mb-0">
                 <li th:class="${!studentDtos.hasPrevious()}?'page-item disabled' : 'page-item'">
