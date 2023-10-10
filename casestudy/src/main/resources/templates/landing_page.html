@@ -16,16 +16,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-
-<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"-->
-<!--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <link rel="stylesheet" href="/public/customer/table.css">
+    <!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"-->
+    <!--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+    <!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">-->
+    <!--    <link rel="stylesheet" href="/public/customer/table.css">-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-<!--    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>-->
+    <!--    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>-->
 
 
     <!-- Icon Font Stylesheet -->
@@ -43,6 +42,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 
 <body>
@@ -106,29 +106,68 @@
 <!-- Navbar Start -->
 
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-<!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
-    </a>
+    <div>
+        <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+            <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+            <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
+            <h2 class="m-0">Đà Nẵng Drift</h2>
+        </a>
+    </div>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <!--    admin-->
+    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" href="/account" class="nav-item nav-link">Tài khoản</a>
-            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" href="/admin/qualification" class="nav-item nav-link">Bằng cấp</a>
-            <a th:if="${#request.isUserInRole('ROLE_TEACHER')|| #request.isUserInRole('ROLE_ADMIN')|| #request.isUserInRole('ROLE_STUDENT')}" href="admin/student" class="nav-item nav-link">Học viên</a>
-            <a th:if="${#request.isUserInRole('ROLE_TEACHER') || #request.isUserInRole('ROLE_ADMIN')}" href="admin/teacher" class="nav-item nav-link">Giáo viên</a>
-            <a th:if="${#request.isUserInRole('ROLE_TEACHER')|| #request.isUserInRole('ROLE_ADMIN')}" href="admin/classes" class="nav-item nav-link">Lớp học</a>
-            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" href="admin/contracts" class="nav-item nav-link">Hợp đồng</a>
-            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
-            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/contact-email}" class="nav-item nav-link ">Phản Hồi</a>
+            <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
+            <a th:href="@{//admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+            <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
+            <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link ">Phản Hồi</a>
         </div>
-<!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
-        <!--                class="fa fa-arrow-right ms-3"></i></a>-->
     </div>
+    <!--    admin end-->
+
+    <!--    teacher-->
+    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_TEACHER')}">
+        <div class="navbar-nav ms-auto p-4 p-lg-0" style="margin-right: 27%">
+            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+            <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+        </div>
+    </div>
+    <!--    teacher end-->
+
+    <!--    student-->
+    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_STUDENT')}">
+        <div class="navbar-nav ms-auto p-4 p-lg-0" style="margin-right: 58%">
+            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+        </div>
+    </div>
+    <!--   student end-->
+
     <div class="collapse navbar-collapse justify-content-end">
+
         <div class="navbar-nav ms-auto text-light">
+            <div th:if="${#request.isUserInRole('ROLE_ADMIN')}"
+                 style="color: #0a223c;font-size: 1rem; font-weight: bold; display: grid">
+                <div style="align-self: center;" >
+                    Admin
+                </div>
+            </div>
+            <div th:if="${#request.isUserInRole('ROLE_STUDENT') || #request.isUserInRole('ROLE_TEACHER')}"
+                 style="color: #0a223c;font-size: 1rem; font-weight: bold; display: grid">
+
+                <div style="align-self: center">
+                    Xin chào: <span th:text="${name}"></span>
+                </div>
+
+            </div>
             <div class="dropdown mx-2">
                 <label for="user-container" class="text-dark"
                        data-bs-toggle="dropdown"
@@ -139,6 +178,7 @@
                         aria-expanded="false">
                     <i class="fas fa-user" style="color: #000000;"></i>
                 </button>
+
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
                     <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
@@ -559,11 +599,13 @@
                     <div class="position-relative">
                         <img class="img-fluid" src="img/team-4.jpg" alt="">
                         <div class="team-social text-center">
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href="https://www.facebook.com/5qua.chuoi9/" target="_blank"><i
+                            <a class="btn btn-square btn-outline-primary border-2 m-1"
+                               href="https://www.facebook.com/5qua.chuoi9/" target="_blank"><i
                                     class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
                                     class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square btn-outline-primary border-2 m-1" href="https://www.instagram.com/donefor.thien/" target="_blank"><i
+                            <a class="btn btn-square btn-outline-primary border-2 m-1"
+                               href="https://www.instagram.com/donefor.thien/" target="_blank"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>
@@ -627,7 +669,8 @@
 
 
 <!-- Footer Start -->
-<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
+<div th:fragment="footer" class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn"
+     data-wow-delay="0.1s">
     <div class="container">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
@@ -694,7 +737,7 @@
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>-->
 <script src="lib/wow/wow.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/waypoints/waypoints.min.js"></script>
