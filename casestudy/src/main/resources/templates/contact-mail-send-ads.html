@@ -80,11 +80,11 @@
 <!--Topbar end-->
 
 <!--Navbar start-->
-<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+<nav th:href="@{/account/success}" class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
         <h2 class="m-0">Đà Nẵng Drift</h2>
+        <!--        <i class="fa fa-car text-primary me-2"></i> -->
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -92,13 +92,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
-            <a th:href="@{/admin/qualification}" class="nav-item nav-link ">Bằng cấp</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
             <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
-            <a th:href="@{/admin/assignment}" class="nav-item nav-link active">Phân công</a>
-            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
+            <a th:href="@{/admin/assignment}" class="nav-item nav-link">Phân công</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link active">Phản hồi</a>
         </div>
         <!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
         <!--                class="fa fa-arrow-right ms-3"></i></a>-->
@@ -111,60 +111,36 @@
 <!--Add form start-->
 <div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
     <div class="bg-primary text-center p-5">
-        <h1 class="mb-4">Sửa đổi phân công</h1>
-        <form th:object="${assignmentDto}" method="POST" th:action="@{/admin/assignment/edit}">
-            <input type="hidden" th:field="*{id}">
+        <h1 class="mb-4">Gửi mail hệ thống</h1>
+        <h3 th:text="${message}"></h3>
+        <form method="get" th:action="@{/admin/contact-email/do-send-ads-mail}">
             <div class="row g-3">
                 <div class="col-sm-6">
                     <div class="form-floating">
-                        <select th:field="*{classes}" class="form-control border-0" id="classes">
-                            <option th:each="c : ${classList}" th:value="${c.id}"
-                                    th:text="${c.className}"></option>
-                        </select>
-                        <label for="classes">Lớp</label>
+                        <input name="subject" type="text" class="form-control border-0" id="subject"
+                               placeholder="Tiêu đề" required>
+                        <label for="subject">Tiêu đề</label>
                     </div>
                 </div>
-                <div class="col-sm-6">
+
+                <div class="col-12">
                     <div class="form-floating">
-                        <select th:field="*{teacher}" class="form-control border-0" id="teacher">
-                            <option th:each="t : ${teacherList}" th:value="${t.getId()}"
-                                    th:text="${t.getName()}"></option>
-                        </select>
-                        <label for="classes">Giáo viên</label>
+                        <textarea name="content" class="form-control border-0"
+                                  placeholder="Nội dung chi tiết" id="content"
+                                  style="height: 200px" required></textarea>
+                        <label for="content">Nội dung chi tiết</label>
                     </div>
                 </div>
-                <!--                day end-->
-<!--                <div class="col-sm-6">-->
-<!--                    <div class="form-floating">-->
-<!--                        <input th:field="*{dayStart}" type="date" class="form-control border-0" id="dayStart"-->
-<!--                               placeholder="Ngày bắt đầu" required>-->
-<!--                        <small style="color:red;" th:if="${#fields.hasErrors('dayStart')}"-->
-<!--                               th:errors="*{dayStart}"></small>-->
-<!--                        <label for="dayStart">Ngày bắt đầu</label>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                &lt;!&ndash;                day start&ndash;&gt;-->
-<!--                <div class="col-sm-6">-->
-<!--                    <div class="form-floating">-->
-<!--                        <input th:field="*{dayEnd}" type="date" th:value="${assignmentDto.dayEnd}"-->
-<!--                               class="form-control border-0" id="dayEnd"-->
-<!--                               placeholder="Ngày kết thúc" required>-->
-<!--                        <small style="color:red;" th:if="${#fields.hasErrors('dayEnd')}"-->
-<!--                               th:errors="*{dayEnd}"></small>-->
-<!--                        <label for="dayEnd">Ngày kết thúc</label>-->
-<!--                    </div>-->
-<!--                </div>-->
+
                 <div class="col-6">
-                    <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/assignment/back}">Hủy
+                    <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/contact-mail/back}">Hủy
                         bỏ</a></button>
                 </div>
                 <div class="col-6">
                     <button class="btn btn-dark w-100 py-3" type="submit">Xác nhận</button>
                 </div>
-
             </div>
         </form>
-        <!--        <small style="color: red" th:if="${message != null}" th:text="${message}"></small>-->
     </div>
 </div>
 <!--Add form end-->
@@ -174,7 +150,15 @@
 <!--Footer end-->
 
 <!--Copyright start-->
-<div th:replace="index::copyRight"></div>
+<div th:fragment="copyRight" class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                &copy; <a href="#">Group 2 - C0523G1</a>, All Right Reserved.
+            </div>
+        </div>
+    </div>
+</div>
 <!--Copyright end-->
 
 

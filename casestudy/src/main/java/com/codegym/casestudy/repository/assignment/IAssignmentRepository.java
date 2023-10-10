@@ -1,8 +1,10 @@
 package com.codegym.casestudy.repository.assignment;
 
+import com.codegym.casestudy.dto.classes.ClassesDtoAssignment;
 import com.codegym.casestudy.model.assignment.Assignment;
 import com.codegym.casestudy.model.classes.Classes;
 import com.codegym.casestudy.model.teacher.Teacher;
+import com.codegym.casestudy.model.teacher.TeacherDtoAssignment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,16 +37,16 @@ public interface IAssignmentRepository extends JpaRepository<Assignment, Long> {
             " on classes.id = assignments.class_id " +
             " where assignments.class_id IS NULL " +
             " AND classes.is_deleted = 0 ", nativeQuery = true)
-    List<Classes> findAllClassAvailable();
+    List<ClassesDtoAssignment> findAllClassAvailable();
 
     @Query(value = " select teachers.id as id, teachers.teacher_name as name, " +
             " teachers.identity as identity, teachers.gender as gender, " +
             " teachers.birthday as birthday, teachers.phone as phone, " +
-            " teachers.address as address, teachers.salary as salary," +
+            " teachers.address as address" +
             " from teachers " +
             " left join assignments " +
             " on teachers.id = assignments.teacher_id " +
             " where assignments.teacher_id IS NULL " +
             " AND teachers.is_deleted = 0", nativeQuery = true)
-    List<Teacher> findAllTeacherAvailable();
+    List<TeacherDtoAssignment> findAllTeacherAvailable();
 }

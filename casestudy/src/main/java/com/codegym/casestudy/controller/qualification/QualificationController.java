@@ -57,7 +57,8 @@ public class QualificationController {
     @PostMapping("/qualification-add")
     public String qualificationAdd(@Valid @ModelAttribute QualificationDto qualificationDto,
                                    BindingResult bindingResult,
-                                   Model model) {
+                                   Model model,
+                                   RedirectAttributes redirectAttributes) {
         //
         new QualificationDto().validate(qualificationDto, bindingResult);
 
@@ -80,7 +81,8 @@ public class QualificationController {
         //if nothing wrong, add new qualification
         Qualification qualification = new Qualification();
         BeanUtils.copyProperties(qualificationDto, qualification);
-
+        String success = "Thêm thành công bằng lái";
+        redirectAttributes.addFlashAttribute("success",success);
         this.qualificationService.add(qualification);
         return "redirect:/admin/qualification";
     }
@@ -93,7 +95,7 @@ public class QualificationController {
         boolean removeSuccess = this.qualificationService.remove(qualification.getId());
         System.out.println("--------------remove get method----------");
         if (removeSuccess) {
-            redirectAttributes.addFlashAttribute("message", "Đã xóa bằng lái");
+            redirectAttributes.addFlashAttribute("success", "Đã xóa bằng lái");
         } else {
             redirectAttributes.addFlashAttribute("message", "Không thể tìm thấy thông tin về bằng " +
                     "lái này.");
@@ -145,6 +147,8 @@ public class QualificationController {
         this.qualificationService.add(qualification);
         editSuccessMessage = "Sửa đổi thông tin bằng lái: "
                 + qualification.getName() + " thành công";
+        String success = "Sửa thành công bằng lái " +qualification.getName();
+        redirectAttributes.addFlashAttribute("success",success);
         redirectAttributes.addFlashAttribute("editSuccessMessage", editSuccessMessage);
         return "redirect:/admin/qualification";
     }
