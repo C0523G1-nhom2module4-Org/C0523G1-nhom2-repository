@@ -122,6 +122,7 @@
             <a th:if="${#request.isUserInRole('ROLE_TEACHER')|| #request.isUserInRole('ROLE_ADMIN')}" href="admin/classes" class="nav-item nav-link">Lớp học</a>
             <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" href="admin/contracts" class="nav-item nav-link">Hợp đồng</a>
             <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/contact-email}" class="nav-item nav-link ">Phản Hồi</a>
         </div>
 <!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
         <!--                class="fa fa-arrow-right ms-3"></i></a>-->
