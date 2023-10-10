@@ -113,15 +113,20 @@ public class AssignmentController {
         model.addAttribute("classList", classList);
         model.addAttribute("teacherList", teacherList);
 
+
         return "/assignment-edit";
     }
 
     @PostMapping("/edit")
-    public String editAssigment(@ModelAttribute AssignmentDto assignmentDto) {
+    public String editAssigment(@ModelAttribute AssignmentDto assignmentDto,
+                                RedirectAttributes redirectAttributes) {
         //validate
         Assignment assignment = new Assignment();
         BeanUtils.copyProperties(assignmentDto, assignment);
         this.assignmentService.add(assignment);
+        String addSuccess = "Phân công thành công";
+        redirectAttributes.addFlashAttribute("addSuccess", addSuccess);
+
         return "redirect:/admin/assignment";
     }
 }
