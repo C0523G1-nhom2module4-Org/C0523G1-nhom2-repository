@@ -84,4 +84,5 @@ public interface IClassesRepository extends JpaRepository<Classes, Integer> {
 //    List<String>  findAllByTeacherName(@Param(value = "name") String name);
 
 
+
 }

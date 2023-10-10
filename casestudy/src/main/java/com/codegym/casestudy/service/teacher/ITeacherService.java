@@ -4,6 +4,7 @@ import com.codegym.casestudy.dto.teacher.ITeacherDto;
 import com.codegym.casestudy.model.teacher.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -19,4 +20,7 @@ public interface ITeacherService {
     List<Teacher> findAll();
 
     void updateTeacher( Teacher teacher);
+
+    int findTeachersByIdClass( int classId);
+
 }
