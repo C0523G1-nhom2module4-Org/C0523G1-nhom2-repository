@@ -71,7 +71,7 @@ public class AccountController {
     public String delete(@RequestParam int deleteId, RedirectAttributes redirectAttributes) {
         Account account = accountService.findById(deleteId);
         accountService.deleteAccount(account);
-        redirectAttributes.addFlashAttribute("msg", "Xóa Thành Công");
+        redirectAttributes.addFlashAttribute("success","Xóa thành công");
         return "redirect:/account";
     }
 
