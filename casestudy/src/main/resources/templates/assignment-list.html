@@ -222,7 +222,7 @@
             <ul class="pagination justify-content-center mb-0">
                 <li th:class="${!assignments.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/qualification(page=${assignments.number - 1} ,searchName = ${searchName})}">
+                       th:href="@{/admin/assignment(page=${assignments.number - 1} ,searchName = ${searchName})}">
                         <small>
                             <i class="fa-solid fa-backward-fast"></i>
                         </small>
@@ -230,7 +230,7 @@
                 </li>
                 <li th:class="${!assignments.hasPrevious()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/qualification(page=${(assignments.number) - 1} ,searchName = ${searchName})}">
+                       th:href="@{/admin/assignment(page=${(assignments.number) - 1} ,searchName = ${searchName})}">
                         <small>
                             <i class="fa-solid fa-backward-step"></i>
                         </small>
@@ -252,7 +252,7 @@
                 </li>
                 <li th:class="${!assignments.hasNext()}?'page-item disabled' : 'page-item'">
                     <a class="page-link"
-                       th:href="@{/admin/qualification(page=${(assignments.totalPages)-1},searchName=${searchName})}">
+                       th:href="@{/admin/assignment(page=${(assignments.totalPages)-1},searchName=${searchName})}">
                         <small>
                             <i class="fa-solid fa-forward-fast"></i>
                         </small>
