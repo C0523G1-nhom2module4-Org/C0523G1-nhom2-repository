@@ -41,4 +41,7 @@ public interface ITeacherRepository extends JpaRepository<Teacher,Integer> {
     @Transactional
     @Query(value = " update teachers set is_deleted = true where id = :id", nativeQuery = true)
     void deleteTeacher(@Param("id") Teacher teacher);
+
+     @Query(value = " select teacher_id from assignments where class_id =:classId", nativeQuery = true)
+    int findTeachersByIdClass(@Param("classId") int classId);
 }

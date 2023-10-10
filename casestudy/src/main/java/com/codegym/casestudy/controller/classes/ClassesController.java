@@ -8,6 +8,7 @@ import com.codegym.casestudy.model.classes.Classes;
 import com.codegym.casestudy.model.student.Student;
 import com.codegym.casestudy.service.classes.IClassesService;
 import com.codegym.casestudy.service.student.IStudentService;
+import com.codegym.casestudy.service.teacher.ITeacherService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,6 +31,8 @@ public class ClassesController {
     private IClassesService classesService;
     @Autowired
     private IStudentService studentService;
+    @Autowired
+    private ITeacherService teacherService;
 
     @GetMapping("/classes")
     public String showClass(@RequestParam(defaultValue = "", required = false) String name,
@@ -129,9 +132,9 @@ public class ClassesController {
         Classes classes = this.classesService.findById(classId);
         String className = classes.getClassName();
         List<String> studentList = this.classesService.findAllByClassName(className);
-//        List<String> teacherList = this.classesService.findAllByTeacherName(n);
+        int teacherId = teacherService.findTeachersByIdClass(classId);
         model.addAttribute("studentList", studentList);
-//        model.addAttribute("teacherList", teacherList);
+        model.addAttribute("teacherName", teacherService.findById(teacherId).getName());
         model.addAttribute("classes", classes);
         return "/classes/class-detail";
     }
