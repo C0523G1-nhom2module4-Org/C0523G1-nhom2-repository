@@ -2,9 +2,11 @@ package com.codegym.casestudy.controller.assignment;
 
 import com.codegym.casestudy.dto.assignment.AssignmentDto;
 import com.codegym.casestudy.dto.assignment.AssignmentDtoForEdit;
+import com.codegym.casestudy.dto.classes.ClassesDtoAssignment;
 import com.codegym.casestudy.model.assignment.Assignment;
 import com.codegym.casestudy.model.classes.Classes;
 import com.codegym.casestudy.model.teacher.Teacher;
+import com.codegym.casestudy.model.teacher.TeacherDtoAssignment;
 import com.codegym.casestudy.service.assignment.IAssignmentService;
 import com.codegym.casestudy.service.classes.IClassesService;
 import com.codegym.casestudy.service.teacher.ITeacherService;
@@ -33,6 +35,7 @@ public class AssignmentController {
     @Autowired
     private IClassesService classesService;
 
+    //main page + back
     @GetMapping()
     public String assignmentList(@RequestParam(defaultValue = "0", required = false) Integer page,
                                  @RequestParam(defaultValue = "", required = false) String searchName,
@@ -50,11 +53,11 @@ public class AssignmentController {
         return "redirect:/admin/assignment";
     }
 
-
+    // add
     @GetMapping("/add")
     public String showAssignmentAddForm(Model model) {
-        List<Classes> classList = this.assignmentService.findAllClassAvailable();
-        List<Teacher> teacherList = this.assignmentService.findAllTeacherAvailable();
+        List<ClassesDtoAssignment> classList = this.assignmentService.findAllClassAvailable();
+        List<TeacherDtoAssignment> teacherList = this.assignmentService.findAllTeacherAvailable();
         AssignmentDto assignmentDto = new AssignmentDto();
 
         model.addAttribute("classList", classList);
@@ -74,6 +77,7 @@ public class AssignmentController {
         return "redirect:/admin/assignment";
     }
 
+    // delete
     @GetMapping("/delete")
     public String deleteAssignment(@RequestParam(name = "id") Long id,
                                    RedirectAttributes redirectAttributes) {
@@ -89,6 +93,7 @@ public class AssignmentController {
         return "redirect:/admin/assignment";
     }
 
+    //edit
     @GetMapping("/edit/{assignmentId}")
     public String showAssignmentEdit(@PathVariable(name = "assignmentId") Long assignmentId,
                                      Model model, RedirectAttributes redirectAttributes) {
