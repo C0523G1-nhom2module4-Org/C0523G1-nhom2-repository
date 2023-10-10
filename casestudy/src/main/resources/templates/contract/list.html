@@ -8,7 +8,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,8 +29,8 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="/css/style.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="/css/style.css">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -104,6 +104,8 @@
 
         }
     </style>
+
+
 </head>
 <body>
 <!--spinner start-->
@@ -133,6 +135,7 @@
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link active">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
         </div>
         <!--        <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Admin<i-->
         <!--                class="fa fa-arrow-right ms-3"></i></a>-->
@@ -222,7 +225,7 @@
         <ul class="pagination justify-content-center mb-0">
             <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                 <a class="page-link"
-                   th:href="@{/contracts(page=0,studentName=${nameSearch})}">
+                   th:href="@{/admin/contracts(page=0,studentName=${nameSearch})}">
                     <small>
                         <i class="fa-solid fa-backward-fast"></i>
                     </small>
@@ -230,7 +233,7 @@
             </li>
             <li th:class="${!contractDtoPage.hasPrevious()}?'page-item disabled' : 'page-item'">
                 <a class="page-link"
-                   th:href="@{contracts(page=${(contractDtoPage.number)-1},studentName=${nameSearch})}">
+                   th:href="@{/admin/contracts(page=${(contractDtoPage.number)-1},studentName=${nameSearch})}">
                     <small>
                         <i class="fa-solid fa-backward-step"></i>
                     </small>
@@ -244,7 +247,7 @@
             </li>
             <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                 <a class="page-link"
-                   th:href="@{contracts(page=${contractDtoPage.number+1},studentName=${nameSearch})}">
+                   th:href="@{/admin/contracts(page=${contractDtoPage.number+1},studentName=${nameSearch})}">
                     <small>
                         <i class="fa-solid fa-forward-step"></i>
                     </small>
@@ -252,7 +255,7 @@
             </li>
             <li th:class="${!contractDtoPage.hasNext()}?'page-item disabled' : 'page-item'">
                 <a class="page-link"
-                   th:href="@{contracts(page=${(contractDtoPage.totalPages)-1},studentName=${nameSearch})}">
+                   th:href="@{/admin/contracts(page=${(contractDtoPage.totalPages)-1},studentName=${nameSearch})}">
                     <small>
                         <i class="fa-solid fa-forward-fast"></i>
                     </small>
@@ -306,39 +309,32 @@
 
 
 <!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="/lib/easing/easing.min.js"></script>
-
-<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-
-<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-
-<script src="/lib/lightbox/js/lightbox.min.js"></script>
-
+<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>-->
 <!--contact js-->
-<script src="../mail/jqBootstrapValidation.min.js"></script>
-<script src="../mail/contact.js"></script>
+<!--<script src="../mail/jqBootstrapValidation.min.js"></script>-->
+<!--<script src="../mail/contact.js"></script>-->
 
 <!-- Template Javascript-->
-<script src="../js/main.js"></script>
+<!--<script src="../js/main.js"></script>-->
 <!--offline-->
-<script src="/mail/contact.js"></script>
-<script src="/mail/jqBootstrapValidation.min.js"></script>
-<script src="/lib/lightbox/js/lightbox.min.js"></script>
-<script src="/lib/isotope/isotope.pkgd.min.js"></script>
-<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="/lib/easing/easing.min.js"></script>
-<script src="/js/main.js"></script>
+<!--<script src="/mail/contact.js"></script>-->
+<!--<script src="/mail/jqBootstrapValidation.min.js"></script>-->
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
 
-<script th:src="@{/js/main.js}"></script>
-
-<!-- Template Javascript -->
+<!--<script src="/lib/lightbox/js/lightbox.min.js"></script>-->
+<!--<script src="/lib/isotope/isotope.pkgd.min.js"></script>-->
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+
+
+<!--<script th:src="@{/js/main.js}"></script>-->
 </body>
 </html>
