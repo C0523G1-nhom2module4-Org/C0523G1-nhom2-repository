@@ -93,6 +93,7 @@
             <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
         </div>
         <div class="collapse navbar-collapse justify-content-end">
             <div class="navbar-nav ms-auto text-light">
@@ -123,7 +124,7 @@
 <!--BACK-->
 
 <!--CONTENT START-->
-<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 0rem">
+<div class="content col-lg-8 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 2rem">
     <div class="bg-primary text-center p-5">
         <h2 class="mb-4">Sửa thông tin học viên</h2>
         <form th:object="${teacherDto}" th:action="@{/admin/teacher/edit}" th:method="post">

@@ -33,6 +33,10 @@
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/table.css">
 
+    <!-- Modal thông báo -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -108,6 +112,23 @@
     </style>
 </head>
 <body>
+<div th:if="${success}">
+    <span th:text="${success}" id="success" style="display: none"></span>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let success = document.getElementById("success").innerText;
+        console.log(success)
+        Swal.fire({
+            title: success,
+            icon: 'success',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+        });
+    });
+</script>
+
 <!--spinner start-->
 <div th:replace="index::spinner"></div>
 <!--spinner end-->
@@ -118,8 +139,10 @@
 
 <!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5"><!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
-        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt=""><h2 class="m-0">Đà Nẵng Drift</h2>
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+        <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
+        <h2 class="m-0">Đà Nẵng Drift</h2>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -133,6 +156,7 @@
             <a th:href="@{/admin/classes}" class="nav-item nav-link active">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
         </div>
         <div class="collapse navbar-collapse justify-content-end">
             <div class="navbar-nav ms-auto text-light">
@@ -160,9 +184,10 @@
 <!--content start-->
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Lớp Học</h3>
+    <h4 th:if="${classList.isEmpty()}" th:text="${message}"></h4>
     <nav class="navbar navbar-inverse" style="margin-right: 65px">
         <div class=" navbar-form navbar-left mb-3">
-            <a th:href="@{/admin/classes/add}"style="margin-left: 65px">
+            <a th:href="@{/admin/classes/add}" style="margin-left: 65px">
                 <button title="Thêm mới lớp sinh"
                         class="btn btn-primary">
                     <i class="fa-solid fa-plus"></i>
@@ -182,9 +207,11 @@
             </div>
         </form>
     </nav>
+</div>
+<div class="container">
     <table class="table" style="margin-top: 12%;width: 90%">
         <thead>
-        <tr id="header" >
+        <tr id="header">
             <th>STT</th>
             <th>Tên Lớp</th>
             <th>Ngày Bắt Đầu</th>
@@ -202,66 +229,64 @@
 
             <td style="width: 5%">
                 <a th:href="@{/admin/classes/edit/{id}(id=${cla.getId()})}">
-                    <i class="fas fa-edit fa-lg"  style="color:#0C2B4B"></i>
+                    <i class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
             <td style="width: 5%">
                 <a th:href="@{/admin/classes/class-detail/__${cla.getId()}__}">
-                    <i class="fas fa-info-circle fa-lg"  style="color:#0C2B4B"></i>
+                    <i class="fas fa-info-circle fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
 
     </table>
+</div>
+<!--    phan trang start-->
+<div th:if="${classList.totalPages>1}" class="col-md-12 mb-4 mt-3">
+    <nav aria-label="Page navigation example" style="margin-top: -100px">
+        <ul class="pagination justify-content-center mb-0">
+            <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/classes(page=0,name=${name})}">
+                    <small>
+                        <i class="fa-solid fa-backward-fast"></i>
+                    </small>
+                </a>
+            </li>
+            <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/classes(page=${(classList.number)-1},name=${name})}">
+                    <small>
+                        <i class="fa-solid fa-backward-step"></i>
+                    </small>
+                </a>
+            </li>
+            <li class="page-item active">
+                <a href="#" class="page-link">
+                    <span th:text="${classList.number +1}"></span>/<span
+                        th:text="${classList.totalPages}"></span>
+                </a>
+            </li>
+            <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/classes(page=${classList.number+1},name=${name})}">
+                    <small>
+                        <i class="fa-solid fa-forward-step"></i>
+                    </small>
+                </a>
+            </li>
+            <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
+                <a class="page-link"
+                   th:href="@{/admin/classes(page=${(classList.totalPages)-1},name=${name})}">
+                    <small>
+                        <i class="fa-solid fa-forward-fast"></i>
+                    </small>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
-    </tbody>
-    </table>
-    <!--    phan trang start-->
-    <div th:if="${classList.totalPages>1}" class="col-md-12 mb-4 mt-3">
-        <nav aria-label="Page navigation example" style="margin-top: -100px">
-            <ul class="pagination justify-content-center mb-0" >
-                <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin//classes(page=0,name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-backward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!classList.hasPrevious()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{classes(page=${(classList.number)-1},name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-backward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">
-                        <span th:text="${classList.number +1}"></span>/<span
-                            th:text="${classList.totalPages}"></span>
-                    </a>
-                </li>
-                <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/classes(page=${classList.number+1},name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-forward-step"></i>
-                        </small>
-                    </a>
-                </li>
-                <li th:class="${!classList.hasNext()}?'page-item disabled' : 'page-item'">
-                    <a class="page-link"
-                       th:href="@{/admin/classes(page=${(classList.totalPages)-1},name=${name})}">
-                        <small>
-                            <i class="fa-solid fa-forward-fast"></i>
-                        </small>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-
-    <!--    phan trang end-->
+<!--    phan trang end-->
 </div>
 <!--content end-->
 

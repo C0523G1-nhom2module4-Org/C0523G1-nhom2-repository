@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -37,4 +38,16 @@ public class Classes {
     private Set<Student> studentSet;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Classes classes = (Classes) o;
+        return id == classes.id && Objects.equals(className, classes.className) && Objects.equals(description, classes.description) && Objects.equals(startDate, classes.startDate) && Objects.equals(endDate, classes.endDate) && Objects.equals(studentSet, classes.studentSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, className, description, startDate, endDate, studentSet);
+    }
 }

@@ -67,4 +67,11 @@ public class ClassesService implements IClassesService {
     public List<String> findAllByClassName(String className) {
         return this.classesRepository.findAllByClassName(className);
     }
+
+//    @Override
+//    public List<String> findAllByTeacherName(String name) {
+//        return this.classesRepository.findAllByTeacherName(name);
+//    }
+
+
 }

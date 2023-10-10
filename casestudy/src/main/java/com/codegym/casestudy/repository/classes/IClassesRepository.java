@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -73,4 +74,14 @@ public interface IClassesRepository extends JpaRepository<Classes, Integer> {
             "order by s.student_name ",
             nativeQuery = true)
     List<String> findAllByClassName(@Param(value = "className") String className);
+
+//    @Query(value = " SELECT c.id as id, c.class_name as className, t.id AS id, t.teacher_name as name " +
+//            " FROM classes as c " +
+//            " JOIN assignments a ON c.id = a.id " +
+//            " JOIN teachers t ON a.id = t.id " +
+//            " WHERE c.is_deleted = 0" +
+//            " AND a.is_deleted = 0 ",nativeQuery = true)
+//    List<String>  findAllByTeacherName(@Param(value = "name") String name);
+
+
 }

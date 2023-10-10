@@ -32,5 +32,8 @@ public interface IClassesService {
     ClassDetailDto getClassDetail(String className);
 
     List<String> findAllByClassName(@Param(value = "className") String className);
+//    List<String> findAllByTeacherName(@Param(value = "name") String name);
+
+
 
 }
