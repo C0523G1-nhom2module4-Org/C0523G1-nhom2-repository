@@ -36,6 +36,9 @@ public class TeacherController {
                            @RequestParam(defaultValue = "", required = false) String searchName) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<ITeacherDto> teacherDtoPage = teacherService.searchByName(pageable, searchName);
+        if (teacherDtoPage.isEmpty()) {
+            model.addAttribute("message", "Không có dữ liệu bạn tìm kiếm");
+        }
         model.addAttribute("teacherDtoPage", teacherDtoPage);
         model.addAttribute("searchName", searchName);
         return "/teacher/list";
@@ -58,7 +61,7 @@ public class TeacherController {
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(teacherDto, teacher);
         teacherService.saveNewTeacher(teacher);
-        redirectAttributes.addFlashAttribute("message", "Thêm mới thành công");
+        redirectAttributes.addFlashAttribute("success", "Thêm mới thành công");
         return "redirect:/admin/teacher";
     }
 
@@ -82,7 +85,7 @@ public class TeacherController {
         Teacher teacher = new Teacher();
         BeanUtils.copyProperties(teacherDto, teacher);
         teacherService.updateTeacher(teacher);
-        redirectAttributes.addFlashAttribute("message", "Sửa thành công");
+        redirectAttributes.addFlashAttribute("success", "Sửa thành công");
         return "redirect:/admin/teacher";
     }
 
@@ -90,7 +93,7 @@ public class TeacherController {
     public String delete(@RequestParam int idDelete, RedirectAttributes redirectAttributes) {
         Teacher teacher = teacherService.findById(idDelete);
         teacherService.delete(teacher);
-        redirectAttributes.addFlashAttribute("message", "Xóa thành công");
+        redirectAttributes.addFlashAttribute("success", "Xóa thành công");
         return "redirect:/admin/teacher";
     }
 }

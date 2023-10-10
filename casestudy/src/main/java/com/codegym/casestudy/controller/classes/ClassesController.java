@@ -36,6 +36,9 @@ public class ClassesController {
                             Model model, @RequestParam(defaultValue = "0", required = false) int page) {
         Pageable pageable = PageRequest.of(page, 5);
         Page<Classes> classList = classesService.findClass(pageable, name);
+        if (classList.isEmpty()) {
+            model.addAttribute("message", "Không có dữ liệu bạn tìm kiếm");
+        }
         model.addAttribute("classList", classList);
         model.addAttribute("name", name);
         return "/classes/list";
@@ -70,14 +73,16 @@ public class ClassesController {
     public String add(@Valid @ModelAttribute("classDto") ClassesDto classDto,
                       BindingResult bindingResult,
                       RedirectAttributes redirectAttributes) {
-        new ClassesDto().validate(classDto, bindingResult);
+        List<Classes> classesList = classesService.findAll();
+        classDto.setClassList(classesList);
+        classDto.validate(classDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return "/classes/add";
         }
         Classes classes = new Classes();
         BeanUtils.copyProperties(classDto, classes);
         classesService.add(classes);
-        redirectAttributes.addFlashAttribute("mess", "thêm thành công");
+        redirectAttributes.addFlashAttribute("success", "thêm thành công");
         return "redirect:/admin/classes";
     }
 
@@ -94,16 +99,16 @@ public class ClassesController {
     public String update(@Valid @ModelAttribute ClassesDto classesDto,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {
-        ClassesDto classesDto1= new ClassesDto();
+        ClassesDto classesDto1 = new ClassesDto();
         classesDto.setClassList(classesService.findAll());
-        classesDto1.validate(classesDto,bindingResult);
+        classesDto1.validate(classesDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return "/classes/edit";
         }
         Classes classes = new Classes();
         BeanUtils.copyProperties(classesDto, classes);
         classesService.edit(classes);
-        redirectAttributes.addFlashAttribute("message", "Sửa thành công");
+        redirectAttributes.addFlashAttribute("success", "Sửa thành công");
         return "redirect:/admin/classes";
     }
 
@@ -112,7 +117,7 @@ public class ClassesController {
     public String delete(@RequestParam int id, RedirectAttributes redirectAttributes) {
         Classes classes = classesService.findById(id);
         classesService.delete(classes);
-        redirectAttributes.addFlashAttribute("mess", "xoá thành công");
+        redirectAttributes.addFlashAttribute("success", "xoá thành công");
         return "redirect:/admin/classes";
     }
 
@@ -124,8 +129,10 @@ public class ClassesController {
         Classes classes = this.classesService.findById(classId);
         String className = classes.getClassName();
         List<String> studentList = this.classesService.findAllByClassName(className);
-        model.addAttribute("studentList",studentList);
-        model.addAttribute("classes",classes);
+//        List<String> teacherList = this.classesService.findAllByTeacherName(n);
+        model.addAttribute("studentList", studentList);
+//        model.addAttribute("teacherList", teacherList);
+        model.addAttribute("classes", classes);
         return "/classes/class-detail";
     }
 

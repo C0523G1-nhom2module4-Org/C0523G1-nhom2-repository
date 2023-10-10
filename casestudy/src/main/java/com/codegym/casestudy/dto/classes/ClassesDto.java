@@ -1,6 +1,9 @@
 package com.codegym.casestudy.dto.classes;
 
 import com.codegym.casestudy.model.classes.Classes;
+import com.codegym.casestudy.service.classes.IClassesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -8,17 +11,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Getter
-//@Setter
-//@NoArgsConstructor
-public class ClassesDto implements Validator {
 
+public class ClassesDto implements Validator {
     private int id;
     private String className;
     private String description;
     private String startDate;
     private String endDate;
     private List<Classes> classList = new ArrayList<>();
+    private List<String> existingClassNames;
+
 
     public int getId() {
         return id;
@@ -88,8 +90,13 @@ public class ClassesDto implements Validator {
                 errors.rejectValue("className", null, "Không được để trống!");
             } else if (!classesDto.getClassName().matches("^(B2|C|D)-\\d{4}$")) {
                 errors.rejectValue("className", null, "Tên lớp phải bắt đầu từ B2-xxxx hoặc C-xxxx hoặc D-xxxx");
-            } else if (classList1 != null && classList1.contains(name)) {
-                errors.rejectValue("className", null, "Tên lớp đã tồn tại");
+            } else if (classList1 != null) {
+                for (int i = 0; i < classList1.size(); i++) {
+                    if (classList1.get(i).getClassName().equals(name)) {
+                        errors.rejectValue("className", null, "Tên lớp đã tồn tại!");
+                        break;
+                    }
+                }
             }
             if (classesDto.startDate.equals("")) {
                 errors.rejectValue("startDate", null, "Không được để trống!");
@@ -112,8 +119,14 @@ public class ClassesDto implements Validator {
                 errors.rejectValue("className", null, "Không được để trống!");
             } else if (!classesDto.getClassName().matches("^(B2|C|D)-\\d{4}$")) {
                 errors.rejectValue("className", null, "Tên lớp phải bắt đầu từ B2-xxxx hoặc C-xxxx hoặc D-xxxx");
-            } else if (classList1 != null && classList1.contains(name)) {
-                errors.rejectValue("className", null, "Tên lớp đã tồn tại");
+            } else if (classList1 != null) {
+                for (int i = 0; i < classList1.size(); i++) {
+                    if
+                    (classList1.get(i).getClassName().equals(name)) {
+                        errors.rejectValue("className", null, "Tên lớp đã tồn tại!");
+                        break;
+                    }
+                }
             }
             if (classesDto.startDate.equals("")) {
                 errors.rejectValue("startDate", null, "Không được để trống!");

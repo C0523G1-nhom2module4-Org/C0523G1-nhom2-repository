@@ -114,7 +114,8 @@
 
 <!--navbar management start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5"><!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
         <h2 class="m-0">Đà Nẵng Drift</h2>
@@ -131,6 +132,7 @@
             <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
         </div>
         <div class="collapse navbar-collapse justify-content-end">
             <div class="navbar-nav ms-auto text-light">
@@ -154,11 +156,15 @@
     </div>
 </nav>
 <!--navbar management end-->
+<!--BACK-->
+<div class="container-fluid" style="margin-top: 30px"><a th:href="@{/admin/student}" class="btn btn-primary"><i
+        class="fa-solid fa-arrow-left"></i></a></div>
+<!--BACK-->
 
 <!--content start-->
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Chi Tiết Học Viên</h3>
-    <table class="table" style="margin-top: 20%">
+    <table class="table" style="margin-top: 12%">
         <thead>
         <tr id="header">
             <th>STT</th>
@@ -175,21 +181,21 @@
         <tr th:each="student, loop : ${student}">
             <th style="width: 5%" th:text="${loop.count}"></th>
             <td style="width: 15%" th:text="${student.name}"></td>
-            <td style="width: 7%">
+            <td style="width: 8%">
                 <span th:if="${student.gender == 0}">Nam</span>
                 <span th:if="${student.gender == 1} ">Nữ</span>
                 <span th:if="${student.gender == 2} ">LGBT</span>
             </td>
-            <td style="width: 9%;" th:text="${student.identity}"></td>
-            <td style="width: 9%;" th:text="${student.phone}"></td>
-            <td style="width: 9%;" th:text="${student.birthday}" class="birthday-cell"></td>
-            <td style="width: 10%;" th:text="${student.classes.className}"></td>
-            <td style="width: 15%;" th:text="${student.address}"></td>
-            <td style="width: 6%;">
-                <a th:href="@{/admin/student/edit/(id=${student.getId()})}">
-                    <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
-                </a>
-            </td>
+            <td style="width: 10%;" th:text="${student.identity}"></td>
+            <td style="width: 10%;" th:text="${student.phone}"></td>
+            <td style="width: 10%;" th:text="${student.birthday}" class="birthday-cell"></td>
+            <td style="width: 7%;" th:text="${student.classes.className}"></td>
+            <td style="width: 20%;" th:text="${student.address}"></td>
+            <!--            <td style="width: 6%;">-->
+            <!--                <a th:href="@{/admin/student/edit/(id=${student.getId()})}">-->
+            <!--                    <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>-->
+            <!--                </a>-->
+            <!--            </td>-->
         </tr>
         </tbody>
     </table>

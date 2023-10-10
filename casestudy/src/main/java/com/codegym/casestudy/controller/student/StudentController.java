@@ -34,6 +34,9 @@ public class StudentController {
                            @RequestParam(defaultValue = "0", required = false) int page) {
         Pageable pageable = PageRequest.of(page, 5,Sort.by("student_name").ascending());
         Page<StudentDto> studentDtos = studentService.findAllStudent(pageable, name);
+        if (studentDtos.isEmpty()) {
+            model.addAttribute("message", "Không có dữ liệu bạn tìm kiếm");
+        }
         model.addAttribute("studentDtos", studentDtos);
         model.addAttribute("name", name);
         return "/student/list";
@@ -60,14 +63,14 @@ public class StudentController {
         Student student = new Student();
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.add(student);
-        redirectAttributes.addFlashAttribute("mess", "thêm mới thành công");
+        redirectAttributes.addFlashAttribute("success", "thêm mới thành công");
         return "redirect:/admin/student";
     }
 
     @GetMapping("/student/delete")
     public String delete(@RequestParam(name = "id") int id, RedirectAttributes redirectAttributes) {
         this.studentService.deleteWithId(id);
-        redirectAttributes.addFlashAttribute("mess", "Xoá Thành Côngg");
+        redirectAttributes.addFlashAttribute("success", "Xoá Thành Côngg");
         return "redirect:/admin/student";
     }
 
@@ -95,7 +98,7 @@ public class StudentController {
         Student student = new Student();
         BeanUtils.copyProperties(listStudentDto, student);
         studentService.edit(student);
-        redirectAttributes.addFlashAttribute("mess", "Sửa Thành Công");
+        redirectAttributes.addFlashAttribute("success", "Sửa Thành Công");
         return "redirect:/admin/student";
     }
 
