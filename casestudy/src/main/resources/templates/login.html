@@ -5,6 +5,16 @@
     <title>Title</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="sweetalert2.all.min.js"></script>
+<!--    -------------------------------->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="/public/customer/table.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
@@ -133,11 +143,11 @@
     <form th:action="@{/j_spring_security_check}" method="post" name='f'>
         <h1>Đăng Nhập</h1>
         <div class="input-box">
-            <input type="text" name="username" placeholder="Tên Đăng Nhập" required>
+            <input type="text" name="username" data-validate="Email Theo Dạng abc@mail.com" placeholder="Tên Đăng Nhập" required>
             <i class='bx bxs-user'></i>
         </div>
         <div class="input-box">
-            <input type="password" name="password" placeholder="Mật Khẩu" required>
+            <input type="password" name="password" data-validate="Mật khẩu không để trống!" placeholder="Mật Khẩu" required>
             <i class='bx bxs-lock'></i>
         </div>
         <div class="remember-forgot">
@@ -157,40 +167,21 @@
         </div>
     </form>
 </div>
-<!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
-<div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
-
+<div th:if="${msg != null}">
+    <span th:text="${msg}" id="success" style="display: none"></span>
+</div>
 <script>
-    window.onload = function () {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success'
-            },
-            buttonsStyling: false
-        })
-        if (document.getElementById("statusPage").value === "1") {
-            swalWithBootstrapButtons.fire(
-                'Created successfully!',
-                '',
-                'success'
-            )
-        } else if (document.getElementById("statusPage").value === "2") {
-            swalWithBootstrapButtons.fire(
-                'Updated successfully!',
-                '',
-                'success'
-            )
-        } else if (document.getElementById("statusPage").value === "3") {
-            swalWithBootstrapButtons.fire(
-                'Deleted  successfully!',
-                '',
-                'success'
-            )
-        }
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+        let fail = document.getElementById("/account/login?error=true").innerText;
+        console.log(fail)
+        Swal.fire({
+            title: fail,
+            icon: 'success',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+        });
+    });
 </script>
 </body>
 </html>

@@ -43,6 +43,7 @@ public class AccountController {
     @GetMapping("")
     public String showAccount(@RequestParam(defaultValue = "0", required = false) int page,
                               @RequestParam(defaultValue = "") String keyword,
+
                               Model model) {
         Pageable pageable = PageRequest.of(page, 5, Sort.by("email").ascending());
         Page<IAccountDto> accountDtoPage = accountService.searchByEmail(pageable, keyword);
@@ -53,8 +54,9 @@ public class AccountController {
     }
 
     @GetMapping("/login")
-    public String showLogin(Model model, @RequestParam(name = "account", required = false) Account account) {
+    public String showLogin(Model model, @RequestParam(name = "account", required = false) Account account,RedirectAttributes redirectAttributes) {
         model.addAttribute("account", account);
+
         return "login";
     }
 

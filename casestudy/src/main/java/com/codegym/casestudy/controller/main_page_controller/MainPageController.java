@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class MainPageController {
     public String index(Model model) {
         GuessEmail guessEmail = new GuessEmail();
         model.addAttribute("guessEmail",guessEmail);
+
         return "/index";
     }
 
@@ -55,7 +57,8 @@ public class MainPageController {
         return "/qualification-add";
     }
     @GetMapping("/success")
-    public String showLandingPage() {
+    public String showLandingPage(Model model) {
+        model.addAttribute("msg", "Đăng Nhập Thành Công");
         return "/landing_page";
     }
 }
