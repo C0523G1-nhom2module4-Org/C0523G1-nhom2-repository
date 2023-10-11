@@ -116,11 +116,34 @@
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" href="/account" class="nav-item nav-link">Tài khoản</a>
+            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" href="/admin/qualification" class="nav-item nav-link">Bằng
+                cấp</a>
+            <a th:if="${#request.isUserInRole('ROLE_TEACHER')|| #request.isUserInRole('ROLE_ADMIN')|| #request.isUserInRole('ROLE_STUDENT')}"
+               th:href="@{/admin/student/__${name}__}" class="nav-item nav-link">Học viên</a>
+            <a th:if="${#request.isUserInRole('ROLE_TEACHER') || #request.isUserInRole('ROLE_ADMIN')}"
+               href="admin/teacher" class="nav-item nav-link">Giáo viên</a>
+            <a th:if="${#request.isUserInRole('ROLE_TEACHER')|| #request.isUserInRole('ROLE_ADMIN')|| #request.isUserInRole('ROLE_STUDENT')}"
+               href="admin/classes" class="nav-item nav-link">Lớp học</a>
+            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" href="admin/contracts" class="nav-item nav-link">Hợp
+                đồng</a>
+            <a th:if="${#request.isUserInRole('ROLE_TEACHER')|| #request.isUserInRole('ROLE_ADMIN')}"
+               th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/contact-email}"
+               class="nav-item nav-link ">Phản Hồi</a>
+        </div>
+    </div>
+
+
     <!--    admin-->
     <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
-            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{//admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
             <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
@@ -133,7 +156,7 @@
 
     <!--    teacher-->
     <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_TEACHER')}">
-        <div class="navbar-nav ms-auto p-4 p-lg-0" style="margin-right: 27%">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
@@ -143,8 +166,8 @@
     <!--    teacher end-->
 
     <!--    student-->
-    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_STUDENT')}">
-        <div class="navbar-nav ms-auto p-4 p-lg-0" style="margin-right: 58%">
+    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_TEACHER')}">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
         </div>
@@ -156,7 +179,7 @@
         <div class="navbar-nav ms-auto text-light">
             <div th:if="${#request.isUserInRole('ROLE_ADMIN')}"
                  style="color: #0a223c;font-size: 1rem; font-weight: bold; display: grid">
-                <div style="align-self: center;" >
+                <div style="align-self: center;">
                     Admin
                 </div>
             </div>

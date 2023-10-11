@@ -96,7 +96,7 @@ public class GuessEmailService implements IGuessEmailService {
                         "        </legend>\n" +
                         "        </br>\n" +
                         "        <legend>\n" +
-                        "            <h4>Xin chào: </h4>\n" +
+                        "            <h4>Xin chào: </h4>\n" + guessEmail +
                         "        </legend>\n" +
                         "        </br>\n" +
                         "    </div>\n" +

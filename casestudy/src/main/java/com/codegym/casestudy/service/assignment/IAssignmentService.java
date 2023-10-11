@@ -1,8 +1,10 @@
 package com.codegym.casestudy.service.assignment;
 
+import com.codegym.casestudy.dto.classes.ClassesDtoAssignment;
 import com.codegym.casestudy.model.assignment.Assignment;
 import com.codegym.casestudy.model.classes.Classes;
 import com.codegym.casestudy.model.teacher.Teacher;
+import com.codegym.casestudy.model.teacher.TeacherDtoAssignment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,8 +21,8 @@ public interface IAssignmentService {
 
     Assignment findById(Long id);
 
-    List<Classes> findAllClassAvailable();
+    List<ClassesDtoAssignment> findAllClassAvailable();
 
-    List<Teacher> findAllTeacherAvailable();
+    List<TeacherDtoAssignment> findAllTeacherAvailable();
 
 }

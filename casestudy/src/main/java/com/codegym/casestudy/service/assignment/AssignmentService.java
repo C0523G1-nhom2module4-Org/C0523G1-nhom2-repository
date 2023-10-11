@@ -1,8 +1,10 @@
 package com.codegym.casestudy.service.assignment;
 
+import com.codegym.casestudy.dto.classes.ClassesDtoAssignment;
 import com.codegym.casestudy.model.assignment.Assignment;
 import com.codegym.casestudy.model.classes.Classes;
 import com.codegym.casestudy.model.teacher.Teacher;
+import com.codegym.casestudy.model.teacher.TeacherDtoAssignment;
 import com.codegym.casestudy.repository.assignment.IAssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -73,12 +75,12 @@ public class AssignmentService implements IAssignmentService {
     }
 
     @Override
-    public List<Classes> findAllClassAvailable() {
+    public List<ClassesDtoAssignment> findAllClassAvailable() {
         return this.assignmentRepository.findAllClassAvailable();
     }
 
     @Override
-    public List<Teacher> findAllTeacherAvailable() {
+    public List<TeacherDtoAssignment> findAllTeacherAvailable() {
         return this.assignmentRepository.findAllTeacherAvailable();
     }
 }

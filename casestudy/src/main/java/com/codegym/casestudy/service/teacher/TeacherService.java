@@ -53,4 +53,9 @@ public class TeacherService implements ITeacherService {
     public void updateTeacher( Teacher teacher) {
         teacherRepository.save(teacher);
     }
+
+    @Override
+    public int findTeachersByIdClass(int classId) {
+        return teacherRepository.findTeachersByIdClass(classId);
+    }
 }

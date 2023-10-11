@@ -16,8 +16,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
 
     <!-- Libraries Stylesheet -->
     <link href="/lib/animate/animate.min.css" rel="stylesheet">
@@ -28,6 +31,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/table.css">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -45,7 +49,7 @@
 
         table {
             position: relative;
-            margin-top: 20%;
+            margin-top: 17%;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
@@ -101,6 +105,12 @@
             }
 
         }
+
+        #back-button {
+            position: sticky;
+            bottom: 5%;
+            right: 0%;
+        }
     </style>
 </head>
 <body>
@@ -112,10 +122,10 @@
 <div th:replace="index::topbar"></div>
 <!--topbar end-->
 
-<!--navbar management start-->
+
+<!--navbar start-->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a th:href="@{/success}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-        <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
+    <a th:href="@{/}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <!--        <h2 class="m-0"><i class="fa fa-car text-primary me-2"></i>Đà Nẵng Drift</h2>-->
         <img src="/img/logoo.png" style="height: 75px; width: 75px" alt="">
         <h2 class="m-0">Đà Nẵng Drift</h2>
@@ -127,12 +137,12 @@
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
             <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/admin/student}" class="nav-item nav-link active">Học viên</a>
+            <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
-            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link active ">Phản hồi</a>
         </div>
         <div class="collapse navbar-collapse justify-content-end">
             <div class="navbar-nav ms-auto text-light">
@@ -155,46 +165,34 @@
         </div>
     </div>
 </nav>
-<!--navbar management end-->
-<!--BACK-->
-<div class="container-fluid" style="margin-top: 30px"><a th:href="@{/admin/student}" class="btn btn-primary"><i
-        class="fa-solid fa-arrow-left"></i></a></div>
-<!--BACK-->
+<!--navbar end-->
 
-<!--content start-->
-<div class="container">
-    <h3 class="table-title" style="text-align: center; margin-top: 2%">Chi Tiết Học Viên</h3>
-    <table class="table" style="margin-top: 12%">
-        <thead>
-        <tr id="header">
-            <th>STT</th>
-            <th>Tên học viên</th>
-            <th>Giới tính</th>
-            <th>CMND</th>
-            <th>Điện thoại</th>
-            <th>Ngày sinh</th>
-            <th>Lớp</th>
-            <th>Địa chỉ</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="student, loop : ${student}">
-            <th style="width: 5%" th:text="${loop.count}"></th>
-            <td style="width: 15%" th:text="${student.name}"></td>
-            <td style="width: 8%">
-                <span th:if="${student.gender == 0}">Nam</span>
-                <span th:if="${student.gender == 1} ">Nữ</span>
-                <span th:if="${student.gender == 2} ">LGBT</span>
-            </td>
-            <td style="width: 10%;" th:text="${student.identity}"></td>
-            <td style="width: 10%;" th:text="${student.phone}"></td>
-            <td style="width: 10%;" th:text="${student.birthday}" class="birthday-cell"></td>
-            <td style="width: 7%;" th:text="${student.classes.className}"></td>
-            <td style="width: 20%;" th:text="${student.address}"></td>
-        </tr>
-        </tbody>
-    </table>
+
+<!--content-->
+<div class="container mb-1">
+    <h3 class="table-title" style="text-align: center; margin-top: 2%">Chi tiết email: <span
+            th:text="${contactEmail.getEmailSubject()}"></span>
+    </h3>
+    <h5 class="table-title" style="margin-top: 2%">Tên khách hàng: <span
+            th:text="${contactEmail.getContactName()}"> </span></h5>
+
+    <h5 class="table-title" style="margin-top: 2%">Địa chỉ email: <span
+            th:text="${contactEmail.getEmailAddress()}"> </span></h5>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <table class="table" style="margin-top: 25% ; width:55%; height: auto">
+                <tbody>
+                <p th:text="${contactEmail.getEmailContent()}"></p>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="back-button">
+        <button class="btn btn-dark w-15" type="button"><a th:href="@{/admin/contact-email/back}">Quay lại</a></button>
+    </div>
 </div>
+
 
 <!--footer start-->
 <div th:replace="index::footer"></div>
@@ -204,38 +202,6 @@
 <div th:replace="index::copyRight"></div>
 <!--copyright end-->
 
-
-<script th:if="${mess!=null}">
-    // toast
-    window.onload = function () {
-        let myAlert = document.getElementById('liveToast');//select id of toast
-        let bsAlert = new bootstrap.Toast(myAlert);//inizialize it
-        bsAlert.show();//show it
-    }
-
-
-</script>
-<script th:src="@{/js/main.js}"></script>
-<script>
-    function confirmDelete(id, name) {
-        document.getElementById("usernameDelete").innerText = name;
-        document.getElementById("id").value = id;
-    }
-</script>
-<script>
-    let birthdayCells = document.getElementsByClassName("birthday-cell");
-    for (let i = 0; i < birthdayCells.length; i++) {
-        let birthday = birthdayCells[i].textContent;
-        let formattedBirthday = birthday.split("-").reverse().join("-");
-        birthdayCells[i].textContent = formattedBirthday;
-    }
-</script>
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
-<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="../lib/easing/easing.min.js"></script>
@@ -246,11 +212,11 @@
 
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
 
-<!--contact js-->
+<!-- Contact Javascript File -->
 <script src="../mail/jqBootstrapValidation.min.js"></script>
 <script src="../mail/contact.js"></script>
 
-<!-- Template Javascript-->
+<!-- Template Javascript -->
 <script src="../js/main.js"></script>
 <!--offline-->
 <script src="../../static/mail/contact.js"></script>
@@ -262,11 +228,22 @@
 <script src="../../static/js/main.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-        crossorigin="anonymous"></script>
-
+<script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
+        src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 <script th:src="@{/js/main.js}"></script>
+<script>
+    function sendClassDescription(classDescription) {
+        document.getElementById("classDescription").innerText = classDescription;
+    }
+</script>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/wow/wow.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
 
 <!-- Template Javascript -->
 <script src="/js/main.js"></script>

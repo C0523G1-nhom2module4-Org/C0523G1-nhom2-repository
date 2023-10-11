@@ -98,6 +98,7 @@
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link active">Phân công</a>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
         </div>
         <div th:replace="assignment-list::log-in-nav"></div>
     </div>
@@ -111,15 +112,20 @@
         <form th:object="${assignmentDto}" method="POST" th:action="@{/admin/assignment/add}">
             <input type="hidden" th:field="*{id}">
             <div class="row g-3">
+
+                <!--                Teacher start-->
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <select th:field="*{classes}" class="form-control border-0" id="classes">
-                            <option th:each="c : ${classList}" th:value="${c.id}"
+                            <option th:each="c : ${classList}" th:value="${c.getId()}"
                                     th:text="${c.className}"></option>
                         </select>
                         <label for="classes">Lớp</label>
                     </div>
                 </div>
+                <!--                Teacher end-->
+
+                <!--                Class start-->
                 <div class="col-sm-6">
                     <div class="form-floating">
                         <select th:field="*{teacher}" class="form-control border-0" id="teacher">
@@ -129,26 +135,8 @@
                         <label for="classes">Giáo viên</label>
                     </div>
                 </div>
-                <!--                day start-->
-                <!--                <div class="col-sm-6">-->
-                <!--                    <div class="form-floating">-->
-                <!--                        <input th:field="*{dayStart}" type="date" class="form-control border-0" id="dayStart"-->
-                <!--                               placeholder="Ngày bắt đầu" required>-->
-                <!--                        <small style="color:red;" th:if="${#fields.hasErrors('dayStart')}"-->
-                <!--                               th:errors="*{dayStart}"></small>-->
-                <!--                        <label for="dayStart">Ngày bắt đầu</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--                day end-->
-                <!--                <div class="col-sm-6">-->
-                <!--                    <div class="form-floating">-->
-                <!--                        <input th:field="*{dayEnd}" type="date" class="form-control border-0" id="dayEnd"-->
-                <!--                               placeholder="Ngày kết thúc">-->
-                <!--                        <small style="color:red;" th:if="${#fields.hasErrors('dayEnd')}"-->
-                <!--                               th:errors="*{dayEnd}"></small>-->
-                <!--                        <label for="dayEnd">Ngày kết thúc</label>-->
-                <!--                    </div>-->
-                <!--                </div>-->
+                <!--                Class end-->
+
                 <div class="col-6">
                     <button class="btn btn-light w-100 py-3" type="button"><a th:href="@{/admin/assignment/back}">Hủy
                         bỏ</a></button>

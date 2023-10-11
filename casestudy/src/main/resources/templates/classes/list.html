@@ -147,47 +147,90 @@
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+<!--    <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--        <div class="navbar-nav ms-auto p-4 p-lg-0">-->
+<!--            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/account}" class="nav-item nav-link">Tài-->
+<!--                khoản</a>-->
+<!--            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/qualification}"-->
+<!--               class="nav-item nav-link">Bằng cấp</a>-->
+<!--            <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>-->
+<!--            <a th:if="${#request.isUserInRole('ROLE_ADMIN')||#request.isUserInRole('ROLE_TEACHER')}"-->
+<!--               th:href="@{/admin/teacher}" class="nav-item nav-link ">Giáo-->
+<!--                viên</a>-->
+<!--            <a th:href="@{/admin/classes}" class="nav-item nav-link active ">Lớp-->
+<!--                học</a>-->
+<!--            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp-->
+<!--                đồng</a>-->
+<!--            <a th:if="${#request.isUserInRole('ROLE_ADMIN')||#request.isUserInRole('ROLE_TEACHER')}"-->
+<!--               th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân-->
+<!--                công</a>-->
+<!--            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/contact-email}"-->
+<!--               class="nav-item nav-link">Phản hồi</a>-->
+<!--        </div>-->
+<!--        <div class="collapse navbar-collapse justify-content-end">-->
+<!--            <div class="navbar-nav ms-auto text-light">-->
+<!--                <div class="dropdown mx-2">-->
+<!--                    <label for="user-container" class="text-dark"-->
+<!--                           data-bs-toggle="dropdown"-->
+<!--                           aria-expanded="false"></label>-->
+<!--                    <button class="btn btn-outline-light" style="border: none;"-->
+<!--                            id="user-container"-->
+<!--                            data-bs-toggle="dropdown"-->
+<!--                            aria-expanded="false">-->
+<!--                        <i class="fas fa-user" style="color: #000000;"></i>-->
+<!--                    </button>-->
+<!--                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">-->
+<!--                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>-->
+<!--                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!--    admin-->
+    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
-            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/admin/student}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{//admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
-            <a th:href="@{/admin/classes}" class="nav-item nav-link active">Lớp học</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
-            <a th:href="@{/admin/contact-email}" class="nav-item nav-link">Phản hồi</a>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end">
-            <div class="navbar-nav ms-auto text-light">
-                <div class="dropdown mx-2">
-                    <label for="user-container" class="text-dark"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false"></label>
-                    <button class="btn btn-outline-light" style="border: none;"
-                            id="user-container"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        <i class="fas fa-user" style="color: #000000;"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="/account/change-password">Đổi mật khẩu</a></li>
-                        <li><a class="dropdown-item" href="/account/logout">Đăng xuất</a></li>
-                    </ul>
-                </div>
-            </div>
+            <a th:href="@{/admin/contact-email}" class="nav-item nav-link ">Phản Hồi</a>
         </div>
     </div>
+    <!--    admin end-->
+
+    <!--    teacher-->
+    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_TEACHER')}">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+            <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
+        </div>
+    </div>
+    <!--    teacher end-->
+
+    <!--    student-->
+    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_STUDENT')}">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+        </div>
+    </div>
+    <!--   student end-->
 </nav>
 <!--navbar management end-->
 
 <!--content start-->
 <div class="container">
     <h3 class="table-title" style="text-align: center; margin-top: 2%">Danh Sách Lớp Học</h3>
-    <h4 th:if="${classList.isEmpty()}" th:text="${message}"></h4>
     <nav class="navbar navbar-inverse" style="margin-right: 65px">
         <div class=" navbar-form navbar-left mb-3">
-            <a th:href="@{/admin/classes/add}" style="margin-left: 65px">
+            <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/classes/add}" style="margin-left: 65px">
                 <button title="Thêm mới lớp sinh"
                         class="btn btn-primary">
                     <i class="fa-solid fa-plus"></i>
@@ -207,16 +250,19 @@
             </div>
         </form>
     </nav>
+    <h4 style="text-align: center" th:if="${classList.isEmpty()}" th:text="${message}"></h4>
+    <br>
+    <br>
 </div>
 <div class="container">
-    <table class="table" style="margin-top: 12%;width: 90%">
+    <table class="table" style="margin-top: 8%;width: 90%" th:if="${!classList.isEmpty()}">
         <thead>
         <tr id="header">
             <th>STT</th>
             <th>Tên Lớp</th>
             <th>Ngày Bắt Đầu</th>
             <th>Ngày Kết Thúc</th>
-            <th colspan="2">Quản Lý</th>
+            <th th:if="${#request.isUserInRole('ROLE_ADMIN')}" colspan="2">Quản Lý</th>
         </tr>
         </thead>
         <tbody>
@@ -228,12 +274,14 @@
             <td style="width: 25%" th:text="${cla.endDate}" class="birthday-cell"></td>
 
             <td style="width: 5%">
-                <a th:href="@{/admin/classes/edit/{id}(id=${cla.getId()})}">
+                <a th:if="${#request.isUserInRole('ROLE_ADMIN')}"
+                   th:href="@{/admin/classes/edit/{id}(id=${cla.getId()})}">
                     <i class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
             <td style="width: 5%">
-                <a th:href="@{/admin/classes/class-detail/__${cla.getId()}__}">
+                <a th:if="${#request.isUserInRole('ROLE_ADMIN')}"
+                   th:href="@{/admin/classes/class-detail/__${cla.getId()}__}">
                     <i class="fas fa-info-circle fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
@@ -336,33 +384,24 @@
         bsAlert.show();//show it
     }
 </script>
+<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="../lib/easing/easing.min.js"></script>
-
-<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-
-<script src="../lib/isotope/isotope.pkgd.min.js"></script>
-
-<script src="../lib/lightbox/js/lightbox.min.js"></script>
-
-
-<!-- Contact Javascript File -->
-<script src="../mail/jqBootstrapValidation.min.js"></script>
-<script src="../mail/contact.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>-->
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
 <!-- Template Javascript -->
-<script src="../js/main.js"></script>
-<!--offline-->
-<script src="../../static/mail/contact.js"></script>
-<script src="../../static/mail/jqBootstrapValidation.min.js"></script>
-<script src="../../static/lib/lightbox/js/lightbox.min.js"></script>
-<script src="../../static/lib/isotope/isotope.pkgd.min.js"></script>
-<script src="../../static/lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="../../static/lib/easing/easing.min.js"></script>
-<script src="../../static/js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+</script>
 <script th:src="@{/bootstrap-5.0.2-dist/js/bootstrap.bundle.js}"
         src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 <script th:src="@{/js/main.js}"></script>

@@ -7,6 +7,9 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
+    <!-- Modal thông báo -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -111,8 +114,22 @@
     </div>
 </div>
 <!-- Page Header End -->
-
-
+<div th:if="${success}">
+    <span th:text="${success}" id="success" style="display: none"></span>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let success = document.getElementById("success").innerText;
+        console.log(success)
+        Swal.fire({
+            title: success,
+            icon: 'success',
+            timer: 1500,
+            timerProgressBar: true,
+            showConfirmButton: false
+        });
+    });
+</script>
 <!-- Contact Start -->
 <div class="container-xxl py-6">
     <div class="container">
@@ -161,7 +178,7 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary py-3 px-5" type="button">Xác nhận</button>
+                            <button class="btn btn-primary py-3 px-5" type="submit">Xác nhận</button>
                         </div>
                     </div>
                 </form>
@@ -172,25 +189,6 @@
 <!-- Contact End -->
 
 <!--Modal success start-->
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <form th:action="@{/main-page/guess-email/add}" method="get" th:object="${guessEmail}">-->
-<!--                <div class="modal-header">-->
-<!--                    <input type="hidden" th:field="*{email}" id="emailModal" name="emailModal">-->
-<!--                    <h5 class="modal-title" id="exampleModalLabel"><b>Cảm ơn</b></h5>-->
-<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    Cảm ơn bạn đã để lại thông tin liên lạc, mọi cập nhật mới nhất sẽ được gửi tới thùng thư của bạn-->
-<!--                </div>-->
-<!--                <div class="modal-footer">-->
-<!--                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Xác nhận</button>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 <!--Modal success end-->
 
