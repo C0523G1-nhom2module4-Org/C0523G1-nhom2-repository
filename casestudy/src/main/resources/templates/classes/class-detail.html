@@ -153,10 +153,10 @@
                 khoản</a>
             <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/qualification}"
                class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/admin/student}" class="nav-item nav-link active">Học viên</a>
+            <a th:href="@{/admin/student}" class="nav-item nav-link ">Học viên</a>
             <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo
                 viên</a>
-            <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp
+            <a th:href="@{/admin/classes}" class="nav-item nav-link active">Lớp
                 học</a>
             <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp
                 đồng</a>
@@ -229,7 +229,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><b>Thông tin khoá học</b></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><b>Thông tin lớp học</b></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -317,6 +317,10 @@
         src="../static/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
 <script th:src="@{/js/main.js}"></script>
 </body>
-
+<script>
+    function sendClassDescription(classDescription) {
+        document.getElementById("classDescription").innerText = classDescription;
+    }
+</script>
 
 </html>
