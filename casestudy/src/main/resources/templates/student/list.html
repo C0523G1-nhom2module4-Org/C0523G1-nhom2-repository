@@ -185,34 +185,40 @@
     <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a th:href="@{/account}" class="nav-item nav-link">Tài khoản</a>
-            <a th:href="@{//admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
-            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/qualification}" class="nav-item nav-link">Bằng cấp</a>
+            <a th:href="@{/admin/student/}" class="nav-item nav-link active">Học viên</a>
             <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
             <a th:href="@{/admin/contracts}" class="nav-item nav-link">Hợp đồng</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
             <a th:href="@{/admin/contact-email}" class="nav-item nav-link ">Phản Hồi</a>
+
         </div>
+        <div th:replace="assignment-list::log-in-nav"></div>
+
     </div>
     <!--    admin end-->
 
     <!--    teacher-->
-    <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_TEACHER')}">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
-            <a th:href="@{/admin/teacher}" class="nav-item nav-link">Giáo viên</a>
-            <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+    <div   class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_TEACHER')}">
+        <div class="navbar-nav ms-auto p-4 p-lg-0" style="margin-right: 50%">
+            <a th:href="@{/admin/student/}" class="nav-item nav-link active">Học viên</a>
+            <a th:href="@{/admin/teacher}" class="nav-item nav-link  ">Giáo viên</a>
+            <a th:href="@{/admin/classes}" class="nav-item nav-link ">Lớp học</a>
             <a th:href="@{/admin/assignment}" class="nav-item nav-link ">Phân công</a>
         </div>
+        <div th:replace="assignment-list::log-in-nav"></div>
     </div>
     <!--    teacher end-->
 
     <!--    student-->
     <div class="collapse navbar-collapse" id="navbarCollapse" th:if="${#request.isUserInRole('ROLE_STUDENT')}">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a th:href="@{/admin/student/}" class="nav-item nav-link">Học viên</a>
+            <a th:href="@{/admin/student/}" class="nav-item nav-link active">Học viên</a>
             <a th:href="@{/admin/classes}" class="nav-item nav-link">Lớp học</a>
+
         </div>
+        <div th:replace="assignment-list::log-in-nav"></div>
     </div>
     <!--   student end-->
 </nav>
@@ -268,20 +274,20 @@
                 <span th:if="${student.getGender() == 2} ">LGBT</span>
             </td>
             <td style="width: 10%;" th:text="${student.getClassName()}"></td>
-            <td style="width: 2%">
-                <a th:if="${#request.isUserInRole('ROLE_ADMIN')}"
+            <td style="width: 2%" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                <a
                    th:href="@{/admin/student/edit/(id=${student.getId()})}">
                     <i type="button" class="fas fa-edit fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
-            <td style="width: 2%">
-                <a th:if="${#request.isUserInRole('ROLE_ADMIN')}"
+            <td style="width: 2%" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                <a
                    th:href="@{/admin/student/student-detail/__${student.getId()}__}">
                     <i class="fas fa-info-circle fa-lg" style="color:#0C2B4B"></i>
                 </a>
             </td>
-            <td style="width: 2%">
-                <i th:if="${#request.isUserInRole('ROLE_ADMIN')}" data-bs-toggle="modal"
+            <td style="width: 2%" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                <i  data-bs-toggle="modal"
                    data-bs-target="#exampleModal"
                    th:attr="onclick=|confirmDelete('${student.id}','${student.studentName}')|" type="button"
                    class="fas fa-trash-alt fa-lg" style="color:#0C2B4B"></i>

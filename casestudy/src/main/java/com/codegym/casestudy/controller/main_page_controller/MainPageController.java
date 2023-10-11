@@ -61,11 +61,11 @@ public class MainPageController {
     public String qualification() {
         return "/qualification-add";
     }
-    @GetMapping("/success")
-    public String showLandingPage(Model model) {
-        model.addAttribute("msg", "Đăng Nhập Thành Công");
-        return "/landing_page";
-    }
+//    @GetMapping("/success")
+//    public String showLandingPage(Model model) {
+//        model.addAttribute("msg", "Đăng Nhập Thành Công");
+//        return "/landing_page";
+//    }
     @GetMapping("/success")
     public String showLandingPage(Model model, Principal principal) {
         Account name =  iAccountService.findByEmail(principal.getName());
