@@ -96,7 +96,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin/classes/delete").access("hasAnyRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/admin/classes/delete/").access("hasAnyRole('ROLE_ADMIN')");
         //assigment
-        http.authorizeRequests().antMatchers("/admin/assignment").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/assignment").access("hasAnyRole('ROLE_ADMIN','ROLE_TEACHER')");
         http.authorizeRequests().antMatchers("/admin/assignment/").access("hasAnyRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/admin/assignment/add").access("hasAnyRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/admin/assignment/add/").access("hasAnyRole('ROLE_ADMIN')");
@@ -113,6 +113,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin/qualification/remove/").access("hasAnyRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/admin/qualification/edit").access("hasAnyRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/admin/qualification/edit/").access("hasAnyRole('ROLE_ADMIN')");
+        //contac_email
+        http.authorizeRequests().antMatchers("/admin/contact-email").access("hasAnyRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/admin/contact-email/").access("hasAnyRole('ROLE_ADMIN')");
         // Khi người dùng đã login, với vai trò XX.
         // Nhưng truy cập vào trang yêu cầu vai trò YY,
         // Ngoại lệ AccessDeniedException sẽ ném ra.
